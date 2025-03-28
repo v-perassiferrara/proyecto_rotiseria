@@ -1,0 +1,63 @@
+from flask_restful import Resource
+from flask import request
+
+
+
+PRODUCTOS = {
+    1: {"nombre": "Pollo con papas" , "cantidad" : 4 , "precio" : "$242" },
+    2: {"nombre": "Arroz blanco" , "cantidad" : 5 , "precio" : "$600" },
+    3: {"nombre": "Bife a la criolla" , "cantidad" : 8 , "precio" : "$125,38" }
+}
+
+
+
+class Productos(Resource):
+
+# GET: obtener una lista de productos Rol: USER/ADMIN/ENCARGADO  
+    def get(self):
+
+        return PRODUCTOS
+
+
+# POST: crear un producto Rol: ADMIN
+    def post(self):
+
+        producto = request.get_json()
+        id = max(PRODUCTOS.keys())+1
+        PRODUCTOS[id] = producto
+        return "Producto creado con éxito", 201
+
+
+
+
+class Producto(Resource):
+
+# GET: Obtener un producto. Rol: ADMIN  
+    def get(self, id):
+        
+        if id in PRODUCTOS:
+            return PRODUCTOS[id]
+            
+        return "El id de producto es inexistente", 404
+
+
+# DELETE: Eliminar un producto. Rol: ADMIN
+    def delete(self, id):
+
+        if id in PRODUCTOS:
+            del PRODUCTOS[id]
+            return "Producto eliminado con éxito", 204
+
+        return "El id de producto a eliminar es inexistente", 404
+
+
+# PUT: Editar un producto. Rol: ADMIN/ENCARGADO  
+    def put(self, id):
+
+        if id in PRODUCTOS:
+            producto = PRODUCTOS[id]
+            data = request.get_json()
+            producto.update(data)
+            return "Producto modificado con éxito", 201
+
+        return "El id de producto a modificar es inexistente", 404
