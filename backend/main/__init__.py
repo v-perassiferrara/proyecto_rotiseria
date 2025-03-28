@@ -17,8 +17,18 @@ def create_app():
 
 
     # Cargar los recursos
-    api.add_resource(resources.AnimalResource, "/animal/<id>")
-    api.add_resource(resources.AnimalesResource, "/animales")
+    api.add_resource(resources.NotificacionesResource, "/notificaciones")
+
+    api.add_resource(resources.PedidosResource, "/pedidos")
+    api.add_resource(resources.PedidoResource, "/pedido/<int:id>")
+
+    api.add_resource(resources.ProductosResource, "/productos")
+    api.add_resource(resources.ProductoResource, "/producto/<int:id>")
+
+    api.add_resource(resources.UsuariosResource, "/usuarios")
+    api.add_resource(resources.UsuarioResource, "/usuario/<int:id>")
+
+    api.add_resource(resources.ValoracionesResource, "/valoraciones")
 
     api.init_app(app)
 
