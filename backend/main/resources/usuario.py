@@ -1,12 +1,12 @@
 from flask_restful import Resource
 from flask import request
-
-
+from .. import db
+from main.models import Usaurio_db
 
 USUARIOS = {
-    1: {"nombre": "Pepe Rodriguez" , "email": "pep34@gmail.com" , "telefono": "261785478" , "rol": "admin" , "estado" : "activo" },
-    2: {"nombre": "Jorge Messi" , "email": "messi@gmail.com" , "telefono": "261785478" , "rol": "empleado" , "estado" : "pendiente" },
-    3: {"nombre": "Pepe Guardiola" , "email": "guardiolita@gmail.com" , "telefono": "261785478" , "rol": "cliente" , "estado" : "bloqueado" }
+    1: {"nombre": "Pepe Rodriguez" , "email": "pep34@gmail.com", "contrasena": "123" , "telefono": "261785478" , "rol": "admin" , "estado" : "activo" },
+    2: {"nombre": "Jorge Messi" , "email": "messi@gmail.com" ,"contrasena": "111", "telefono": "261785478" , "rol": "empleado" , "estado" : "pendiente" },
+    3: {"nombre": "Pepe Guardiola" , "email": "guardiolita@gmail.com" , "contrasena": "222", "telefono": "261785478" , "rol": "cliente" , "estado" : "bloqueado" }
 }
 
 
@@ -31,8 +31,7 @@ class Usuarios(Resource):
 
 
 class Usuario(Resource):
-
-# GET: Obtener un usuario. Rol: ADMIN  
+# GET: Obtener un usuario. Rol: ADMIN
     def get(self, id):
         
         if id in USUARIOS:

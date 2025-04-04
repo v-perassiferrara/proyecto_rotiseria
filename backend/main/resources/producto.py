@@ -4,9 +4,12 @@ from flask import request
 
 
 PRODUCTOS = {
-    1: {"nombre": "Pollo con papas" , "cantidad" : 4 , "precio" : "$242" },
-    2: {"nombre": "Arroz blanco" , "cantidad" : 5 , "precio" : "$600" },
-    3: {"nombre": "Bife a la criolla" , "cantidad" : 8 , "precio" : "$125,38" }
+    1: {"nombre": "Pollo con papas" , "cantidad" : 4 , "precio" : "$242" , "estado" : "visible"},
+    2: {"nombre": "Arroz blanco" , "cantidad" : 5 , "precio" : "$600" , "estado" : "visible"},
+    3: {"nombre": "Bife a la criolla" , "cantidad" : 8 , "precio" : "$125,38" , "estado" : "visible"},
+    4: {"nombre": "Ensalada de frutas" , "cantidad" : 2 , "precio" : "$100" , "estado" : "visible"},
+    5: {"nombre": "Pasta con salsa" , "cantidad" : 10 , "precio" : "$200" , "estado" : "oculto"},
+    6: {"nombre": "Pizza de muzzarella" , "cantidad" : 3 , "precio" : "$150" , "estado" : "visible"},
 }
 
 
@@ -16,7 +19,9 @@ class Productos(Resource):
 # GET: obtener una lista de productos Rol: USER/ADMIN/ENCARGADO  
     def get(self):
 
-        return PRODUCTOS
+        productos_visibles = {k: v for k, v in PRODUCTOS.items() if v["estado"] == "visible"}
+
+        return productos_visibles
 
 
 # POST: crear un producto Rol: ADMIN
@@ -41,12 +46,12 @@ class Producto(Resource):
         return "El id de producto es inexistente", 404
 
 
-# DELETE: Eliminar un producto. Rol: ADMIN
+# DELETE: Eliminar un producto (ocultar/descontinuar). Rol: ADMIN
     def delete(self, id):
 
         if id in PRODUCTOS:
-            del PRODUCTOS[id]
-            return "Producto eliminado con éxito", 204
+            PRODUCTOS[id]["estado"] = "oculto"
+            return "Producto eliminado (ocultado) con éxito", 204
 
         return "El id de producto a eliminar es inexistente", 404
 
