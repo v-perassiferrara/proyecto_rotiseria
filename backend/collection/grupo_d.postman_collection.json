@@ -256,7 +256,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3435/usuario/1",
+							"raw": "http://127.0.0.1:3435/producto/6",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -266,8 +266,8 @@
 							],
 							"port": "3435",
 							"path": [
-								"usuario",
-								"1"
+								"producto",
+								"6"
 							]
 						}
 					},
@@ -291,7 +291,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3435/usuario/1",
+							"raw": "http://127.0.0.1:3435/producto/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -301,7 +301,7 @@
 							],
 							"port": "3435",
 							"path": [
-								"usuario",
+								"producto",
 								"1"
 							]
 						}
@@ -326,7 +326,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3435/usuario/3",
+							"raw": "http://127.0.0.1:3435/producto/3",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -336,7 +336,7 @@
 							],
 							"port": "3435",
 							"path": [
-								"usuario",
+								"producto",
 								"3"
 							]
 						}
@@ -354,7 +354,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:3435/productos",
+							"raw": "http://127.0.0.1:3435/pedidos",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -364,7 +364,7 @@
 							],
 							"port": "3435",
 							"path": [
-								"productos"
+								"pedidos"
 							]
 						}
 					},
@@ -612,12 +612,74 @@
 			]
 		},
 		{
-			"name": "Login (pendiente)",
-			"item": []
-		},
-		{
-			"name": "Logout (pendiente)",
-			"item": []
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"guardiolita@gmail.com\" , \"contrasena\":\"222\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3435/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3435",
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "guardiolita@gmail.com",
+									"disabled": true
+								},
+								{
+									"key": "contrasena",
+									"value": "222",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3435/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3435",
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

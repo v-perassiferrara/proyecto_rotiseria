@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from flask import request
-from usuario import USUARIOS
+from .usuario import USUARIOS
 
 
 
@@ -23,14 +23,14 @@ class Login(Resource):
         if usuario:
             # Verificar la contraseña y el usuario
             if usuario['contrasena'] == contrasena:
-                return {"mensaje": "Login correcto", "usuario": usuario}, 200
+                return "Login correcto", 200
             
                 # Falta tener lo de los tokens
             
             else:
-                return {"mensaje": "Contraseña incorrecta"}, 401
+                return "Contraseña incorrecta", 401
         else:
-            return {"mensaje": "El usuario indicado no existe"}, 404
+            return "El usuario indicado no existe", 404
 
 class Logout(Resource):
     # Falta tener lo de los tokens
