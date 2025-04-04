@@ -1,6 +1,7 @@
 from .. import db
 
-class Valoracion(db.Model):
+class Valoraciones(db.Model):
+    __tablename__ = 'valoraciones'
     id = db.Column(db.Integer, primary_key=True)
     estrellas = db.Column(db.Integer, nullable=False)
     comentario = db.Column(db.String(500), nullable=True)

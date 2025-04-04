@@ -19,7 +19,7 @@ def create_app():
     app = Flask(__name__)
 
     # Cargar variables de entorno
-    load_dotenv(dotenv_path="/home/juanx/Escritorio/Proyecto/backend/.env")
+    load_dotenv()
 
     if not os.path.exists(os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME')):
         os.mknod(os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME'))

@@ -1,8 +1,9 @@
 from .. import db
 
-class productos_pedidos:
-    id_producto = db.Column(db.Integer, db.ForeignKey('productos.id'), nullable=False)
-    id_pedido = db.Column(db.Integer, db.ForeignKey('pedidos.id'), nullable=False)
+class Productos_pedidos(db.Model):
+    __tablename__ = 'productos_pedidos'
+    id_producto = db.Column(db.Integer, db.ForeignKey('productos.id'), primary_key=True) # Clave primaria compuesta
+    id_pedido = db.Column(db.Integer, db.ForeignKey('pedidos.id'), primary_key=True) # Clave primaria compuesta
     cantidad = db.Column(db.Integer, nullable=False)
 
     def to_json(self):

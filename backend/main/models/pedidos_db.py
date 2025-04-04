@@ -1,9 +1,9 @@
 from .. import db
-from datetime import datetime
 
-class Pedido(db.Model): 
+class Pedidos(db.Model): 
+    __tablename__ = 'pedidos'
     id = db.Column(db.Integer, primary_key=True)
-    fecha = db.Column(db.DateTime, default=datetime.utcnow)
+    id_usuario = db.Column(db.Integer, db.ForeignKey('usuarios.dni'), nullable=False)
     total = db.Column(db.Float, nullable=False)
     estado = db.Column(db.String(50), nullable=False)
     
