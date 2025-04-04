@@ -2,4 +2,4 @@
 .env
 __pycache__
 app.db
-/DB
+/backend/DB
