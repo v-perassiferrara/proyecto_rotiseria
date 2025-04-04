@@ -1,5 +1,5 @@
 source venv/bin/activate
-python3 backend/app.py
+python3 app.py
 
 # Permisos
 # sudo chmod +x [archivo]
