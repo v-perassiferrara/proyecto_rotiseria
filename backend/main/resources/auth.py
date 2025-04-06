@@ -3,7 +3,6 @@ from flask import request
 from .usuario import USUARIOS
 
 
-
 class Login(Resource):
     
     def post(self):
@@ -33,7 +32,7 @@ class Login(Resource):
             return "El usuario indicado no existe", 404
 
 class Logout(Resource):
-    # Falta tener lo de los tokens
+    # Falta hacer lo de los tokens
     
     def post(self):
         return "Sesion cerrada correctamente!", 200
