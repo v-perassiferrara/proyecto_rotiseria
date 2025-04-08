@@ -34,7 +34,6 @@ class Productos(Resource):
 
 
 
-
 class Producto(Resource):
 
 # GET: Obtener un producto. Rol: ADMIN  
@@ -45,7 +44,6 @@ class Producto(Resource):
             
         return "El id de producto es inexistente", 404
 
-
 # DELETE: Eliminar un producto (ocultar/descontinuar). Rol: ADMIN
     def delete(self, id):
 
@@ -54,7 +52,6 @@ class Producto(Resource):
             return "Producto eliminado (ocultado) con éxito", 204
 
         return "El id de producto a eliminar es inexistente", 404
-
 
 # PUT: Editar un producto. Rol: ADMIN/ENCARGADO  
     def put(self, id):
