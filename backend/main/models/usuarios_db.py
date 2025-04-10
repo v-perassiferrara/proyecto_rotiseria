@@ -18,3 +18,19 @@ class Usuarios(db.Model):
             'telefono': self.telefono
         }
         return usuario_json
+    
+    def from_json(usuario_json):
+        dni = usuario_json.get('dni')
+        nombre = usuario_json.get('nombre')
+        apellido = usuario_json.get('apellido')
+        email = usuario_json.get('email')
+        contrasena = usuario_json.get('contrasena')
+        telefono = usuario_json.get('telefono')
+        return Usuarios(
+            dni=dni,
+            nombre=nombre,
+            apellido=apellido,
+            email=email,
+            contrasena=contrasena,
+            telefono=telefono
+        )
