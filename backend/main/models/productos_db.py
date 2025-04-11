@@ -5,13 +5,43 @@ class Productos(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(50), nullable=False)
     precio = db.Column(db.Float, nullable=False)
-    cantidad = db.Column(db.Integer, nullable=False)
+    stock = db.Column(db.Integer, nullable=False)
+
+    # Relación con la tabla productos_pedidos (Relacion muchos a muchos) deberia estar ok
+    pedidos = db.relationship('Pedidos', secondary ='Productos_pedidos', back_populates='productos')
+    
+    #Relacion con la tabla Valoraciones (relacion muchos usuarios con muchos productos)
+    usuarios = db.relationship('Usuarios', secondary ='Valoraciones', back_populates='usuarios') 
 
     def to_json(self):
         producto_json = {
             'id': self.id,
             'nombre': self.nombre,
             'precio': self.precio,
-            'cantidad': self.cantidad
+            'stock': self.stock
         }
         return producto_json
+
+    def from_json(producto_json):
+        id = producto_json.get("id")
+        nombre = producto_json.get('nombre')
+        precio = producto_json.get('precio')
+        stock = producto_json.get('stock')
+        return Productos(
+            id=id,
+            nombre=nombre,
+            precio=precio,
+            stock=stock
+        )
+
+
+
+    Valoraciones = db.Table( 
+    'valoraciones',
+    db.Column('id_usuario', db.Integer, db.ForeignKey('usuarios.id')),
+    db.Column('id_producto', db.Integer, db.ForeignKey('productos.id')),
+    db.Column('id', db.Integer, primary_key=True),
+    db.Column('estrellas', db.Integer, nullable=False), 
+    db.Column('comentario', db.String(500), nullable=True) 
+
+)
