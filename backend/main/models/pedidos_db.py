@@ -7,6 +7,7 @@ class Pedidos(db.Model):
     total = db.Column(db.Float, nullable=False)
     estado = db.Column(db.String(50), nullable=False)
     
+    usuario = db.relationship('Usuarios', back_populates='pedidos', backref='pedidos')
     def to_json(self):
         pedido_json = {
             'id': self.id,

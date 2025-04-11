@@ -8,6 +8,11 @@ class Usuarios(db.Model):
     email = db.Column(db.String(50), nullable=False)
     contrasena = db.Column(db.String(50), nullable=False)
     telefono = db.Column(db.String(20), nullable=False)
+    # Relacion con el resto de tablas
+    pedidos = db.relationship('Pedidos', back_populates='usuario', cascade='all, delete-orphan')
+    valoraciones = db.relationship('Valoraciones', back_populates='usuario', cascade='all, delete-orphan')
+    notificaciones = db.relationship('Notificaciones', back_populates='usuario', cascade='all, delete-orphan')
+
 
     def to_json(self):
         usuario_json = {
