@@ -10,7 +10,7 @@ class Pedidos(db.Model):
 
 
     #Relacion con la tabla pedidos_productos (relacion muchos pedidos con muchos productos)
-    productos = db.relationship('Productos', secondary ='Pedidos_Productos', back_populates='pedidos')
+    productos = db.relationship('Productos', secondary ='pedidos_productos', back_populates='pedidos')
 
     #Conexion con la tabla usuarios (relacion un usuario a muchos pedidos)
     usuarios = db.relationship('Usuarios', back_populates='pedidos', uselist=False, single_parent=True)

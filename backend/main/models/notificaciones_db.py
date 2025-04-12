@@ -1,6 +1,7 @@
 
 # PREGUNTAR AL PROFESOR
 
+
 # from .. import db
 
 # class Notificaciones(db.Model):

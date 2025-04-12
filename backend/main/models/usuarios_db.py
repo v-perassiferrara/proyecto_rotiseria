@@ -1,5 +1,6 @@
 from .. import db
 
+
 class Usuarios(db.Model):
     __tablename__ = 'usuarios'
     id = db.Column(db.Integer, primary_key=True)
@@ -9,12 +10,13 @@ class Usuarios(db.Model):
     email = db.Column(db.String(50), nullable=False, unique=True)
     contrasena = db.Column(db.String(50), nullable=False)
     telefono = db.Column(db.String(20), nullable=False)
+    
+    # Relacion con el resto de tablas
+    #R elacion muchos a muchos con la tabla valoracion
+    productos = db.relationship('Productos', secondary='valoraciones', back_populates='usuarios')
 
     #Relacion uno a muchos con la tabla pedidos
     pedidos = db.relationship('Pedidos', back_populates='usuarios', cascade='all, delete-orphan') 
-    
-    #Relacion uno a muchos con la tabla valoracion
-    valoraciones = db.relationship('Valoraciones', back_populates='usuarios', cascade='all, delete-orphan') 
 
 
     '''
