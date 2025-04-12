@@ -8,10 +8,10 @@ class Productos(db.Model):
     stock = db.Column(db.Integer, nullable=False)
 
     # Relación con la tabla productos_pedidos (Relacion muchos a muchos) deberia estar ok
-    pedidos = db.relationship('Pedidos', secondary ='Productos_pedidos', back_populates='productos')
+    pedidos = db.relationship('Pedidos', secondary ='pedidos_productos', back_populates='productos')
     
     #Relacion con la tabla Valoraciones (relacion muchos usuarios con muchos productos)
-    usuarios = db.relationship('Usuarios', secondary ='Valoraciones', back_populates='usuarios') 
+    usuarios = db.relationship('Usuarios', secondary ='valoraciones', back_populates='productos') 
 
     def to_json(self):
         producto_json = {

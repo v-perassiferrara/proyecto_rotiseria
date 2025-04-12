@@ -13,7 +13,7 @@ class Usuarios(db.Model):
     
     # Relacion con el resto de tablas
     #R elacion muchos a muchos con la tabla valoracion
-    productos = db.relationship('Productos', secondary='Valoraciones', back_populates='usuarios')
+    productos = db.relationship('Productos', secondary='valoraciones', back_populates='usuarios')
 
     #Relacion uno a muchos con la tabla pedidos
     pedidos = db.relationship('Pedidos', back_populates='usuarios', cascade='all, delete-orphan') 
