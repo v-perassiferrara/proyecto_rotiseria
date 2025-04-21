@@ -19,12 +19,8 @@ class Productos(Resource):
 # GET: obtener una lista de productos Rol: USER/ADMIN/ENCARGADO  
     def get(self):
         productos = db.session.query(Producto_db).all()
-        productos_visibles = {}
-        for key, value in productos.items():
-            if value["estado"] == "visible":
-                productos_visibles[key] = value
-
-        return jsonify([producto.to_json() for producto in productos_visibles])
+        productos_visibles = [producto.to_json() for producto in productos]
+        return jsonify(productos_visibles)
 
 
 # POST: crear un producto Rol: ADMIN
