@@ -43,11 +43,23 @@ class Usuario(Resource):
 # DELETE: Eliminar un usuario (cambiar de estado o suspender). Rol: ADMIN/ENCARGADO
     def delete(self, id):
 
+<<<<<<< Updated upstream
         if id in USUARIOS:
             USUARIOS[id]["estado"] = "bloqueado"
             return "Bloqueado con éxito", 204
 
         return "El id a bloquear es inexistente", 404
+=======
+        usuario = db.session.query(Usuario_db).get_or_404(id)
+        usuario_a_borrar = usuario.to_json()
+        setattr(usuario, 'estado', 'bloqueado') 
+        db.session.add(usuario)
+        db.session.commit()
+        return {
+            'message': 'Usuario bloqueado con éxito',
+            'usuario': usuario.to_json()
+        }, 200  # con 204 flask no devuelve el mensaje
+>>>>>>> Stashed changes
 
 
 # PUT: Editar un usuario. Rol: ADMIN  
