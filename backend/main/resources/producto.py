@@ -1,68 +1,55 @@
 from flask_restful import Resource
-from flask import request
-
-
-
-PRODUCTOS = {
-    1: {"nombre": "Pollo con papas" , "cantidad" : 4 , "precio" : "$242" , "estado" : "visible"},
-    2: {"nombre": "Arroz blanco" , "cantidad" : 5 , "precio" : "$600" , "estado" : "visible"},
-    3: {"nombre": "Bife a la criolla" , "cantidad" : 8 , "precio" : "$125,38" , "estado" : "visible"},
-    4: {"nombre": "Ensalada de frutas" , "cantidad" : 2 , "precio" : "$100" , "estado" : "visible"},
-    5: {"nombre": "Pasta con salsa" , "cantidad" : 10 , "precio" : "$200" , "estado" : "oculto"},
-    6: {"nombre": "Pizza de muzzarella" , "cantidad" : 3 , "precio" : "$150" , "estado" : "visible"},
-}
-
+from flask import request, jsonify
+from .. import db
+from main.models import Producto_db
 
 
 class Productos(Resource):
 
 # GET: obtener una lista de productos Rol: USER/ADMIN/ENCARGADO  
     def get(self):
-
-        productos_visibles = {k: v for k, v in PRODUCTOS.items() if v["estado"] == "visible"}
-
-        return productos_visibles
+        productos = db.session.query(Producto_db).all()
+        productos_visibles = [producto.to_json() for producto in productos]
+        return jsonify(productos_visibles)
 
 
 # POST: crear un producto Rol: ADMIN
     def post(self):
-
-        producto = request.get_json()
-        id = max(PRODUCTOS.keys())+1
-        PRODUCTOS[id] = producto
-        return "Producto creado con éxito", 201
-
-
+        producto = Producto_db.from_json(request.get_json())
+        db.session.add(producto)
+        db.session.commit()
+        return producto.to_json(), 201
+        
 
 
 class Producto(Resource):
 
 # GET: Obtener un producto. Rol: ADMIN  
     def get(self, id):
-        
-        if id in PRODUCTOS:
-            return PRODUCTOS[id]
-            
-        return "El id de producto es inexistente", 404
-
+        producto = db.session.query(Producto_db).get_or_404(id) 
+        return jsonify(producto.to_json()) 
 
 # DELETE: Eliminar un producto (ocultar/descontinuar). Rol: ADMIN
+   
     def delete(self, id):
 
-        if id in PRODUCTOS:
-            PRODUCTOS[id]["estado"] = "oculto"
-            return "Producto eliminado (ocultado) con éxito", 204
-
-        return "El id de producto a eliminar es inexistente", 404
+        producto = db.session.query(Producto_db).get_or_404(id)
+        setattr(producto, 'visible', False) 
+        db.session.add(producto)
+        db.session.commit()
+        return {
+            'message': 'Producto bloqueado con éxito',
+            'producto': producto.to_json()
+        }, 200  # con 204 flask no devuelve el mensaje
 
 
 # PUT: Editar un producto. Rol: ADMIN/ENCARGADO  
     def put(self, id):
-
-        if id in PRODUCTOS:
-            producto = PRODUCTOS[id]
-            data = request.get_json()
-            producto.update(data)
-            return "Producto modificado con éxito", 201
-
-        return "El id de producto a modificar es inexistente", 404
+        producto = db.session.query(Producto_db).get_or_404(id)
+        data = request.get_json().items()
+        for key, value in data:
+            setattr(producto, key, value)
+        db.session.add(producto)
+        db.session.commit()
+        return producto.to_json(), 201
+        

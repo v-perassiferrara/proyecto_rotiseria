@@ -1,35 +1,34 @@
 from .. import db
 
+
 class Usuarios(db.Model):
     __tablename__ = 'usuarios'
-    dni = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    dni = db.Column(db.Integer, nullable=False)
     nombre = db.Column(db.String(50), nullable=False)
     apellido = db.Column(db.String(50), nullable=False)
-    email = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(50), nullable=False, unique=True)
     contrasena = db.Column(db.String(50), nullable=False)
     telefono = db.Column(db.String(20), nullable=False)
-<<<<<<< Updated upstream
-=======
     estado = db.Column(db.String(20), nullable=False, default='pendiente')
     
     # Relacion con el resto de tablas
-    #Relacion muchos a muchos con la tabla valoracion
+    # Relacion muchos a muchos con la tabla valoracion
     productos = db.relationship('Productos', secondary='valoraciones', back_populates='usuarios')
 
     #Relacion uno a muchos con la tabla pedidos
     pedidos = db.relationship('Pedidos', back_populates='usuarios', cascade='all, delete-orphan') 
 
 
-    '''
-    Relacion uno a muchos con la tabla Notificaciones, comentada para que no se rompa
+    #Relacion uno a muchos con la tabla Notificaciones, comentada para que no se rompa
     notificaciones = db.relationship('Notificaciones', back_populates='usuarios', cascade='all, delete-orphan') 
-    '''
 
 
->>>>>>> Stashed changes
 
     def to_json(self):
         usuario_json = {
+            'id': self.id,
+            'contrasena': self.contrasena,
             'dni': self.dni,
             'nombre': self.nombre,
             'apellido': self.apellido,
@@ -37,9 +36,6 @@ class Usuarios(db.Model):
             'telefono': self.telefono,
             'estado': self.estado
         }
-<<<<<<< Updated upstream
-        return usuario_json
-=======
         return usuario_json
     
     def from_json(usuario_json):
@@ -57,6 +53,5 @@ class Usuarios(db.Model):
             apellido=apellido,
             email=email,
             contrasena=contrasena,
-            telefono=telefono
+            telefono=telefono    
         )
->>>>>>> Stashed changes
