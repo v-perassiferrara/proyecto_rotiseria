@@ -12,7 +12,7 @@ class Productos(db.Model):
     pedidos = db.relationship('Pedidos', secondary ='pedidos_productos', back_populates='productos')
     
     #Relacion con la tabla Valoraciones (relacion muchos usuarios con muchos productos)
-    usuarios = db.relationship('Usuarios', secondary ='valoraciones', back_populates='productos') 
+    valoraciones = db.relationship('Valoraciones', back_populates='producto', cascade="all, delete-orphan")
 
     def to_json(self):
         producto_json = {
@@ -35,15 +35,3 @@ class Productos(db.Model):
             precio=precio,
             stock=stock
         )
-
-
-
-    Valoraciones = db.Table( 
-    'valoraciones',
-    db.Column('id_usuario', db.Integer, db.ForeignKey('usuarios.id')),
-    db.Column('id_producto', db.Integer, db.ForeignKey('productos.id')),
-    db.Column('id', db.Integer, primary_key=True),
-    db.Column('estrellas', db.Integer, nullable=False), 
-    db.Column('comentario', db.String(500), nullable=True) 
-
-)
