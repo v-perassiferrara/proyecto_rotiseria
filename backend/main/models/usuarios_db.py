@@ -10,19 +10,31 @@ class Usuarios(db.Model):
     email = db.Column(db.String(50), nullable=False, unique=True)
     contrasena = db.Column(db.String(50), nullable=False)
     telefono = db.Column(db.String(20), nullable=False)
+<<<<<<< HEAD
     
     # Relacion con el resto de tablas
     #R elacion muchos a muchos con la tabla valoracion
+=======
+    estado = db.Column(db.String(20), nullable=False, default='pendiente')
+    
+    # Relacion con el resto de tablas
+    # Relacion muchos a muchos con la tabla valoracion
+>>>>>>> develop
     productos = db.relationship('Productos', secondary='valoraciones', back_populates='usuarios')
 
     #Relacion uno a muchos con la tabla pedidos
     pedidos = db.relationship('Pedidos', back_populates='usuarios', cascade='all, delete-orphan') 
 
 
+<<<<<<< HEAD
     '''
     Relacion uno a muchos con la tabla Notificaciones, comentada para que no se rompa
     notificaciones = db.relationship('Notificaciones', back_populates='usuarios', cascade='all, delete-orphan') 
     '''
+=======
+    #Relacion uno a muchos con la tabla Notificaciones, comentada para que no se rompa
+    notificaciones = db.relationship('Notificaciones', back_populates='usuarios', cascade='all, delete-orphan') 
+>>>>>>> develop
 
 
 
@@ -34,7 +46,8 @@ class Usuarios(db.Model):
             'nombre': self.nombre,
             'apellido': self.apellido,
             'email': self.email,
-            'telefono': self.telefono
+            'telefono': self.telefono,
+            'estado': self.estado
         }
         return usuario_json
     

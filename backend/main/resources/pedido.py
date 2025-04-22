@@ -3,30 +3,6 @@ from flask import request, jsonify
 from .. import db
 from main.models import Pedido_db
 
-# PEDIDOS = {
-#     1: {
-#         "id_usuario": 2,
-#         "producto": "Hamburguesa, pancho",
-#         "total": 200,
-#         "estado": "preparacion"
-#     },
-# 
-#     2: {
-#         "id_usuario": 2,
-#         "producto": "Empanadas ",
-#         "total": 200,
-#         "estado": "confirmado"
-#     },
-# 
-#     3: {
-#         "id_usuario": 3,
-#         "producto": "Lomopizza",
-#         "total": 200,
-#         "estado": "cancelado"
-#     }
-# }
-
-
 
 class Pedidos(Resource):
     # GET: Obtener listado de Pedidos. Rol: ADMIN  
@@ -47,12 +23,21 @@ class Pedido(Resource):
         pedido = db.session.query(Pedido_db).get_or_404(id)
         return jsonify(pedido.to_json())
 
-    # DELETE: Eliminar un pedido. Rol: ADMIN/ENCARGADO
+    # DELETE: Eliminar un pedido. Rol: ADMIN/ENCARGADO   
     def delete(self, id):
         pedido = db.session.query(Pedido_db).get_or_404(id)
         db.session.delete(pedido)
         db.session.commit()
         return 'pedido borrado con exito:', pedido.to_json(), 200
+
+        pedido = db.session.query(Pedido_db).get_or_404(id)
+        setattr(pedido, 'estado', 'cancelado') 
+        db.session.add(pedido)
+        db.session.commit()
+        return {
+            'message': 'Pedido cancelado con éxito',
+            'pedido': pedido.to_json()
+        }, 200  # con 204 flask no devuelve el mensaje
 
     # PUT: Editar un pedido. Rol: ADMIN  
     def put(self, id):

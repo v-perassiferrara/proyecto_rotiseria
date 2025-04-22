@@ -6,6 +6,7 @@ class Productos(db.Model):
     nombre = db.Column(db.String(50), nullable=False)
     precio = db.Column(db.Float, nullable=False)
     stock = db.Column(db.Integer, nullable=False)
+    visible = db.Column(db.Boolean, nullable=False, default=True)
 
     # Relación con la tabla productos_pedidos (Relacion muchos a muchos) deberia estar ok
     pedidos = db.relationship('Pedidos', secondary ='pedidos_productos', back_populates='productos')
@@ -18,7 +19,8 @@ class Productos(db.Model):
             'id': self.id,
             'nombre': self.nombre,
             'precio': self.precio,
-            'stock': self.stock
+            'stock': self.stock,
+            'visible' : self.visible
         }
         return producto_json
 

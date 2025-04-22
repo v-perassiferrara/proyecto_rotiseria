@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "eaebf01b-3d4e-4ca9-9f8c-9f036ce26a08",
+		"_postman_id": "e245ae18-aa8d-496d-bd8a-f0661f51326d",
 		"name": "grupo_d",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "43533994",
-		"_collection_link": "https://valentinoperassiferrara.postman.co/workspace/grupo_d---proyecto_rotiseria~a9fb4925-a5c8-4540-87a4-e4656efa8574/collection/43533994-eaebf01b-3d4e-4ca9-9f8c-9f036ce26a08?action=share&source=collection_link&creator=43533994"
+		"_collection_link": "https://valentinoperassiferrara.postman.co/workspace/grupo_d---proyecto_rotiseria~a9fb4925-a5c8-4540-87a4-e4656efa8574/collection/43533994-e245ae18-aa8d-496d-bd8a-f0661f51326d?action=share&source=collection_link&creator=43533994"
 	},
 	"item": [
 		{
@@ -42,7 +42,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nombre\": \"Juan Carlos Paez\" , \"email\": \"hola@gmail.com\" , \"telefono\": \"261785478\" , \"rol\": \"cliente\" , \"estado\" : \"bloqueado\" }",
+							"raw": "{\n        \"apellido\": \"hola\",\n        \"contrasena\": \"1234\",\n        \"dni\": 12345678,\n        \"email\": \"hola@gmail.com\",\n        \"nombre\": \"hola\",\n        \"telefono\": \"261785478\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -122,7 +122,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3435/usuario/1",
+							"raw": "http://127.0.0.1:3435/usuario/2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -133,7 +133,7 @@
 							"port": "3435",
 							"path": [
 								"usuario",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -149,7 +149,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nombre\": \"Pepe Scaloni\" , \"email\": \"guardiolita@gmail.com\" , \"telefono\": \"261785478\" , \"rol\": \"cliente\" , \"estado\" : \"bloqueado\" }\n",
+							"raw": "{\n        \"apellido\": \"Scaloni\",\n        \"contrasena\": \"1234\",\n        \"dni\": 12345678,\n        \"email\": \"agaga@gmail.com\",\n        \"nombre\": \"MEssi\",\n        \"telefono\": \"261785478\",\n        \"estado\": \"activo\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -157,7 +157,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3435/usuario/3",
+							"raw": "http://127.0.0.1:3435/usuario/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -168,7 +168,7 @@
 							"port": "3435",
 							"path": [
 								"usuario",
-								"3"
+								"1"
 							]
 						}
 					},
@@ -211,7 +211,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nombre\": \"Hamburguesa Egg & Bacon\" , \"cantidad\" : 15 , \"precio\" : \"$32\" }",
+							"raw": "{\"nombre\": \"Hola Egg & Bacon\" ,\n\"stock\" : 15 ,\n\"precio\" : 32 }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -256,41 +256,6 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3435/producto/6",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"producto",
-								"6"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Producto",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
 							"raw": "http://127.0.0.1:3435/producto/1",
 							"protocol": "http",
 							"host": [
@@ -314,11 +279,11 @@
 						"auth": {
 							"type": "noauth"
 						},
-						"method": "PUT",
+						"method": "DELETE",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nombre\": \"Pepe Scaloni\" , \"email\": \"guardiolita@gmail.com\" , \"telefono\": \"261785478\" , \"rol\": \"cliente\" , \"estado\" : \"bloqueado\" }\n",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -326,7 +291,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3435/producto/3",
+							"raw": "http://127.0.0.1:3435/producto/2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -337,7 +302,42 @@
 							"port": "3435",
 							"path": [
 								"producto",
-								"3"
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Producto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"Hamburguesa Egg & Bacon\" ,\n\"stock\" : 60 ,\n\"precio\" : 32 }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3435/producto/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3435",
+							"path": [
+								"producto",
+								"1"
 							]
 						}
 					},
@@ -380,7 +380,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"id_usuario\": 1,\n        \"producto\": \"Arroz blanco\",\n        \"total\": 600,\n        \"estado\": \"preparacion\"\n    }",
+							"raw": "{\n        \"fk_id_usuario\": 1,\n        \"total\": 6030\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -425,7 +425,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3435/pedido/4",
+							"raw": "http://127.0.0.1:3435/pedido/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -436,7 +436,7 @@
 							"port": "3435",
 							"path": [
 								"pedido",
-								"4"
+								"1"
 							]
 						}
 					},
@@ -487,7 +487,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"id_usuario\": 2,\n        \"producto\": \"Hamburguesa, pancho\",\n        \"total\": 200,\n        \"estado\": \"cancelado\"\n    }",
+							"raw": "{\n        \"fk_id_usuario\": 2,\n        \"producto\": \"Hamburguesa, pancho\",\n        \"total\": 200,\n        \"estado\": \"cancelado\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -519,12 +519,46 @@
 			"item": [
 				{
 					"name": "Notificaciones",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"id_emisor\": 1 , \"id_receptor\": 3 , \"mensaje\": \"Tiene un descuento!\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3435/notificaciones",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3435",
+							"path": [
+								"notificaciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notificaciones",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"id_emisor\": 1 , \"id_receptor\": 3 , \"mensaje\": \"Tiene un descuento!\"}",
+							"raw": "{\n    \"fk_id_usuario\" : 1,\n    \"mensaje\" : \"hola\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
