@@ -6,13 +6,8 @@ class Pedidos(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fk_id_usuario = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False) # Relacion con usuarios
     total = db.Column(db.Float, nullable=False)
-<<<<<<< HEAD
-    estado = db.Column(db.String(50), nullable=False)
-    fecha = db.Column(db.DateTime, nullable=False)
-=======
     estado = db.Column(db.String(50), nullable=False, default='pendiente')
     fecha = db.Column(db.DateTime, nullable=False, default=datetime.now)
->>>>>>> develop
 
 
     #Relacion con la tabla pedidos_productos (relacion muchos pedidos con muchos productos)
@@ -28,21 +23,13 @@ class Pedidos(db.Model):
             'id_usuario': self.fk_id_usuario,
             'total': self.total,
             'estado': self.estado,
-<<<<<<< HEAD
-            'fecha': self.fecha
-=======
             'fecha': self.fecha.strftime("%d-%m-%Y %H:%M:%S")
->>>>>>> develop
         }
         return pedido_json
 
     def from_json(pedido_json):
         id = pedido_json.get("id")
-<<<<<<< HEAD
-        fk_id_usuario = pedido_json.get('id_usuario')
-=======
         fk_id_usuario = pedido_json.get('fk_id_usuario')
->>>>>>> develop
         total = pedido_json.get('total')
         estado = pedido_json.get('estado')
         fecha = pedido_json.get('fecha')
