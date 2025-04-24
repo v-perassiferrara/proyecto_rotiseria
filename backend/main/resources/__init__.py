@@ -10,6 +10,7 @@ from .usuario import Usuarios as UsuariosResource
 from .usuario import Usuario as UsuarioResource
 
 from .valoraciones import Valoraciones as ValoracionesResource
+from .valoraciones import Valoracion as ValoracionResource
 
 from .auth import Login as LoginResource
 from .auth import Logout as LogoutResource

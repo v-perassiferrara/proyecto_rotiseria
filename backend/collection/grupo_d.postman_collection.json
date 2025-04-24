@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "e245ae18-aa8d-496d-bd8a-f0661f51326d",
+		"_postman_id": "0132e24d-597c-4c0a-8e4b-cf3f0e632a26",
 		"name": "grupo_d",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "43533994",
-		"_collection_link": "https://valentinoperassiferrara.postman.co/workspace/grupo_d---proyecto_rotiseria~a9fb4925-a5c8-4540-87a4-e4656efa8574/collection/43533994-e245ae18-aa8d-496d-bd8a-f0661f51326d?action=share&source=collection_link&creator=43533994"
+		"_exporter_id": "43533724"
 	},
 	"item": [
 		{
@@ -638,6 +637,67 @@
 							"port": "3435",
 							"path": [
 								"valoraciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Valoracion",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3435/valoracion/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3435",
+							"path": [
+								"valoracion",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Valoracion",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id_usuario\": 1,\n  \"id_producto\": 1,\n  \"estrellas\": 2,\n  \"comentario\": \"Masomeno el producto!\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3435/valoracion/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3435",
+							"path": [
+								"valoracion",
+								"1"
 							]
 						}
 					},
