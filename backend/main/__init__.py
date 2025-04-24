@@ -42,6 +42,7 @@ def create_app():
     api.add_resource(resources.UsuarioResource, "/usuario/<int:id>")
 
     api.add_resource(resources.ValoracionesResource, "/valoraciones")
+    api.add_resource(resources.ValoracionResource, "/valoracion/<int:id>")
     
     api.add_resource(resources.LoginResource, "/login")
     api.add_resource(resources.LogoutResource, "/logout")
