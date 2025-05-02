@@ -10,8 +10,11 @@ class Pedidos(db.Model):
     fecha = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
 
+    # Relación con la tabla intermedia
+    pedidos_productos = db.relationship( 'Pedidos_Productos', back_populates='pedido', cascade='all, delete-orphan')
+
     #Relacion con la tabla pedidos_productos (relacion muchos pedidos con muchos productos)
-    productos = db.relationship('Productos', secondary ='pedidos_productos', back_populates='pedidos')
+    # productos = db.relationship('Productos', backref='pedidos_productos')
 
     #Conexion con la tabla usuarios (relacion un usuario a muchos pedidos)
     usuarios = db.relationship('Usuarios', back_populates='pedidos', uselist=False, single_parent=True)
@@ -24,6 +27,18 @@ class Pedidos(db.Model):
             'total': self.total,
             'estado': self.estado,
             'fecha': self.fecha.strftime("%d-%m-%Y %H:%M:%S")
+        }
+        return pedido_json
+    
+    def to_json_completo(self):
+        productos = [producto.to_json() for producto in self.productos]
+        pedido_json = {
+            'id': self.id,
+            'id_usuario': self.fk_id_usuario,
+            'total': self.total,
+            'estado': self.estado,
+            'fecha': self.fecha.strftime("%d-%m-%Y %H:%M:%S"),
+            'productos': productos
         }
         return pedido_json
 
@@ -41,19 +56,3 @@ class Pedidos(db.Model):
             fecha=fecha
         )
 
-
-Pedidos_Productos = db.Table( 
-    'pedidos_productos',
-    db.Column('id_producto', db.Integer, db.ForeignKey('productos.id')),
-    db.Column('id_pedido', db.Integer, db.ForeignKey('pedidos.id')),
-    db.Column('cantidad', db.Integer, nullable=False) 
-)
-
-
-#def to_json(self):
-#        productos_pedidos_json = {
-#            'id_producto': self.id_producto,
-#            'id_pedido': self.id_pedido,
-#            'cantidad': self.cantidad
-#        }
-#        return productos_pedidos_json
