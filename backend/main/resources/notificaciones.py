@@ -25,7 +25,6 @@ class Notificacion(Resource):
 
     # DELETE: Eliminar una notificacion. Rol: ADMIN/ENCARGADO   
     def delete(self, id):
-
         notificacion = db.session.query(Notificacion_db).get_or_404(id)
         setattr(notificacion, 'leida', True) 
         db.session.add(notificacion)

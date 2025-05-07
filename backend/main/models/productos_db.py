@@ -8,11 +8,16 @@ class Productos(db.Model):
     stock = db.Column(db.Integer, nullable=False)
     visible = db.Column(db.Boolean, nullable=False, default=True)
 
-    # Relación con la tabla productos_pedidos (Relacion muchos a muchos) deberia estar ok
-    pedidos = db.relationship('Pedidos', secondary ='pedidos_productos', back_populates='productos')
-    
-    #Relacion con la tabla Valoraciones (relacion muchos usuarios con muchos productos)
+
+    # Relación con intermedia pedidos_productos (muchos productos con muchos pedidos)
+    pedidos_productos = db.relationship('Pedidos_Productos', back_populates='producto', cascade='all, delete-orphan')
+
+
+
+    #Relacion con intermedia valoraciones (muchos usuarios con muchos productos) 
     valoraciones = db.relationship('Valoraciones', back_populates='producto', cascade="all, delete-orphan")
+
+
 
     def to_json(self):
         producto_json = {
