@@ -2,9 +2,9 @@ from .. import db
 
 class Pedidos_Productos(db.Model):
     __tablename__ = 'pedidos_productos'
-    
-    id_pedido = db.Column(db.Integer, db.ForeignKey('pedidos.id', ondelete='CASCADE'), primary_key=True)
-    id_producto = db.Column(db.Integer, db.ForeignKey('productos.id', ondelete='CASCADE'), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    fk_id_pedido = db.Column(db.Integer, db.ForeignKey('pedidos.id', ondelete='CASCADE'))
+    fk_id_producto = db.Column(db.Integer, db.ForeignKey('productos.id', ondelete='CASCADE'))
     cantidad = db.Column(db.Integer, nullable=False, default = 1)
 
     pedido = db.relationship('Pedidos', back_populates='pedidos_productos')
@@ -13,7 +13,16 @@ class Pedidos_Productos(db.Model):
 
     def to_json(self):
         return {
-            'id_pedido': self.id_pedido,
-            'id_producto': self.id_producto,
+            'id' : self.id,
+            'fk_id_pedido': self.fk_id_pedido,
+            'fk_id_producto': self.fk_id_producto,
             'cantidad': self.cantidad
         }
+
+    @staticmethod
+    def from_json(data):
+        return Pedidos_Productos(
+            fk_id_pedido=data.get('fk_id_pedido'),
+            fk_id_producto=data.get('fk_id_producto'),
+            cantidad=data.get('cantidad', 1)
+        )
