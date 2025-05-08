@@ -21,7 +21,8 @@ class Pedido(Resource):
     # GET: Obtener un pedido. Rol: USER/ADMIN/ENCARGADO
     def get(self, id):
         pedido = db.session.query(Pedido_db).get_or_404(id)
-        return jsonify(pedido.to_json())
+        return jsonify(pedido.to_json_completo())
+    
 
     # DELETE: Eliminar un pedido. Rol: ADMIN/ENCARGADO   
     def delete(self, id):

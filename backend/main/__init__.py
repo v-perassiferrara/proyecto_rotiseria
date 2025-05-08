@@ -31,12 +31,16 @@ def create_app():
     # Cargar los recursos
     import main.resources as resources
     api.add_resource(resources.NotificacionesResource, "/notificaciones")
+    api.add_resource(resources.NotificacionResource, "/notificacion/<int:id>")
 
     api.add_resource(resources.PedidosResource, "/pedidos")
     api.add_resource(resources.PedidoResource, "/pedido/<int:id>")
 
     api.add_resource(resources.ProductosResource, "/productos")
     api.add_resource(resources.ProductoResource, "/producto/<int:id>")
+
+    api.add_resource(resources.Pedidos_ProductosResource, "/pedidos_productos")
+    api.add_resource(resources.Pedido_ProductoResource, "/pedido_producto/<int:id>")
 
     api.add_resource(resources.UsuariosResource, "/usuarios")
     api.add_resource(resources.UsuarioResource, "/usuario/<int:id>")
@@ -46,6 +50,7 @@ def create_app():
     
     api.add_resource(resources.LoginResource, "/login")
     api.add_resource(resources.LogoutResource, "/logout")
+    
     
     # Inicializar la API
     

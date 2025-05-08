@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "0132e24d-597c-4c0a-8e4b-cf3f0e632a26",
+		"_postman_id": "ae471611-6592-4f69-a428-f3bd07a1563e",
 		"name": "grupo_d",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "43533724"
+		"_exporter_id": "43533896",
+		"_collection_link": "https://francozapata.postman.co/workspace/Franco-Zapata's-Workspace~8d08b7e4-d0e9-4ec5-85c2-1f6972b0c55e/collection/43533896-ae471611-6592-4f69-a428-f3bd07a1563e?action=share&source=collection_link&creator=43533896"
 	},
 	"item": [
 		{
@@ -210,7 +211,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nombre\": \"Hola Egg & Bacon\" ,\n\"stock\" : 15 ,\n\"precio\" : 32 }",
+							"raw": "{\"nombre\": \"Poke Bowl\" ,\n\"stock\" : 15 ,\n\"precio\" : 32 }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -379,7 +380,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"fk_id_usuario\": 1,\n        \"total\": 6030\n    }",
+							"raw": "{\n        \"fk_id_usuario\": 1,\n        \"total\": 10000\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -514,6 +515,175 @@
 			]
 		},
 		{
+			"name": "Pedidos_Productos",
+			"item": [
+				{
+					"name": "Pedidos_Productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3435/pedidos_productos",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3435",
+							"path": [
+								"pedidos_productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedidos_Productos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"cantidad\": 10,\n        \"fk_id_pedido\": 1,\n        \"fk_id_producto\": 2\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3435/pedidos_productos",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3435",
+							"path": [
+								"pedidos_productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido_Producto",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3435/pedido_producto/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3435",
+							"path": [
+								"pedido_producto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido_Producto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3435/pedido_producto/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3435",
+							"path": [
+								"pedido_producto",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido_Producto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"cantidad\": 25,\n        \"fk_id_pedido\": 1,\n        \"fk_id_producto\": 1\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3435/pedido_producto/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3435",
+							"path": [
+								"pedido_producto",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Notificaciones",
 			"item": [
 				{
@@ -580,6 +750,84 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Notificacion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3435/notificacion/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3435",
+							"path": [
+								"notificacion",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notificacion",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3435/notificacion/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3435",
+							"path": [
+								"notificacion",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notificacion",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mensaje\": \"hola\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3435/notificacion/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3435",
+							"path": [
+								"notificacion",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -618,7 +866,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"id_usuario\": 4 , \"id_producto\": 5 , \"estrellas\": 5 , \"comentario\" : \"Malisimo!\" }",
+							"raw": "{\"id_usuario\": 1 , \"id_producto\": 1 , \"estrellas\": 5 , \"comentario\" : \"Mansa burga!\" }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -678,7 +926,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id_usuario\": 1,\n  \"id_producto\": 1,\n  \"estrellas\": 2,\n  \"comentario\": \"Masomeno el producto!\"\n}\n",
+							"raw": "{\n    \"comentario\": \"Mansa top burga!\",\n    \"estrellas\": 5\n}",
 							"options": {
 								"raw": {
 									"language": "json"
