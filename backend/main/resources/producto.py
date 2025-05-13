@@ -8,9 +8,53 @@ class Productos(Resource):
 
 # GET: obtener una lista de productos Rol: USER/ADMIN/ENCARGADO  
     def get(self):
-        productos = db.session.query(Producto_db).all()
-        productos_visibles = [producto.to_json() for producto in productos]
-        return jsonify(productos_visibles)
+        #Página inicial por defecto
+        page = 1
+        #Cantidad de elementos por página por defecto
+        per_page = 10
+        
+        #no ejecuto el .all()
+        productos = db.session.query(Producto_db)
+        
+        if request.args.get('page'):
+            page = int(request.args.get('page'))
+        if request.args.get('per_page'):
+            per_page = int(request.args.get('per_page'))
+            
+        # ---FILTROS PARA PRODUCTOS---
+
+        # Filtrar por nombre (búsqueda parcial)
+        if request.args.get('nombre'):
+            productos = productos.filter(Producto_db.nombre.ilike(f"%{request.args.get('nombre')}%"))
+
+        # Filtrar por precio mínimo
+        if request.args.get('precio_min'):
+            productos = productos.filter(Producto_db.precio >= float(request.args.get('precio_min')))
+
+        # Filtrar por precio máximo
+        if request.args.get('precio_max'):
+            productos = productos.filter(Producto_db.precio <= float(request.args.get('precio_max')))
+
+        # Ordenar por nombre
+        if request.args.get('sortby_nombre'):
+            productos = productos.order_by(Producto_db.nombre.desc() if request.args.get('sortby_nombre') == 'desc' else Producto_db.nombre.asc())
+
+        # Ordenar por precio
+        if request.args.get('sortby_precio'):
+            productos = productos.order_by(Producto_db.precio.desc() if request.args.get('sortby_precio') == 'desc' else Producto_db.precio.asc())
+
+                
+        #Obtener valor paginado
+        productos = productos.paginate(page=page, per_page=per_page, error_out=False)
+    
+        return jsonify({'productos': [producto.to_json() for producto in productos],
+                  'total': productos.total,
+                  'pages': productos.pages,
+                  'page': page
+                })
+
+
+    
 
 
 # POST: crear un producto Rol: ADMIN
@@ -28,6 +72,7 @@ class Producto(Resource):
     def get(self, id):
         producto = db.session.query(Producto_db).get_or_404(id) 
         return jsonify(producto.to_json()) 
+    
 
 # DELETE: Eliminar un producto (ocultar/descontinuar). Rol: ADMIN
    

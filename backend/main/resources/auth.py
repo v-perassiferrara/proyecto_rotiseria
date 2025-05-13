@@ -1,6 +1,7 @@
 from flask_restful import Resource
 from flask import request
-# from .usuario import USUARIOS
+#from .usuario import USUARIOS
+#from main.models import Usuario_db 
 
 
 class Login(Resource):
@@ -16,7 +17,7 @@ class Login(Resource):
         email = data['email']
         contrasena = data['contrasena']
 
-        # Buscar el usuario por emailif usuario:, recibe un diccionario
+        # Buscar el usuario por email:, recibe un diccionario
         usuario = next((u for u in USUARIOS.values() if u['email'] == email), None)
 
         if usuario:
