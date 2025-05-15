@@ -9,6 +9,28 @@ class Pedidos_Productos(Resource):
     def get(self):
         pedidos_productos = db.session.query(Pedidos_Productos_db).all()
         return jsonify([linea.to_json() for linea in pedidos_productos])
+
+    # GET: obtener una lista de usuarios Rol: USER/ADMIN/ENCARGADO  
+    def get(self):
+        page = 1 #Página inicial por defecto
+        per_page = 10  #Cantidad de elementos por página por defecto
+        
+        #no ejecuto el .all()
+        pedidos_productos = db.session.query(Pedidos_Productos_db)
+        
+        if request.args.get('page'):
+            page = int(request.args.get('page'))
+        if request.args.get('per_page'):
+            per_page = int(request.args.get('per_page'))
+        
+        #Obtener valor paginado
+        pedidos_productos = pedidos_productos.paginate(page=page, per_page=per_page, error_out=False)
+    
+        return jsonify({'pedidos_productos': [linea.to_json() for linea in pedidos_productos],
+                  'total': pedidos_productos.total,
+                  'pages': pedidos_productos.pages,
+                  'page': page
+                })
     
     # POST: Agregar una linea (producto) a un pedido. Rol: ADMIN
     def post(self):

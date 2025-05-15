@@ -5,10 +5,58 @@ from main.models import Usuario_db
 
 class Usuarios(Resource):
 
-# GET: Obtener listado de usuarios. Rol: ADMIN  
+    # GET: obtener una lista de usuarios Rol: USER/ADMIN/ENCARGADO  
     def get(self):
-        usuarios = db.session.query(Usuario_db).all()
-        return jsonify([usuario.to_json() for usuario in usuarios])
+        #Página inicial por defecto
+        page = 1
+        #Cantidad de elementos por página por defecto
+        per_page = 10
+        
+        #no ejecuto el .all()
+        usuarios = db.session.query(Usuario_db)
+        
+        if request.args.get('page'):
+            page = int(request.args.get('page'))
+        if request.args.get('per_page'):
+            per_page = int(request.args.get('per_page'))
+
+
+        # ---FILTROS PARA USUARIOS---
+
+        # Filtrar por nombre (búsqueda parcial)
+        if request.args.get('nombre'):
+            usuarios = usuarios.filter(Usuario_db.nombre.ilike(f"%{request.args.get('nombre')}%"))
+
+        # Filtrar por email (búsqueda parcial)
+        if request.args.get('email'):
+            usuarios = usuarios.filter(Usuario_db.email.ilike(f"%{request.args.get('email')}%"))
+
+        # # Filtrar por rol
+        # if request.args.get('rol'):
+        #     usuarios = usuarios.filter(Usuario_db.rol == request.args.get('rol'))
+
+        # Filtrar por estado
+        if request.args.get('estado'):
+            usuarios = usuarios.filter(Usuario_db.estado == request.args.get('estado'))
+
+        # Ordenar por nombre
+        if request.args.get('sortby_nombre'):
+            usuarios = usuarios.order_by(Usuario_db.nombre.desc() if request.args.get('sortby_nombre') == 'desc' else Usuario_db.nombre.asc())
+
+        # Ordenar por email
+        if request.args.get('sortby_email'):
+            usuarios = usuarios.order_by(Usuario_db.email.desc() if request.args.get('sortby_email') == 'desc' else Usuario_db.email.asc())
+ 
+
+        #Obtener valor paginado
+        usuarios = usuarios.paginate(page=page, per_page=per_page, error_out=False)
+    
+        return jsonify({'usuarios': [usuario.to_json() for usuario in usuarios],
+                  'total': usuarios.total,
+                  'pages': usuarios.pages,
+                  'page': page
+                })
+            
 
 
 # POST: Crear un usuario. Rol: ADMIN
@@ -50,5 +98,3 @@ class Usuario(Resource):
         db.session.add(usuario)
         db.session.commit()
         return usuario.to_json(), 201
-        
-        

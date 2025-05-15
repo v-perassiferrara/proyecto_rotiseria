@@ -16,17 +16,40 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:3435/usuarios",
+							"raw": "http://localhost:3435/usuarios?nombre=sr&email=sr@gmail.com&estado=pendiente&sortby_nombre=desc&page=1&per_page=3",
 							"protocol": "http",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"localhost"
 							],
 							"port": "3435",
 							"path": [
 								"usuarios"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "sr"
+								},
+								{
+									"key": "email",
+									"value": "sr@gmail.com"
+								},
+								{
+									"key": "estado",
+									"value": "pendiente"
+								},
+								{
+									"key": "sortby_nombre",
+									"value": "desc"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "3"
+								}
 							]
 						}
 					},
@@ -42,7 +65,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"apellido\": \"hola\",\n        \"contrasena\": \"1234\",\n        \"dni\": 12345678,\n        \"email\": \"hola@gmail.com\",\n        \"nombre\": \"hola\",\n        \"telefono\": \"261785478\"\n}",
+							"raw": "{\n        \"apellido\": \"Zapata\",\n        \"contrasena\": \"1234\",\n        \"dni\": 12345678,\n        \"email\": \"franco@gmail.com\",\n        \"nombre\": \"Franco\",\n        \"telefono\": \"261785478\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -185,17 +208,40 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:3435/productos",
+							"raw": "http://localhost:3435/productos?nombre=Egg And Bacon&precio_min=15&precio_max=35&sortby_precio=desc&page=1&per_page=5",
 							"protocol": "http",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"localhost"
 							],
 							"port": "3435",
 							"path": [
 								"productos"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Egg And Bacon"
+								},
+								{
+									"key": "precio_min",
+									"value": "15"
+								},
+								{
+									"key": "precio_max",
+									"value": "35"
+								},
+								{
+									"key": "sortby_precio",
+									"value": "desc"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "5"
+								}
 							]
 						}
 					},
@@ -318,7 +364,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nombre\": \"Hamburguesa Egg & Bacon\" ,\n\"stock\" : 60 ,\n\"precio\" : 32 }",
+							"raw": "{\"nombre\": \"Egg And Bacon\" ,\n\"stock\" : 60 ,\n\"precio\" : 32 }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -354,17 +400,48 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:3435/pedidos",
+							"raw": "http://localhost:3435/pedidos?email=sr@gmail.com&producto=Egg And Bacon&estado=pendiente&fecha_desde=2025-05-01&fecha_hasta=2026-05-15&sortby_pedido_fecha=desc&page=1&per_page=5",
 							"protocol": "http",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"localhost"
 							],
 							"port": "3435",
 							"path": [
 								"pedidos"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "sr@gmail.com"
+								},
+								{
+									"key": "producto",
+									"value": "Egg And Bacon"
+								},
+								{
+									"key": "estado",
+									"value": "pendiente"
+								},
+								{
+									"key": "fecha_desde",
+									"value": "2025-05-01"
+								},
+								{
+									"key": "fecha_hasta",
+									"value": "2026-05-15"
+								},
+								{
+									"key": "sortby_pedido_fecha",
+									"value": "desc"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "5"
+								}
 							]
 						}
 					},
@@ -704,17 +781,36 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3435/notificaciones",
+							"raw": "http://localhost:3435/notificaciones?page=1&leida=true&fecha_inicio=2025-05-01&fecha_fin=2026-05-10&per_page=5",
 							"protocol": "http",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"localhost"
 							],
 							"port": "3435",
 							"path": [
 								"notificaciones"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "leida",
+									"value": "true"
+								},
+								{
+									"key": "fecha_inicio",
+									"value": "2025-05-01"
+								},
+								{
+									"key": "fecha_fin",
+									"value": "2026-05-10"
+								},
+								{
+									"key": "per_page",
+									"value": "5"
+								}
 							]
 						}
 					},
@@ -840,17 +936,40 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:3435/valoraciones",
+							"raw": "http://localhost:3435/valoraciones?email=sr@gmail.com&producto=Egg And Bacon&estrellas=5&sortby_usuario_email=desc&page=1&per_page=5",
 							"protocol": "http",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"localhost"
 							],
 							"port": "3435",
 							"path": [
 								"valoraciones"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "sr@gmail.com"
+								},
+								{
+									"key": "producto",
+									"value": "Egg And Bacon"
+								},
+								{
+									"key": "estrellas",
+									"value": "5"
+								},
+								{
+									"key": "sortby_usuario_email",
+									"value": "desc"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "5"
+								}
 							]
 						}
 					},
@@ -866,7 +985,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"id_usuario\": 1 , \"id_producto\": 1 , \"estrellas\": 5 , \"comentario\" : \"Mansa burga!\" }",
+							"raw": "{\"id_usuario\": 1 , \"id_producto\": 2 , \"estrellas\": 5 , \"comentario\" : \"Top valen a la bolonesa!\" }",
 							"options": {
 								"raw": {
 									"language": "json"
