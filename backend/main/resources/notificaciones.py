@@ -5,7 +5,7 @@ from main.models import Notificacion_db
 
 class Notificaciones(Resource):
   
-    # GET: obtener una lista de usuarios Rol: USER/ADMIN/ENCARGADO  
+    # GET: obtener una lista de usuarios Rol: USER/ADMIN/EMPLEADO  
     def get(self):
         page = 1 #Página inicial por defecto
         per_page = 10  #Cantidad de elementos por página por defecto
@@ -51,12 +51,12 @@ class Notificaciones(Resource):
         return notificacion.to_json(), 201
 
 class Notificacion(Resource):
-    # GET: Obtener una notificacion. Rol: USER/ADMIN/ENCARGADO
+    # GET: Obtener una notificacion. Rol: USER/ADMIN/EMPLEADO
     def get(self, id):
         notificacion = db.session.query(Notificacion_db).get_or_404(id)
         return jsonify(notificacion.to_json())
 
-    # DELETE: Eliminar una notificacion. Rol: ADMIN/ENCARGADO   
+    # DELETE: Eliminar una notificacion. Rol: ADMIN/EMPLEADO   
     def delete(self, id):
         notificacion = db.session.query(Notificacion_db).get_or_404(id)
         setattr(notificacion, 'leida', True) 

@@ -13,7 +13,7 @@ class Pedidos(Resource):
         pedidos = db.session.query(Pedido_db).all()
         return jsonify([pedido.to_json() for pedido in pedidos])
 
-        # GET: obtener una lista de usuarios Rol: USER/ADMIN/ENCARGADO  
+        # GET: obtener una lista de usuarios Rol: USER/ADMIN/EMPLEADO  
     def get(self):
         page = 1 #Página inicial por defecto
         per_page = 10  #Cantidad de elementos por página por defecto
@@ -85,13 +85,13 @@ class Pedidos(Resource):
         return pedido.to_json(), 201
 
 class Pedido(Resource):
-    # GET: Obtener un pedido. Rol: USER/ADMIN/ENCARGADO
+    # GET: Obtener un pedido. Rol: USER/ADMIN/EMPLEADO
     def get(self, id):
         pedido = db.session.query(Pedido_db).get_or_404(id)
         return jsonify(pedido.to_json_completo())
     
 
-    # DELETE: Eliminar un pedido. Rol: ADMIN/ENCARGADO   
+    # DELETE: Eliminar un pedido. Rol: ADMIN/EMPLEADO   
     def delete(self, id):
 
         pedido = db.session.query(Pedido_db).get_or_404(id)
