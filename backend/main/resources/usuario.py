@@ -1,11 +1,14 @@
 from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
+from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
+from main.auth.decorators import role_required
 from main.models import Usuario_db
 
 class Usuarios(Resource):
 
-    # GET: obtener una lista de usuarios Rol: USER/ADMIN/ENCARGADO  
+# GET: obtener una lista de usuarios Rol: ADMIN/EMPLEADO
+    # @role_required(roles = ["admin","empleado"])  
     def get(self):
         #Página inicial por defecto
         page = 1
@@ -59,7 +62,7 @@ class Usuarios(Resource):
             
 
 
-# POST: Crear un usuario. Rol: ADMIN
+# POST: Crear un usuario. Rol: USUARIO/ADMIN/ENCARGADO
     def post(self):
         usuario = Usuario_db.from_json(request.get_json())
         db.session.add(usuario)
@@ -70,13 +73,34 @@ class Usuarios(Resource):
 
 
 class Usuario(Resource):
-# GET: Obtener un usuario. Rol: ADMIN
+
+# GET: Obtener un usuario. Rol: USUARIO/ADMIN/EMPLEADOñ¿
+    @jwt_required(optional=True)
     def get(self, id):
+        # BAD COOKING:
+        # current_user_id_str = get_jwt_identity()
+        # user_id = int(current_user_id_str)
+        # try:
+        #     usuario = db.session.query(Usuario_db).get(user_id)
+        #     if usuario:
+        #         return usuario.to_json_complete() 
+        #     else:
+        #         return jsonify({"msg": "Usuario no encontrado"}), 404
+        # except Exception as e:
+        #     return jsonify({"msg": e}), 1234
+        
         usuario = db.session.query(Usuario_db).get_or_404(id) 
-        return jsonify(usuario.to_json()) 
+        current_identity = get_jwt_identity()
+        if current_identity == usuario.id:
+            return usuario.to_json_complete()
+        else:
+            return usuario.to_json()
 
 
-# DELETE: Eliminar un usuario (cambiar de estado o suspender). Rol: ADMIN/ENCARGADO
+# DELETE: Eliminar un usuario (cambiar de estado o suspender). Rol: ADMIN/EMPLEADO
+
+    @jwt_required(optional=True)
+    @role_required(roles = ["admin","empleado"]) 
     def delete(self, id):
 
         usuario = db.session.query(Usuario_db).get_or_404(id)
@@ -88,7 +112,8 @@ class Usuario(Resource):
             'usuario': usuario.to_json()
         }, 200  # con 204 flask no devuelve el mensaje
 
-# PUT: Editar un usuario. Rol: ADMIN  
+# PUT: Editar un usuario. Rol: ADMIN, USUA
+    @jwt_required(optional=True)
     def put(self, id):
 
         usuario = db.session.query(Usuario_db).get_or_404(id)

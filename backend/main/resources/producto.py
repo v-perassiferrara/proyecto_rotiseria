@@ -6,7 +6,7 @@ from main.models import Producto_db
 
 class Productos(Resource):
 
-# GET: obtener una lista de productos Rol: USER/ADMIN/ENCARGADO  
+# GET: obtener una lista de productos Rol: USER/ADMIN/EMPLEADO  
     def get(self):
         #Página inicial por defecto
         page = 1
@@ -88,7 +88,7 @@ class Producto(Resource):
         }, 200  # con 204 flask no devuelve el mensaje
 
 
-# PUT: Editar un producto. Rol: ADMIN/ENCARGADO  
+# PUT: Editar un producto. Rol: ADMIN/EMPLEADO  
     def put(self, id):
         producto = db.session.query(Producto_db).get_or_404(id)
         data = request.get_json().items()

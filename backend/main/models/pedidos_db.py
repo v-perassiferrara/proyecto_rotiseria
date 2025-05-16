@@ -53,6 +53,7 @@ class Pedidos(db.Model):
         }
         return pedido_json
 
+    @staticmethod
     def from_json(pedido_json):
         id = pedido_json.get("id")
         fk_id_usuario = pedido_json.get('fk_id_usuario')

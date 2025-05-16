@@ -1,5 +1,7 @@
 from .. import db
 
+# Funciones de hash para la contraseña
+from werkzeug.security import generate_password_hash, check_password_hash
 
 class Usuarios(db.Model):
     __tablename__ = 'usuarios'
@@ -11,24 +13,38 @@ class Usuarios(db.Model):
     contrasena = db.Column(db.String(50), nullable=False)
     telefono = db.Column(db.String(20), nullable=False)
     estado = db.Column(db.String(20), nullable=False, default='pendiente')
+    rol = db.Column(db.String(20), nullable=False, default='usuario') # Los roles son: Admin/Usuario/Empleado
+
     
-    # Relacion con el resto de tablas
+# Relaciones con el resto de tablas
+
     # Relacion muchos a muchos con la tabla valoracion
     valoraciones = db.relationship('Valoraciones', back_populates='usuario', cascade="all, delete-orphan")
 
     #Relacion uno a muchos con la tabla pedidos
     pedidos = db.relationship('Pedidos', back_populates='usuarios', cascade='all, delete-orphan') 
 
-
     #Relacion uno a muchos con la tabla Notificaciones, comentada para que no se rompa
     notificaciones = db.relationship('Notificaciones', back_populates='usuarios', cascade='all, delete-orphan') 
 
 
+    #Getter de la contraseña plana, no permite leerla
+    @property
+    def contrasena_plana(self):
+        raise AttributeError('Contrasena no puede ser leida.')
+    #Setter de la contraseña toma un valor en texto plano, calcula el hash y lo guarda en el atributo password
+    @contrasena_plana.setter
+    def contrasena_plana(self, contrasena):
+        self.contrasena = generate_password_hash(contrasena)
+    #Método que compara una contraseña en texto plano con el hash guardado en la db
+    def validate_pass(self,contrasena):
+        return check_password_hash(self.contrasena, contrasena)
 
-    def to_json(self):
+    # Datos "públicos"
+    def to_json(self):  
         usuario_json = {
             'id': self.id,
-            'contrasena': self.contrasena,
+            'contrasena' : self.contrasena,
             'dni': self.dni,
             'nombre': self.nombre,
             'apellido': self.apellido,
@@ -37,7 +53,27 @@ class Usuarios(db.Model):
             'estado': self.estado
         }
         return usuario_json
+
+    # Datos completos con pedidos, notificaciones y valoraciones
+    def to_json_complete(self): 
+        pedidos = [pedido.to_json() for pedido in self.pedidos]
+        notificaciones = [notificacion.to_json() for notificacion in self.notificaciones]
+        valoraciones = [valoracion.to_json() for valoracion in self.valoraciones]
+        usuario_json = {
+            'id': self.id,
+            'dni': self.dni,
+            'nombre': self.nombre,
+            'apellido': self.apellido,
+            'email': self.email,
+            'telefono': self.telefono,
+            'estado': self.estado,
+            'pedidos': pedidos,
+            'notificaciones': notificaciones,
+            'valoraciones': valoraciones
+        }
+        return usuario_json
     
+    @staticmethod
     def from_json(usuario_json):
         id = usuario_json.get("id")
         dni = usuario_json.get('dni')
@@ -46,12 +82,14 @@ class Usuarios(db.Model):
         email = usuario_json.get('email')
         contrasena = usuario_json.get('contrasena')
         telefono = usuario_json.get('telefono')
-        return Usuarios(
+        usuario = Usuarios(
             id=id,
             dni=dni,
             nombre=nombre,
             apellido=apellido,
             email=email,
-            contrasena=contrasena,
-            telefono=telefono    
+            telefono=telefono,
         )
+        if contrasena:
+            usuario.contrasena_plana = contrasena  # Esto sí hashea correctamente
+        return usuario

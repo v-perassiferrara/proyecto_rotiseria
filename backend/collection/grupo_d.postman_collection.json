@@ -13,10 +13,55 @@
 				{
 					"name": "Usuarios",
 					"request": {
+						"auth": {
+							"type": "jwt",
+							"jwt": [
+								{
+									"key": "secret",
+									"value": "nomelase",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "HS256",
+									"type": "string"
+								},
+								{
+									"key": "isSecretBase64Encoded",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "payload",
+									"value": "{}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "queryParamKey",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "header",
+									"value": "{}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3435/usuarios?nombre=sr&email=sr@gmail.com&estado=pendiente&sortby_nombre=desc&page=1&per_page=3",
+							"raw": "http://localhost:3435/usuarios",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -24,32 +69,6 @@
 							"port": "3435",
 							"path": [
 								"usuarios"
-							],
-							"query": [
-								{
-									"key": "nombre",
-									"value": "sr"
-								},
-								{
-									"key": "email",
-									"value": "sr@gmail.com"
-								},
-								{
-									"key": "estado",
-									"value": "pendiente"
-								},
-								{
-									"key": "sortby_nombre",
-									"value": "desc"
-								},
-								{
-									"key": "page",
-									"value": "1"
-								},
-								{
-									"key": "per_page",
-									"value": "3"
-								}
 							]
 						}
 					},
@@ -65,7 +84,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"apellido\": \"Zapata\",\n        \"contrasena\": \"1234\",\n        \"dni\": 12345678,\n        \"email\": \"franco@gmail.com\",\n        \"nombre\": \"Franco\",\n        \"telefono\": \"261785478\"\n}",
+							"raw": "{\n        \"apellido\": \"Zapata\",\n        \"contrasena\": \"1234\",\n        \"dni\": 123456789,\n        \"email\": \"franco.zapata@gmail.com\",\n        \"nombre\": \"Franco\",\n        \"telefono\": \"261785478\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -96,10 +115,23 @@
 					},
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0NzMyMDI2NiwianRpIjoiOGM1Y2E2MGYtNWFhNy00MjM3LWI1OTEtODUwNDkwMWUzY2I1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNzQ3MzIwMjY2LCJjc3JmIjoiNDdiZmExM2QtNjFjYy00NjYyLTkyYWItMzNlYjU1MTI5NTllIiwicm9sIjoidXN1YXJpbyIsImlkIjozLCJlbWFpbCI6ImZyYW5jby56YXBhdGEyQGdtYWlsLmNvbSJ9.n7r3zDfL2uueO_gHrYoNy0JDlwRLWd9o_NGeHUXn2UM",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0NzMyMDA5NywianRpIjoiNjg5M2Q0NWItOGE0MS00MGEyLWEzOTktMzQwYzQwZDA0MjkzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNzQ3MzIwMDk3LCJjc3JmIjoiNDZiMTIxOTUtMGIxOC00NzA2LWI3NTMtYTJhYTFkOGQ3YTM2Iiwicm9sIjoidXN1YXJpbyIsImlkIjozLCJlbWFpbCI6ImZyYW5jby56YXBhdGEyQGdtYWlsLmNvbSJ9.dUuV3xeiJY6KTtl-I2TSBgFwNg8fjaB0BToBZnVao5M",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -110,7 +142,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3435/usuario/1",
+							"raw": "http://127.0.0.1:3435/usuario/3",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -121,7 +153,7 @@
 							"port": "3435",
 							"path": [
 								"usuario",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -1082,7 +1114,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\":\"guardiolita@gmail.com\" , \"contrasena\":\"222\"\n}",
+							"raw": "{\n    \"email\":\"franco.zapata2@gmail.com\" , \"contrasena\":\"1234\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1090,7 +1122,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3435/login",
+							"raw": "http://127.0.0.1:3435/auth/login",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -1100,17 +1132,18 @@
 							],
 							"port": "3435",
 							"path": [
+								"auth",
 								"login"
 							],
 							"query": [
 								{
 									"key": "email",
-									"value": "guardiolita@gmail.com",
+									"value": "franco.zapata2@gmail.com",
 									"disabled": true
 								},
 								{
 									"key": "contrasena",
-									"value": "222",
+									"value": "1234",
 									"disabled": true
 								}
 							]
@@ -1123,8 +1156,17 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://127.0.0.1:3435/logout",
+							"raw": "http://127.0.0.1:3435/auth/logout",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -1134,7 +1176,55 @@
 							],
 							"port": "3435",
 							"path": [
+								"auth",
 								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"apellido\": \"Zapata\",\n        \"contrasena\": \"1234\",\n        \"dni\": 123456789,\n        \"email\": \"franco.zapata2@gmail.com\",\n        \"nombre\": \"Franco\",\n        \"telefono\": \"261785478\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3435/auth/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3435",
+							"path": [
+								"auth",
+								"register"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "franco.zapata@gmail.com",
+									"disabled": true
+								},
+								{
+									"key": "contrasena",
+									"value": "1234",
+									"disabled": true
+								}
 							]
 						}
 					},

@@ -10,7 +10,7 @@ class Pedidos_Productos(Resource):
         pedidos_productos = db.session.query(Pedidos_Productos_db).all()
         return jsonify([linea.to_json() for linea in pedidos_productos])
 
-    # GET: obtener una lista de usuarios Rol: USER/ADMIN/ENCARGADO  
+    # GET: obtener una lista de usuarios Rol: USER/ADMIN/EMPLEADO  
     def get(self):
         page = 1 #Página inicial por defecto
         per_page = 10  #Cantidad de elementos por página por defecto
@@ -41,13 +41,13 @@ class Pedidos_Productos(Resource):
 
     
 class Pedido_Producto(Resource):
-    # GET: Obtener una línea específica por su id. Rol: USER/ADMIN/ENCARGADO 
+    # GET: Obtener una línea específica por su id. Rol: USER/ADMIN/EMPLEADO 
     def get(self, id):
         linea = db.session.query(Pedidos_Productos_db).get_or_404(id)
         return jsonify(linea.to_json())
     
 
-    # DELETE: Eliminar una linea. Rol: ADMIN/ENCARGADO   
+    # DELETE: Eliminar una linea. Rol: ADMIN/EMPLEADO   
     def delete(self, id):
         linea = db.session.query(Pedidos_Productos_db).get_or_404(id)
         db.session.delete(linea)
