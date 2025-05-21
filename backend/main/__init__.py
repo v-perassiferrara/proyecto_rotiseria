@@ -60,8 +60,10 @@ def create_app():
     
     #Cargar clave secreta
     app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
-    # Algoritmo de Hash
-     # app.config["JWT_ALGORITHM"] = os.getenv('JWT_ALGORITHM')
+    app.config["JWT_BLACKLIST_ENABLED"] = True
+    app.config["JWT_BLACKLIST_TOKEN_CHECKS"] = ["access", "refresh"] # Aplica la lista negra a tokens de acceso y refresco
+    
+    
     #Cargar tiempo de expiración de los tokens
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = int(os.getenv('JWT_ACCESS_TOKEN_EXPIRES'))
     jwt.init_app(app)

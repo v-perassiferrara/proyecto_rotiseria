@@ -1,7 +1,8 @@
-from .. import jwt
+from .. import jwt, db
 from flask import jsonify
 from flask_jwt_extended import verify_jwt_in_request, get_jwt
 from functools import wraps
+from main.models import Usuario_db # Importa el modelo Usuario_db
 
 #Decorador para restringir el acceso a usuarios por rol
 def role_required(roles):
@@ -22,13 +23,21 @@ def role_required(roles):
 
 #Define el atributo que se utilizará para identificar el usuario
 @jwt.user_identity_loader
-def user_identity_lookup(usuario):
-    #Definir ID como atributo identificatorio
-    return usuario.id
+def user_identity_lookup(usuario_id): # Ahora recibe el ID como string
+    # Definir ID como atributo identificatorio
+    return usuario_id
 
 #Define que atributos se guardarán dentro del token
 @jwt.additional_claims_loader
-def add_claims_to_access_token(usuario):
+def add_claims_to_access_token(usuario_id): # Ahora recibe el ID como string
+    # Buscar el usuario en la base de datos usando el ID
+    # Esto es crucial para obtener los atributos del objeto Usuario_db
+    usuario = db.session.query(Usuario_db).get(usuario_id)
+    if not usuario:
+        # Si el usuario no se encuentra (por ejemplo, si fue eliminado),
+        # puedes devolver claims vacíos o manejar el error de otra forma.
+        # Para evitar el AttributeError, es importante que 'usuario' sea un objeto válido.
+        return {} 
     claims = {
         'rol': usuario.rol,
         'id': usuario.id,

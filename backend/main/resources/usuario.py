@@ -74,23 +74,11 @@ class Usuarios(Resource):
 
 class Usuario(Resource):
 
-# GET: Obtener un usuario. Rol: USUARIO/ADMIN/EMPLEADOñ¿
+# GET: Obtener un usuario. Rol: USUARIO/ADMIN/EMPLEADO
     @jwt_required(optional=True)
-    def get(self, id):
-        # BAD COOKING:
-        # current_user_id_str = get_jwt_identity()
-        # user_id = int(current_user_id_str)
-        # try:
-        #     usuario = db.session.query(Usuario_db).get(user_id)
-        #     if usuario:
-        #         return usuario.to_json_complete() 
-        #     else:
-        #         return jsonify({"msg": "Usuario no encontrado"}), 404
-        # except Exception as e:
-        #     return jsonify({"msg": e}), 1234
-        
+    def get(self, id):        
         usuario = db.session.query(Usuario_db).get_or_404(id) 
-        current_identity = get_jwt_identity()
+        current_identity = int(get_jwt_identity())
         if current_identity == usuario.id:
             return usuario.to_json_complete()
         else:

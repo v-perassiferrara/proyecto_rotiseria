@@ -1,5 +1,7 @@
 from flask_restful import Resource
 from flask import request, jsonify
+from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
+from main.auth.decorators import role_required
 from .. import db
 from main.models import Pedido_db
 from main.models import Usuario_db
@@ -8,12 +10,10 @@ from main.models import Pedidos_Productos_db
 
 
 class Pedidos(Resource):
-    # GET: Obtener listado de Pedidos. Rol: ADMIN  
-    def get(self):
-        pedidos = db.session.query(Pedido_db).all()
-        return jsonify([pedido.to_json() for pedido in pedidos])
 
-        # GET: obtener una lista de usuarios Rol: USER/ADMIN/EMPLEADO  
+    # GET: obtener una lista de Pedidos Rol: ADMIN  
+    @jwt_required(optional=True)
+    @role_required(roles = ["admin"])
     def get(self):
         page = 1 #Página inicial por defecto
         per_page = 10  #Cantidad de elementos por página por defecto
@@ -78,6 +78,8 @@ class Pedidos(Resource):
                 })
 
     # POST: Crear un pedido. Rol: ADMIN
+    @jwt_required(optional=False)
+    @role_required(roles = ["admin"])
     def post(self):
         pedido = Pedido_db.from_json(request.get_json())
         db.session.add(pedido)
@@ -86,14 +88,17 @@ class Pedidos(Resource):
 
 class Pedido(Resource):
     # GET: Obtener un pedido. Rol: USER/ADMIN/EMPLEADO
+    @jwt_required(optional=True)
     def get(self, id):
         pedido = db.session.query(Pedido_db).get_or_404(id)
         return jsonify(pedido.to_json_completo())
     
 
     # DELETE: Eliminar un pedido. Rol: ADMIN/EMPLEADO   
+    # Ver permisos por rol. Ej: Cliente debe poder borrar solo sus pedidos. Admin borrar cualquiera. Usar JWT Payload para verificar el rol
+    @jwt_required(optional=True)
+    @role_required(roles = ["admin", "empleado"])
     def delete(self, id):
-
         pedido = db.session.query(Pedido_db).get_or_404(id)
         setattr(pedido, 'estado', 'cancelado') 
         db.session.add(pedido)
@@ -104,6 +109,8 @@ class Pedido(Resource):
         }, 200  # con 204 flask no devuelve el mensaje
 
     # PUT: Editar un pedido. Rol: ADMIN  
+    @jwt_required(optional=True)
+    @role_required(roles = ["admin"])
     def put(self, id):
         pedido = db.session.query(Pedido_db).get_or_404(id)
         data = request.get_json().items()

@@ -5,7 +5,7 @@ from main.models import Notificacion_db
 
 class Notificaciones(Resource):
   
-    # GET: obtener una lista de usuarios Rol: USER/ADMIN/EMPLEADO  
+    # GET: obtener una lista de las notificaciones Rol: USER/ADMIN/EMPLEADO  
     def get(self):
         page = 1 #Página inicial por defecto
         per_page = 10  #Cantidad de elementos por página por defecto

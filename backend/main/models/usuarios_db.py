@@ -13,7 +13,7 @@ class Usuarios(db.Model):
     contrasena = db.Column(db.String(50), nullable=False)
     telefono = db.Column(db.String(20), nullable=False)
     estado = db.Column(db.String(20), nullable=False, default='pendiente')
-    rol = db.Column(db.String(20), nullable=False, default='usuario') # Los roles son: Admin/Usuario/Empleado
+    rol = db.Column(db.String(20), nullable=False, default='cliente') # Los roles son: admin/cliente/empleado
 
     
 # Relaciones con el resto de tablas
@@ -50,7 +50,8 @@ class Usuarios(db.Model):
             'apellido': self.apellido,
             'email': self.email,
             'telefono': self.telefono,
-            'estado': self.estado
+            'estado': self.estado,
+            'rol' : self.rol
         }
         return usuario_json
 
@@ -67,6 +68,7 @@ class Usuarios(db.Model):
             'email': self.email,
             'telefono': self.telefono,
             'estado': self.estado,
+            'rol' : self.rol,
             'pedidos': pedidos,
             'notificaciones': notificaciones,
             'valoraciones': valoraciones
