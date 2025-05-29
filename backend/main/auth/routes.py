@@ -18,8 +18,12 @@ def login():
     #Busca al usuario en la db por mail
     usuario = db.session.query(Usuario_db).filter(Usuario_db.email == request.get_json().get("email")).first()
     
+    ## Devuelvo error si el usuario esta bloqueado
+    if usuario.estado == 'bloqueado':
+        return 'Usuario Bloqueado ', 401
+    
     ## Devuelvo error si no existe el usuario o si la contraseña no coincide
-    if (usuario is None) or not (usuario.validate_pass(request.get_json().get("contrasena"))):
+    if (usuario is None) or not usuario.validate_pass(request.get_json().get("contrasena")):
         return 'Usuario o contraseña invalida', 401 
     
     #Genera un nuevo token, pasando el objeto usuario como identidad

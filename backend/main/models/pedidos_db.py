@@ -60,6 +60,8 @@ class Pedidos(db.Model):
         total = pedido_json.get('total')
         estado = pedido_json.get('estado')
         fecha = pedido_json.get('fecha')
+        
+        
         return Pedidos(
             id=id,
             fk_id_usuario=fk_id_usuario,
@@ -68,3 +70,4 @@ class Pedidos(db.Model):
             fecha=fecha
         )
 
+        

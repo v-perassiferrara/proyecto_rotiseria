@@ -20,7 +20,6 @@ class Pedidos(Resource):
         
         #no ejecuto el .all()
         pedidos = db.session.query(Pedido_db)
-        
         if request.args.get('page'):
             page = int(request.args.get('page'))
         if request.args.get('per_page'):
@@ -77,14 +76,13 @@ class Pedidos(Resource):
                   'page': page
                 })
 
-    # POST: Crear un pedido. Rol: ADMIN
+    # POST: Crear un pedido
     @jwt_required(optional=False)
-    @role_required(roles = ["admin"])
     def post(self):
         pedido = Pedido_db.from_json(request.get_json())
         db.session.add(pedido)
         db.session.commit()
-        return pedido.to_json(), 201
+        return pedido.to_json(), 201 
 
 class Pedido(Resource):
     # GET: Obtener un pedido. Rol: USER/ADMIN/EMPLEADO

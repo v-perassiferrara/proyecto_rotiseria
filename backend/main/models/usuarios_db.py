@@ -44,7 +44,6 @@ class Usuarios(db.Model):
     def to_json(self):  
         usuario_json = {
             'id': self.id,
-            'contrasena' : self.contrasena,
             'dni': self.dni,
             'nombre': self.nombre,
             'apellido': self.apellido,

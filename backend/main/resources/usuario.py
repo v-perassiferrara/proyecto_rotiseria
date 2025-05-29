@@ -8,7 +8,7 @@ from main.models import Usuario_db
 class Usuarios(Resource):
 
 # GET: obtener una lista de usuarios Rol: ADMIN/EMPLEADO
-    # @role_required(roles = ["admin","empleado"])  
+    @role_required(roles = ["admin","empleado"])
     def get(self):
         #Página inicial por defecto
         page = 1
