@@ -5,7 +5,6 @@ class Productos(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(50), nullable=False)
     precio = db.Column(db.Float, nullable=False)
-    stock = db.Column(db.Integer, nullable=False)
     visible = db.Column(db.Boolean, nullable=False, default=True)
 
 
@@ -23,20 +22,31 @@ class Productos(db.Model):
         producto_json = {
             'id': self.id,
             'nombre': self.nombre,
+            'precio': self.precio
+        }
+        return producto_json
+
+    def to_json_complete(self):
+        producto_json = {
+            'id': self.id,
+            'nombre': self.nombre,
             'precio': self.precio,
-            'stock': self.stock,
             'visible' : self.visible
         }
         return producto_json
 
+    @staticmethod
     def from_json(producto_json):
         id = producto_json.get("id")
         nombre = producto_json.get('nombre')
         precio = producto_json.get('precio')
-        stock = producto_json.get('stock')
+        visible = producto_json.get('visible')
         return Productos(
             id=id,
             nombre=nombre,
             precio=precio,
-            stock=stock
+            visible=visible
         )
+        
+        
+        

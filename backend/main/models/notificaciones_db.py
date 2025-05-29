@@ -22,7 +22,7 @@ class Notificaciones(db.Model):
         }
         return notificacion_json
 
-
+    @staticmethod
     def from_json(notificacion_json):
         id = notificacion_json.get("id")
         fk_id_usuario = notificacion_json.get('fk_id_usuario')

@@ -27,8 +27,8 @@ class Valoraciones(db.Model):
         estrellas = valoracion_json.get('estrellas')
         comentario = valoracion_json.get('comentario')
         return Valoraciones(
-            id_usuario=valoracion_json.get('id_usuario'),
-            id_producto=valoracion_json.get('id_producto'),
-            estrellas=valoracion_json.get('estrellas'),
-            comentario=valoracion_json.get('comentario')
+            id_usuario = id_usuario,
+            id_producto = id_producto,
+            estrellas = estrellas,
+            comentario = comentario
         )

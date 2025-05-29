@@ -1,11 +1,14 @@
 from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
+from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
+from main.auth.decorators import role_required
 from main.models import Valoracion_db
 from main.models import Producto_db
 from main.models import Usuario_db
 
 class Valoraciones(Resource):
+    @jwt_required(optional=True)
     def get(self):
         valoraciones = db.session.query(Valoracion_db).all()
         return jsonify([v.to_json() for v in valoraciones])
@@ -75,6 +78,8 @@ class Valoraciones(Resource):
                   'page': page
                 })
 
+    @jwt_required(optional=False)
+    @role_required(roles = ["cliente"])
     def post(self):
         data = request.get_json()
         nueva_valoracion = Valoracion_db.from_json(data)
@@ -84,16 +89,41 @@ class Valoraciones(Resource):
 
 class Valoracion(Resource):
     # GET: Obtener una valoración por ID
+    @jwt_required(optional=True)
     def get(self, id):
         valoracion = db.session.query(Valoracion_db).get_or_404(id)
         return jsonify(valoracion.to_json())
 
     # PUT: Editar una valoración por ID
+    @jwt_required(optional=False)
     def put(self, id):
         valoracion = db.session.query(Valoracion_db).get_or_404(id)
+        claims = get_jwt()
+        current_identity = int(get_jwt_identity())
         data = request.get_json().items()
-        for key, value in data:
-            setattr(valoracion, key, value)
-        db.session.add(valoracion)
-        db.session.commit()
-        return valoracion.to_json(), 201
+        
+        if claims.get("id") == current_identity:
+            for key, value in data:
+                setattr(valoracion, key, value)
+            db.session.add(valoracion)
+            db.session.commit()
+            return valoracion.to_json(), 201
+        else:
+            return {
+            'message': 'ERROR',
+        }, 200
+            
+        
+    # DELETE: Eliminar una notificacion. Rol: ADMIN   
+    @jwt_required(optional=False)
+    def delete(self, id):
+        claims = get_jwt()
+        current_identity = int(get_jwt_identity())
+        if claims.get("rol") == 'admin' or claims.get("id") == current_identity:
+            valoracion = db.session.query(Valoracion_db).get_or_404(id)
+            db.session.delete(valoracion)
+            db.session.commit()
+            return {
+                'message': 'Valoracion eliminada',
+                'valoracion ': valoracion.to_json()
+            }, 200  # con 204 flask no devuelve el mensaje
