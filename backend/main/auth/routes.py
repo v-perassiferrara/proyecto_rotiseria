@@ -3,6 +3,10 @@ from .. import db
 from main.models import Usuario_db
 from flask_jwt_extended import jwt_required, create_access_token, get_jwt
 
+#Importar funcion de envío de mail
+from main.mail.functions import sendMail
+
+
 #Blueprint para acceder a los métodos de autenticación
 auth = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -52,6 +56,9 @@ def register():
             #Agregar usuario a DB
             db.session.add(usuario)
             db.session.commit()
+            #Enviar mail de bienvenida
+            send = sendMail([usuario.email],"¡Bienvenido/a!",'register',usuario = usuario)            
+            
         except Exception as error:
             db.session.rollback()
             return str(error), 409
