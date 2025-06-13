@@ -19,7 +19,6 @@ def login():
     
     #Genera un nuevo token, pasando el objeto usuario como identidad
     access_token = create_access_token(identity=usuario)
-    # access_token = create_access_token(identity=str(usuario.id))
     #Devolver valores y token
     data = {
         'id': usuario.id,

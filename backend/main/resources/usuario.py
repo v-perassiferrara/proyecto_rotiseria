@@ -75,7 +75,7 @@ class Usuarios(Resource):
 class Usuario(Resource):
 
 # GET: Obtener un usuario. Rol: USUARIO/ADMIN/EMPLEADOñ¿
-    @jwt_required(optional=True)
+    @jwt_required(optional=True) # sacar el optional true para que sea obligatorio
     def get(self, id):
         # BAD COOKING:
         # current_user_id_str = get_jwt_identity()
@@ -88,10 +88,9 @@ class Usuario(Resource):
         #         return jsonify({"msg": "Usuario no encontrado"}), 404
         # except Exception as e:
         #     return jsonify({"msg": e}), 1234
-        
         usuario = db.session.query(Usuario_db).get_or_404(id) 
-        current_identity = get_jwt_identity()
-        if current_identity == usuario.id:
+        current_identity = str(get_jwt_identity())  # Convertimos a string
+        if current_identity == str(usuario.id):  # Convertimos el ID del usuario a string para comparar
             return usuario.to_json_complete()
         else:
             return usuario.to_json()
