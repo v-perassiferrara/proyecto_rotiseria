@@ -1,10 +1,19 @@
 from flask import request, jsonify, Blueprint
 from .. import db
 from main.models import Usuario_db
-from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
+from flask_jwt_extended import jwt_required, create_access_token, get_jwt
+
+#Importar funcion de envío de mail
+from main.mail.functions import sendMail
+
 
 #Blueprint para acceder a los métodos de autenticación
 auth = Blueprint('auth', __name__, url_prefix='/auth')
+
+# Lista negra de JWT (para tokens revocados)
+# En una aplicación de producción, esto debería ser una base de datos persistente (Redis, PostgreSQL, etc.)
+# y no una variable en memoria.
+BLOCKLIST = set()
 
 #Método de logueo
 @auth.route('/login', methods=['POST'])
@@ -13,12 +22,20 @@ def login():
     #Busca al usuario en la db por mail
     usuario = db.session.query(Usuario_db).filter(Usuario_db.email == request.get_json().get("email")).first()
     
+    ## Devuelvo error si el usuario esta bloqueado
+    if usuario.estado == 'bloqueado':
+        return 'Usuario Bloqueado ', 401
+    ## Devuelvo error si el usuario esta pendiente de aprobación
+    elif usuario.estado == 'pendiente':
+        return 'Usuario Pendiente de Aprobación', 401
+    
     ## Devuelvo error si no existe el usuario o si la contraseña no coincide
-    if (usuario is None) or not (usuario.validate_pass(request.get_json().get("contrasena"))):
+    if (usuario is None) or not usuario.validate_pass(request.get_json().get("contrasena")):
         return 'Usuario o contraseña invalida', 401 
     
     #Genera un nuevo token, pasando el objeto usuario como identidad
-    access_token = create_access_token(identity=usuario)
+    access_token = create_access_token(identity=str(usuario.id))
+
     #Devolver valores y token
     data = {
         'id': usuario.id,
@@ -42,7 +59,18 @@ def register():
             #Agregar usuario a DB
             db.session.add(usuario)
             db.session.commit()
+            #Enviar mail de bienvenida
+            send = sendMail([usuario.email],"¡Bienvenido/a!",'register',usuario = usuario)            
+            
         except Exception as error:
             db.session.rollback()
             return str(error), 409
         return usuario.to_json() , 201
+
+#Método de logout
+@auth.route('/logout', methods=['POST'])
+@jwt_required()
+def logout():
+    jti = get_jwt()['jti'] # Obtiene el JWT ID del token actual
+    BLOCKLIST.add(jti) # Agrega el JTI a la lista negra
+    return jsonify(msg="Logout Exitoso"), 201

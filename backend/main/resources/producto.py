@@ -1,19 +1,22 @@
 from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
+from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
+from main.auth.decorators import role_required
 from main.models import Producto_db
 
 
 class Productos(Resource):
-
-# GET: obtener una lista de productos Rol: USER/ADMIN/EMPLEADO  
+    
+    
+# GET: obtener una lista de productos Rol: USER/ADMIN/EMPLEADO
+    @jwt_required(optional=True)
     def get(self):
         #Página inicial por defecto
         page = 1
         #Cantidad de elementos por página por defecto
         per_page = 10
         
-        #no ejecuto el .all()
         productos = db.session.query(Producto_db)
         
         if request.args.get('page'):
@@ -46,18 +49,32 @@ class Productos(Resource):
                 
         #Obtener valor paginado
         productos = productos.paginate(page=page, per_page=per_page, error_out=False)
-    
-        return jsonify({'productos': [producto.to_json() for producto in productos],
-                  'total': productos.total,
-                  'pages': productos.pages,
-                  'page': page
-                })
 
+        
+        claims = get_jwt()
+        
+        if claims.get("rol") in ["admin", "empleado"]:
+            return jsonify({
+        'productos': [producto.to_json_complete() for producto in productos],
+                'total': productos.total,
+                'pages': productos.pages,
+                'page': page
+            })
+
+        else:
+            return jsonify({
+        'productos': [producto.to_json() for producto in productos],
+                'total': productos.total,
+                'pages': productos.pages,
+                'page': page
+            })
 
     
 
 
 # POST: crear un producto Rol: ADMIN
+    @jwt_required(optional=False)
+    @role_required(roles = ["admin"]) 
     def post(self):
         producto = Producto_db.from_json(request.get_json())
         db.session.add(producto)
@@ -69,15 +86,20 @@ class Productos(Resource):
 class Producto(Resource):
 
 # GET: Obtener un producto. Rol: ADMIN  
+    @jwt_required(optional=False)
     def get(self, id):
-        producto = db.session.query(Producto_db).get_or_404(id) 
-        return jsonify(producto.to_json()) 
-    
+        claims = get_jwt()
+        producto = db.session.query(Producto_db).get_or_404(id)     
+        if claims.get("rol") == "admin":
+            return jsonify(producto.to_json_complete())
+        else:
+            return jsonify(producto.to_json())
+
 
 # DELETE: Eliminar un producto (ocultar/descontinuar). Rol: ADMIN
-   
+    @jwt_required(optional=False)
+    @role_required(roles = ["admin"]) 
     def delete(self, id):
-
         producto = db.session.query(Producto_db).get_or_404(id)
         setattr(producto, 'visible', False) 
         db.session.add(producto)
@@ -89,6 +111,8 @@ class Producto(Resource):
 
 
 # PUT: Editar un producto. Rol: ADMIN/EMPLEADO  
+    @jwt_required(optional=False)
+    @role_required(roles = ["admin", "empleado"]) 
     def put(self, id):
         producto = db.session.query(Producto_db).get_or_404(id)
         data = request.get_json().items()

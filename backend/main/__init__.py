@@ -9,6 +9,9 @@ from flask_sqlalchemy import SQLAlchemy
 #Importar Flask JWT
 from flask_jwt_extended import JWTManager
 
+# Importar Flask Mail
+from flask_mail import Mail
+
 # Inicializar restful
 api = Api()
 
@@ -17,6 +20,9 @@ db = SQLAlchemy()
 
 #Inicializar JWT
 jwt = JWTManager()
+
+# Inicializar mail
+mailsender = Mail()
 
 def create_app():
     
@@ -60,8 +66,10 @@ def create_app():
     
     #Cargar clave secreta
     app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
-    # Algoritmo de Hash
-     # app.config["JWT_ALGORITHM"] = os.getenv('JWT_ALGORITHM')
+    app.config["JWT_BLACKLIST_ENABLED"] = True
+    app.config["JWT_BLACKLIST_TOKEN_CHECKS"] = ["access", "refresh"] # Aplica la lista negra a tokens de acceso y refresco
+    
+    
     #Cargar tiempo de expiración de los tokens
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = int(os.getenv('JWT_ACCESS_TOKEN_EXPIRES'))
     jwt.init_app(app)
@@ -69,6 +77,18 @@ def create_app():
     from main.auth import routes
     #Importar blueprint
     app.register_blueprint(routes.auth)
+    
+    #Configuración de mail
+    app.config['MAIL_HOSTNAME'] = os.getenv('MAIL_HOSTNAME')
+    app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
+    app.config['MAIL_PORT'] = os.getenv('MAIL_PORT')
+    app.config['MAIL_USE_TLS'] = os.getenv('MAIL_USE_TLS')
+    app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
+    app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
+    app.config['FLASKY_MAIL_SENDER'] = os.getenv('FLASKY_MAIL_SENDER')
+
+      #Inicializar en app
+    mailsender.init_app(app)
     
     #Por ultimo retornamos la aplicacion iniializada
     return app
