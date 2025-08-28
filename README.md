@@ -1,26 +1,3 @@
-# Proyecto Rotiseria - Grupo D | Programación I
+Diseño: https://www.figma.com/design/0nXNk0NMqqua3vLzMZWPe2/Interfaz-Rotiseria-UM-GANG?node-id=0-1&t=ceMH4s8YR1oz2RY4-1
 
-## Descripción
-
-Para generar la base de datos construimos [este modelo](https://dbdiagram.io/d/DB-Rotiseria-67ee80534f7afba1843acc00).
-
-Este proyecto utiliza las siguientes dependencias principales:
-
-### Dependencias de Python 🐍
-- Python 3.x
-
-Para instalar las dependencias de Python ejecutar el comando:
- `pip install -r requirements.txt`
-
-### Motor de base de datos 🛢️
-- SQLite3
-
-Para instalar el motor y las dependencias necesarias ejecutar el comando:
-
-* Ubuntu/Debian:
-
-`sudo apt install sqlite3 libsqlite3-dev`
-
-* Fedora/RHEL/CentOS:
-
-`sudo dnf install sqlite sqlite-devel`
+Prototipo: https://www.figma.com/proto/0nXNk0NMqqua3vLzMZWPe2/Interfaz-Rotiseria-UM-GANG?node-id=0-1&t=ceMH4s8YR1oz2RY4-1
