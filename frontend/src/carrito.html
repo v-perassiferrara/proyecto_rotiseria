@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bootstrap demo</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+  
+    <body>
+
+        <header class="title-bar">
+            <h6>Carrito</h6>
+        </header>
+        <div>
+            <div class="pt-3 d-inline-flex" >
+                <button type="button" class="btn d-inline-flex flex-row" >
+                    <i class="fa-solid fa-arrow-left m-1" ></i><p>Volver</p>
+                </button>
+            </div>
+            <div class="col-12 d-inline-flex p-3 pt-0 pb-0">
+                <h1 class="text-primary text-black fw-bold" href="#">Mi carrito</h1>  
+            </div>
+    
+        <!-- CARRITO -->
+         
+        <div class="container bg-white mt-5 pt-3" style="border-radius:  30px 30px 0px 0px;">
+            <div class="container p-3">
+                <div class="row p-3 pt-0 pb-0">
+                    <div class="col-4 p-0">
+                        <h1 class="text-primary text-black fw-bold" href="#">Total</h1>
+                        <p class="text-secondary" href="#">Fecha</p>  
+                        <p class="text-secondary" href="#">Estado</p>  
+                    </div>
+                    <div class="col-4 offset-4 p-0 justify-content-md-end">
+                        <h1 class="text-primary text-success fw-bold" href="#">$18.400</h1>
+                        <p class="text-secondary" href="#">28/08/2025</p>  
+                        <p class="text-secondary text-success" href="#">Pendiente</p>  
+                </div>
+            </div>
+           
+
+            <!-- Contenido del carrito -->
+            <div class="card-cont container-fluid">
+
+                    <!-- primer pedido -->
+                <div class="card mb-3 p-2">
+                    <div class="d-flex align-items-center">
+                        
+                        <!-- Imagen -->
+                        <img src="img/pizza.webp" class="rounded me-3" alt="Pizza" style="width: 80px; height: 80px; object-fit: cover;">
+                        
+                        <!-- Texto -->
+                        <div class="flex-grow-1">
+                        <h5 class="mb-1">Pedido #1</h5>
+                        <p class="card-text"><small class="text-body-secondary"><i class="bi bi-clock-fill"></i>Fecha</small></p>
+                        </div>
+                        
+                        <!-- Botón -->
+                        <a href="#" class="btn btn-success">Ver</a>
+                    </div>
+                </div>
+        
+                <!-- segundo pedido -->
+                <div class="card mb-3 p-2">
+                    <div class="d-flex align-items-center">
+                        
+                        <!-- Imagen -->
+                        <img src="img/empanadas.webp" class="rounded me-3" alt="Empanadas" style="width: 80px; height: 80px; object-fit: cover;">
+                        
+                        <!-- Texto -->
+                        <div class="flex-grow-1">
+                        <h5 class="mb-1">Pedido #2</h5>
+                        <p class="card-text"><small class="text-body-secondary"><i class="bi bi-clock-fill"></i>Fecha</small></p>
+                        </div>
+                        
+                        <!-- Botón -->
+                        <a href="#" class="btn btn-success">Ver</a>
+                    </div>
+                </div>
+        
+                <!-- tercera categoria -->
+                <div class="card mb-3 p-2">
+                    <div class="d-flex align-items-center">
+                        
+                        <!-- Imagen -->
+                        <img src="img/pollo.jpeg" class="rounded me-3" alt="Pollo" style="width: 80px; height: 80px; object-fit: cover;">
+                        
+                        <!-- Texto -->
+                        <div class="flex-grow-1">
+                            <h5 class="mb-1">Pedido #3</h5>
+                            <p class="card-text"><small class="text-body-secondary"><i class="bi bi-clock-fill"></i>Fecha</small></p>
+                        </div>
+                        
+                        <!-- Botón -->
+                        <a href="#" class="btn btn-success">Ver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+                <!-- nav bar en el Footer -->
+
+        <footer class="fixed-bottom bg-light p-3 mt-5 shadow-top bg-body-tertiary rounded">
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pedidos.html"><i class="fa-solid fa-clipboard-list"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link activo" aria-current="page" href="carrito.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="usuario.html"><i class="fa-solid fa-user"></i></a>
+                </li>
+            </ul>
+
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    </body>
+
+</html>
