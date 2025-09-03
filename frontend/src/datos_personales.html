@@ -14,74 +14,83 @@
     <body>
 
             <!-- title bar  -->
-        <header class="title-bar">
+        <header class="title-bar m-1">
             <h6>Datos personales</h6>
         </header>
 
-        <div style="border: 2px solid black ;">
-            <div class="py-2 d-inline-flex" >
-                <button type="button" class="btn d-inline-flex flex-row" >
+        <div style= "padding: 10px; margin: 10px; border: 1px solid grey; border-radius: 30px;">
+            <div style="height: 30px;" class=" m-1 d-inline-flex" >
+                <button type="button" class="btn d-inline-flex " >
                     <i class="fa-solid fa-arrow-left m-1" ></i><p>Volver</p>
                 </button>
             </div>
-            <div class="col-12 p-0 d-inline-flex p-3">
+            <div class="col-12 p-1 d-inline-flex">
                 <h2 class="text-primary text-black fw-bold" href="#">Datos Personales</h2>  
             </div>
 
             <!-- Formulario de datos personales-->  
-            <form class="row g-3">
-                <div class="col-sm-10">
-                  <label for="inputPassword2" class="visually-hidden">Nombre</label>
-                  <input type="password" class="form-control" id="inputPassword2" placeholder="Nombre">
-                </div>
-                <div class="col-sm-10">
-                  <button type="submit" class="btn btn-primary mb-3"><i class="fa-solid fa-pencil"></i></button>
-                </div>
-                
-                <div class="col-sm-10">
-                    <label for="exampleFormControlInput1" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                </div>
-                <div class="col-sm-10">
-                  <button type="submit" class="btn btn-primary mb-3"><i class="fa-solid fa-pencil"></i></button>
+            <form>
+                <div class="row g-3 align-items-center mb-3">
+                    <div class="col-12">
+                        <label class="form-label">Nombre</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Nombre">
+                            <button type="button" class="btn btn-light ms-2"><i class="fa-solid fa-pencil"></i></button>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="col-sm-10">
-                    <label for="inputPassword5" class="form-label">Contraseña</label>
-                    <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                <div class="row g-3 align-items-center mb-3">
+                    <div class="col-12">
+                        <label class="form-label">Email</label>
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="name@example.com">
+                            <button type="button" class="btn btn-light ms-2"><i class="fa-solid fa-pencil"></i></button>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-10">
-                  <button type="submit" class="btn btn-primary mb-3"><i class="fa-solid fa-pencil"></i></button>
+                
+                <div class="row g-3 align-items-center mb-3">
+                    <div class="col-12">
+                        <label class="form-label">Contraseña</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" placeholder="Contraseña">
+                            <button type="button" class="btn btn-light ms-2"><i class="fa-solid fa-pencil"></i></button>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="col-sm-10">
-                    <label for="inputPassword2" class="visually-hidden">Telefono</label>
-                    <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
-                  </div>
-                  <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary mb-3"><i class="fa-solid fa-pencil"></i></button>
-                  </div>
-            </form>
-              
-              
+                
+                <div class="row g-3 align-items-center">
+                    <div class="col-12">
+                        <label class="form-label">Teléfono</label>
+                        <div class="input-group">
+                            <input type="tel" class="form-control" placeholder="+26412345678">
+                            <button type="button" class="btn btn-light ms-2"><i class="fa-solid fa-pencil"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </form>   
+        </div>
+        <div class="tittle-bar col-12 d-flex justify-content-center ">
+            <a href="login.html" class="col-10 btn btn-success mt-2 w-70">Guardar</a>
         </div>
 
 
         <!-- nav bar en el Footer -->
 
-        <footer class="fixed-bottom">
+        <footer class="fixed-bottom bg-light p-3 mt-5 shadow-top bg-body-tertiary rounded">
             <ul class="nav nav-pills nav-fill">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="index.html"><i class="fa-solid fa-house"></i></a>
+                    <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pedidos.html"><i class="fa-solid fa-clipboard-list"></i></a>
+                    <a class="nav-link"  href="pedidos.html"><i class="fa-solid fa-clipboard-list"></i></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="carrito.html"><i class="fa-solid fa-cart-shopping"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link activo" href="usuario.html"><i class="fa-solid fa-user"></i></a>
+                    <a class="nav-link activo" aria-current="page" href="usuario.html"><i class="fa-solid fa-user"></i></a>
                 </li>
             </ul>
         </footer>
