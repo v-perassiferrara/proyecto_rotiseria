@@ -8,14 +8,40 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/home.css">
     </head>
+
+    <style>
+      .logo-white{
+      max-width: 360px;    
+      width: clamp(160px, 35%, 360px);
+      height: auto;      
+      display: block;
+  }
+      body {
+        transition: opacity 1.5s ease; /* transición suave */
+      }
+      .fade-out {
+        opacity: 0;
+      }
+  </style>
+
+    <script>
+    setTimeout(function() {
+        document.body.classList.add("fade-out");
+        setTimeout(function() {
+            window.location.href = "login.html";
+        }, 1500); // esperar a que termine el fade
+        }, 3000); // esperar 3 segundos antes de empezar el fade
+    </script>
+
   
         
             <!-- logo central blanco  -->
     <body class="d-flex justify-content-center align-items-center" style="background-color: rgb(27, 138, 13); height: 100vh;">
 
-        <img src="img/logo-white.png" class="img-fluid" alt="logo-white" style="max-width:90%; height:auto;">
+
+
+        <img src="img/logo-white.png" class="img-fluid" alt="" style="max-width:90%; height:auto;">
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
