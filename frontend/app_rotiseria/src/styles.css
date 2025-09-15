@@ -1,0 +1,88 @@
+html {
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #f6f6f6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.title-bar {
+    width: 100%;
+    background-color: rgb(10, 141, 10);
+    border-radius: 0px 0px 30px 30px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 1.2rem;
+}
+
+.title-bar h6 {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 22px;
+    font-weight: 400;
+    color: black;
+}
+
+.nav-link {
+    color: green;
+}
+
+.nav-link.activo {
+    background-color: green;
+    color: white;
+}
+
+.card-img-top {
+    width: 100%;
+    max-height: 150px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.shadow-top {
+    box-shadow: 0 -0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.stat {
+    border: 1px solid #eef0f3;
+    background: #fff;
+    border-radius: 14px;
+    padding: 0.75rem 0.9rem;
+    text-align: center;
+}
+
+.stat .num {
+    font-weight: 800;
+    font-size: 1.4rem;
+    line-height: 1;
+}
+
+.table> :not(caption)>*>* {
+    vertical-align: middle;
+}
+
+.shadow-top {
+    box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.card-round {
+    border-radius: 14px;
+}
+
+.img-preview {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
