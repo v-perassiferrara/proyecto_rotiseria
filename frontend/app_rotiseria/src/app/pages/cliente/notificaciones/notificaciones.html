@@ -1,0 +1,154 @@
+ <!-- Encabezado -->
+ <app-titlebar [title]="'Notificaciones'" />
+
+<div class="container py-3">
+
+  <!-- Botón volver -->
+  <app-back-button></app-back-button>
+
+  <!-- Título -->
+  <h1 class="fw-bold text-black mb-4">Últimas notificaciones</h1>
+
+  <!-- Notificación 1 -->
+  <div class="card mb-3 p-2" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#pedidoModal1">
+    
+    <div class="d-flex align-items-center">
+      
+      <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"style="width: 60px; height: 60px;">
+        <i class="fa-solid fa-bell"></i>
+      </div>
+
+      <div class="flex-grow-1">
+        <h6 class="mb-1">Pedido #04920 listo</h6>
+        <small class="text-body-secondary"><i class="fa-solid fa-clock"></i>05/09/2025</small>
+      </div>
+    
+    </div>
+  </div>
+
+  <!-- Notificación 2 -->
+  <div class="card mb-3 p-2" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#pedidoModal2">
+
+    <div class="d-flex align-items-center">
+
+      <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 60px; height: 60px;">
+        <i class="fa-solid fa-box"></i>
+      </div>
+      
+      <div class="flex-grow-1">
+        <h6 class="mb-1">Pedido #04920 En Preparación</h6>
+        <small class="text-body-secondary"><i class="fa-solid fa-clock"></i>02/09/2025</small>
+      </div>
+    
+    </div>
+    
+  </div>
+
+  <!-- Notificación 3 -->
+  <div class="card mb-3 p-2" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#pedidoModal3">
+
+    <div class="d-flex align-items-center">
+
+      <div class="bg-warning text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 60px; height: 60px;">
+        <i class="fa-solid fa-gift"></i>
+      </div>
+
+      <div class="flex-grow-1">
+        <h6 class="mb-1">Pedido #04920 Confirmado</h6>
+        <small class="text-body-secondary"><i class="fa-solid fa-clock"></i>01/09/2025</small>
+      </div>
+
+    </div>
+    
+  </div>
+
+</div>
+
+<!-- Modales -->
+<!-- Modal Pedido 1 -->
+<div class="modal fade" id="pedidoModal1" tabindex="-1" aria-labelledby="pedidoModal1Label" aria-hidden="true">
+  
+  <div class="modal-dialog modal-dialog-centered">
+    
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <h5 class="modal-title" id="pedidoModal1Label">Titulo notificación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      
+      <div class="modal-body">
+        
+        <div class="text-center"><img src="/assets/login.svg" class="img-fluid mb-3"alt="Imagen Notificación"></div>
+        <p>El pedido termino</p>
+
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"data-bs-dismiss="modal">Cerrar</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<!-- Modal Pedido 2 -->
+<div class="modal fade" id="pedidoModal2" tabindex="-1" aria-labelledby="pedidoModal2Label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="pedidoModal2Label">Titulo notificación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          <img src="/assets/login.svg" class="img-fluid mb-3" alt="Imagen Notificación">
+        </div>
+        <p>2Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+          non nibh quam. Vestibulum orci dolor \
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non
+          nibh quam. Vestibulum orci dolor \
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non
+          nibh quam. Vestibulum orci dolor \
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non
+          nibh quam.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Pedido 3 -->
+<div class="modal fade" id="pedidoModal3" tabindex="-1" aria-labelledby="pedidoModal3Label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="pedidoModal3Label">Titulo notificación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          <img src="/assets/login.svg" class="img-fluid mb-3" alt="Imagen Notificación">
+        </div>
+        <p>3Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+          non nibh quam. Vestibulum orci dolor \
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non
+          nibh quam. Vestibulum orci dolor \
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non
+          nibh quam. Vestibulum orci dolor \
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non
+          nibh quam.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<app-navbar></app-navbar>

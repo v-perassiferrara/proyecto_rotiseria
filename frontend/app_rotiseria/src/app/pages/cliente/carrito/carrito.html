@@ -1,0 +1,115 @@
+<app-titlebar [title]="'Carrito'" />
+
+<div>
+    <app-back-button></app-back-button>
+        
+    <div class="col-12 d-inline-flex p-3 pt-4 pb-0">
+        <h1 class="text-primary text-black fw-bold">Mi Carrito</h1>
+    </div>
+</div>
+
+<!-- CARRITO -->
+
+<div class="container-fluid bg-white min-vh-100 mt-3 pt-3" style="border-radius:  30px 30px 0px 0px;">
+
+    <div class="container p-3">
+
+        <div class="row px-3">
+
+            <div class="col-4 p-0 text-start">
+                <h1 class="text-primary text-black fw-bold" href="#">Total</h1>
+                <p class="text-secondary">Fecha</p>
+                <p class="text-secondary">Estado</p>
+            </div>
+
+            <div class="col-4 offset-4 p-0 text-end">
+                <h1 class="text-primary text-success fw-bold" href="#">$18.400</h1>
+                <p class="text-secondary">28/08/2025</p>
+                <p class="text-secondary text-success" href="#">Pendiente</p>
+            </div>
+
+        </div>
+
+        <!-- Contenido del carrito -->
+        <div class="card-cont">
+
+            <!-- primer producto -->
+            <div class="card mb-3 p-2">
+
+                <div class="d-flex align-items-center">
+
+                    <!-- Imagen -->
+                    <img src="/assets/pizza.webp" class="rounded me-3" alt="Pizza" style="width: 80px; height: 80px; object-fit: cover;">
+
+                    <!-- Texto -->
+                    <div class="flex-grow-1">
+                        <h5 class="mb-1"><span class="text-secondary">1x</span> Pizza Muzzarella</h5>
+                        <p class="card-text"><small class="text-body-secondary"><i class="bi bi-clock-fill"></i>$18.400</small></p>
+                    </div>
+
+                    <!-- Botones menos y más -->
+                    <div class="botones-container d-flex">
+                        <a href="#" class="btn btn-danger d-flex justify-content-center align-items-center me-2"><i class="fa-solid fa-minus"></i></a>
+                        <a href="#" class="btn btn-success d-flex justify-content-center align-items-center"><i class="fa-solid fa-plus"></i></a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- segundo producto -->
+            <div class="card mb-3 p-2">
+
+                <div class="d-flex align-items-center">
+
+                    <!-- Imagen -->
+                    <img src="/assets/empanadas.webp" class="rounded me-3" alt="Empanadas" style="width: 80px; height: 80px; object-fit: cover;">
+
+                    <!-- Texto -->
+                    <div class="flex-grow-1">
+                        <h5 class="mb-1"><span class="text-secondary">2x</span> Empanadas de carne</h5>
+                        <p class="card-text"><small class="text-body-secondary"><i class="bi bi-clock-fill"></i>$12.000</small></p>
+                    </div>
+
+                    <!-- Botones menos y más -->
+                    <div class="botones-container d-flex">
+                        <a href="#" class="btn btn-danger d-flex justify-content-center align-items-center me-2"><i class="fa-solid fa-minus"></i></a>
+                        <a href="#" class="btn btn-success d-flex justify-content-center align-items-center"><i class="fa-solid fa-plus"></i></a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- tercera producto -->
+            <div class="card mb-3 p-2">
+
+                <div class="d-flex align-items-center">
+
+                    <!-- Imagen -->
+                    <img src="/assets/pollo.jpeg" class="rounded me-3" alt="Pollo" style="width: 80px; height: 80px; object-fit: cover;">
+
+                    <!-- Texto -->
+                    <div class="flex-grow-1">
+                        <h5 class="mb-1"><span class="text-secondary">1x</span> Pollo</h5>
+                        <p class="card-text"><small class="text-body-secondary"><i class="bi bi-clock-fill"></i>$6.800</small></p>
+                    </div>
+
+                    <!-- Botones menos y más -->
+                    <div class="botones-container d-flex">
+                        <a href="#" class="btn btn-danger d-flex justify-content-center align-items-center me-2"><i class="fa-solid fa-minus"></i></a>
+                        <a href="#" class="btn btn-success d-flex justify-content-center align-items-center"><i class="fa-solid fa-plus"></i></a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- nav bar en el Footer -->
+<app-navbar></app-navbar>

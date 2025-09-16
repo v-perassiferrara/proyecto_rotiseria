@@ -1,0 +1,65 @@
+<app-titlebar [title]="'Datos Personales'" />
+
+<div style="padding: 10px; margin: 10px;">
+    <app-back-button></app-back-button>
+    
+
+    <div class="col-12 p-1 d-inline-flex">
+        <h2 class="text-primary text-black fw-bold">Datos Personales</h2>
+    </div>
+
+    <!-- Formulario de datos personales-->
+    <form>
+        <div class="row g-3 align-items-center mb-3">
+            <div class="col-12">
+                <label class="form-label">Nombre</label>
+                <div class="input-group">
+                    <input type="text" class="form-control"
+                        placeholder="Nombre">
+                    <button type="button" class="btn btn-light ms-2"><i
+                            class="fa-solid fa-pencil"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 align-items-center mb-3">
+            <div class="col-12">
+                <label class="form-label">Email</label>
+                <div class="input-group">
+                    <input type="email" class="form-control"
+                        placeholder="name@example.com">
+                    <button type="button" class="btn btn-light ms-2"><i
+                            class="fa-solid fa-pencil"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 align-items-center mb-3">
+            <div class="col-12">
+                <label class="form-label">Contraseña</label>
+                <div class="input-group">
+                    <input type="password" class="form-control"
+                        placeholder="Contraseña">
+                    <button type="button" class="btn btn-light ms-2"><i
+                            class="fa-solid fa-pencil"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 align-items-center">
+            <div class="col-12">
+                <label class="form-label">Teléfono</label>
+                <div class="input-group">
+                    <input type="tel" class="form-control"
+                        placeholder="+26412345678">
+                    <button type="button" class="btn btn-light ms-2"><i
+                            class="fa-solid fa-pencil"></i></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="tittle-bar col-12 d-flex justify-content-center ">
+    <a href="#" routerLink="/login"
+        class="col-10 btn btn-success mt-2 w-70">Guardar</a>
+</div>

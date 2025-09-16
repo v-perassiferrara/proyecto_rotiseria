@@ -1,22 +1,29 @@
- <footer
-    class="fixed-bottom bg-light p-3 mt-5 shadow-top bg-body-tertiary rounded">
-    <ul class="nav nav-pills nav-fill">
-        <li class="nav-item">
-            <a class="nav-link activo" href="index.html"><i
-                    class="fa-solid fa-house"></i></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page"
-                href="pedidos.html"><i
-                    class="fa-solid fa-clipboard-list"></i></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="carrito.html"><i
-                    class="fa-solid fa-cart-shopping"></i></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="usuario.html"><i
-                    class="fa-solid fa-user"></i></a>
-        </li>
-    </ul>
+<footer class="fixed-bottom bg-light py-3 px-2 mt-5 shadow-top bg-body-tertiary rounded">
+  <ul class="nav nav-pills nav-fill">
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        routerLink="/home"
+        routerLinkActive="activo"
+        [routerLinkActiveOptions]="{exact: true}"
+      >
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/pedidos" routerLinkActive="activo">
+        <i class="fa-solid fa-clipboard-list"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/carrito" routerLinkActive="activo">
+        <i class="fa-solid fa-cart-shopping"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/usuario" routerLinkActive="activo">
+        <i class="fa-solid fa-user"></i>
+      </a>
+    </li>
+  </ul>
 </footer>

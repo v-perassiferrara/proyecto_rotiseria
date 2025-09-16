@@ -1,0 +1,67 @@
+  <!-- Header -->
+  <app-titlebar [title]="'Nuestros productos'" />
+
+  <!-- Buscador -->
+  <div class="p-3">
+    <div class="input-group">
+      <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search"></i></span>
+      <a href="#" routerLink="/productos" class="form-control border-start-0 text-decoration-none text-dark" style="cursor:pointer;">Buscar</a>
+    </div>
+  </div>
+
+  <!-- Filtro categorías -->
+  <div class="px-3">
+    <div class="card p-2">
+      <h6 class="fw-bold mb-2">Filtrar por categoría</h6>
+      <div class="d-flex flex-wrap gap-2">
+        <button class="btn btn-outline-dark btn-sm">PIZZAS</button>
+        <button class="btn btn-outline-dark btn-sm">EMPANADAS</button>
+        <button class="btn btn-outline-dark btn-sm">POLLOS</button>
+        <button class="btn btn-outline-dark btn-sm">LOMOS</button>
+        <button class="btn btn-outline-dark btn-sm">HAMBURGUESAS</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Productos -->
+  <div class="container my-3">
+    <div class="row g-3">
+
+      <!-- Producto 1 -->
+      <div class="col-6" routerLink="/detalle-producto" style="cursor: pointer;">
+        <div class="card h-100">
+          <img src="assets/pizza.webp" class="card-img-top" alt="Pizza">
+          <div class="card-body text-center">
+            <h6 class="card-title mb-1">Pizza Muzarella</h6>
+            <p class="text-success fw-bold">$18.400</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 2 -->
+      <div class="col-6" routerLink="/detalle-producto" style="cursor: pointer;">
+        <div class="card h-100">
+          <img src="assets/empanadas.webp" class="card-img-top" alt="Empanadas">
+          <div class="card-body text-center">
+            <h6 class="card-title mb-1">Empanadas</h6>
+            <p class="text-success fw-bold">$18.400</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 3 -->
+      <div class="col-6" routerLink="/detalle-producto" style="cursor: pointer;">
+        <div class="card h-100">
+          <img src="assets/pollo.jpeg" class="card-img-top" alt="Pollo">
+          <div class="card-body text-center">
+            <h6 class="card-title mb-1">Pollo Asado</h6>
+            <p class="text-success fw-bold">$18.400</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <app-navbar></app-navbar>

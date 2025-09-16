@@ -1,0 +1,68 @@
+<app-titlebar [title]="'Historial de pedidos'" />
+
+<div>
+    <app-back-button></app-back-button>
+    <div class="col-12 p-0 d-inline-flex p-3">
+        <h1 class="text-primary text-black fw-bold" href="#">Pedidos Anteriores</h1>
+    </div>
+
+    <div class="card-cont container-fluid">
+
+        <!-- primer pedido -->
+        <div class="card mb-3 p-2">
+            <div class="d-flex align-items-center">
+
+                <!-- Imagen -->
+                <img src="assets/pizza.webp" class="rounded me-3" alt="Pizza" style="width: 80px; height: 80px; object-fit: cover;">
+
+                <!-- Texto -->
+                <div class="flex-grow-1">
+                    <h5 class="mb-1">Pedido #1</h5>
+                    <p class="card-text"><small class="text-body-secondary"><i class="fa-solid fa-clock"></i>Fecha</small></p>
+                </div>
+
+                <!-- Botón -->
+                <a href="#" routerLink="/pedido_detalle" class="btn btn-success">Ver</a>
+            </div>
+        </div>
+
+        <!-- segundo pedido -->
+        <div class="card mb-3 p-2">
+            <div class="d-flex align-items-center">
+
+                <!-- Imagen -->
+                <img src="assets/empanadas.webp" class="rounded me-3" alt="Empanadas" style="width: 80px; height: 80px; object-fit: cover;">
+
+                <!-- Texto -->
+                <div class="flex-grow-1">
+                    <h5 class="mb-1">Pedido #2</h5>
+                    <p class="card-text"><small class="text-body-secondary"><i class="fa-solid fa-clock"></i>Fecha</small></p>
+                </div>
+
+                <!-- Botón -->
+                <a href="#" routerLink="/pedido_detalle" class="btn btn-success">Ver</a>
+            </div>
+        </div>
+
+        <!-- tercera categoria -->
+        <div class="card mb-3 p-2">
+            <div class="d-flex align-items-center">
+
+                <!-- Imagen -->
+                <img src="assets/pollo.jpeg" class="rounded me-3" alt="Pollo" style="width: 80px; height: 80px; object-fit: cover;">
+
+                <!-- Texto -->
+                <div class="flex-grow-1">
+                    <h5 class="mb-1">Pedido #3</h5>
+                    <p class="card-text"><small class="text-body-secondary"><i class="fa-solid fa-clock"></i>Fecha</small></p>
+                </div>
+
+                <!-- Botón -->
+                <a href="#" routerLink="/pedido_detalle" class="btn btn-success">Ver</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<app-navbar></app-navbar>

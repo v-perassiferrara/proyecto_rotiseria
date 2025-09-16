@@ -1,0 +1,35 @@
+<app-titlebar [title]="'Perfil'" />
+
+<div class="justify-content-center align-items-center d-flex" style="min-height: 80vh;">
+    <div class="container-fluid d-flex flex-column justify-content-center align-self-center" style="min-height: 30vh;">
+
+        <div class="card p-3 mb-3">
+            <div class="d-flex align-items-center">
+                <i class="fa-regular fa-circle-user fa-2x me-3"></i>
+                <div class="flex-grow-1">
+                    <h5 class="mb-1">nombre</h5>
+                    <h6 class="mb-1 text-secondary">mail@a.com</h6>
+                </div>
+            </div>
+        </div>
+
+        <a href="#" routerLink="/datos-personales" class="text-decoration-none text-dark">
+            <div class="card p-3 mb-3">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-3">
+                        <i class="fa-solid fa-info-circle"></i>
+                        <h5 class="mb-0">Datos Personales</h5>
+                    </div>
+                    <i class="fa fa-arrow-right"></i>
+                </div>
+            </div>
+        </a>
+
+        <div class="mt-auto text-center">
+            <a href="#" routerLink="/start" class="btn btn-danger w-75">Cerrar Sesión</a>
+        </div>
+        
+    </div>
+</div>
+
+<app-navbar></app-navbar>

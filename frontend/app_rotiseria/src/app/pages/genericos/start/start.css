@@ -1,0 +1,15 @@
+
+body {
+    transition: opacity 1.5s ease; /* transición suave */
+}
+
+.logo-white{
+    max-width: 360px;    
+    width: clamp(160px, 35%, 360px);
+    height: auto;      
+    display: block;
+}
+
+.fade-out {
+    opacity: 0;
+}
