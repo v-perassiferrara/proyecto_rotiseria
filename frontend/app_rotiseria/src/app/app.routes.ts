@@ -19,10 +19,21 @@ export const routes: Routes = [
     {path:'productos',    loadComponent: () => import('./pages/cliente/productos/productos').then(m => m.Productos)},
     {path:'pedidos',    loadComponent: () => import('./pages/cliente/pedidos/pedidos').then(m => m.Pedidos)},
     
-    
     // Admin
-
+    {path:'admin/home',     loadComponent: () => import('./pages/admin/home/home').then(m => m.Home)},
+    {path:'admin/detalle-producto',    loadComponent: () => import('./pages/admin/detalle-producto/detalle-producto').then(m => m.DetalleProducto)}, 
+    {path:'admin/detalle-usuario',    loadComponent: () => import('./pages/admin/detalle-usuario/detalle-usuario').then(m => m.DetalleUsuario)},
+    {path:'admin/detalle-categoria',    loadComponent: () => import('./pages/admin/detalle-categoria/detalle-categoria').then(m => m.DetalleCategoria)}, 
+    {path:'admin/detalle-pedido',    loadComponent: () => import('./pages/admin/detalle-pedido/detalle-pedido').then(m => m.DetallePedido)}, 
+    {path:'admin/promociones',    loadComponent: () => import('./pages/admin/promociones/promociones').then(m => m.Promociones)},
+    {path:'admin/productos',    loadComponent: () => import('./pages/admin/productos/productos').then(m => m.Productos)},
+    {path:'admin/pedidos',    loadComponent: () => import('./pages/admin/pedidos/pedidos').then(m => m.Pedidos)},
+    {path:'admin/usuarios',    loadComponent: () => import('./pages/admin/usuarios/usuarios').then(m => m.Usuarios)},
+    
+    
+    // Errores
     {path:'error',    loadComponent: () => import('./pages/genericos/error-page/error-page').then(m => m.ErrorPage)},
     {path:'', redirectTo:'home', pathMatch:'full'},  // Por defecto siempre redirecciona a home
-    {path:'**', redirectTo:'error'} // Comodín: Cualquier otra ruta redirecciona a error
+    {path:'**', redirectTo:'error'} // Comodin: Cualquier otra ruta redirecciona a error
+
 ];

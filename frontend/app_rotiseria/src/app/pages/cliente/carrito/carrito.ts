@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { Navbar } from '../../../components/navbar/navbar';
 import { Titlebar } from '../../../components/titlebar/titlebar';
-import { BackButton } from '../../../components/back-button/back-button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-carrito',
   imports: [
     Navbar,
     Titlebar,
-    BackButton
+    RouterLink
   ],
   templateUrl: './carrito.html',
   styleUrl: './carrito.css'

@@ -1,0 +1,92 @@
+ <!-- Header -->
+<app-titlebar [title]="'Pedidos'" [admin]="true"/>
+
+<main class="container py-3">
+
+    <!-- Saludo -->
+    <h4 class="fw-bold mb-3">Hola, <span class="text-body-secondary">@nombre</span>!</h4>
+
+    <!-- Stats -->
+    <div class="row g-2 mb-3">
+        <div class="col-6 col-sm-4 col-lg-2">
+            <div class="stat">
+                <div class="num text-secondary">924</div>
+                <small class="text-secondary">Pendientes</small>
+            </div>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-2">
+            <div class="stat">
+                <div class="num text-warning">924</div>
+                <small class="text-warning-emphasis">Preparación</small>
+            </div>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-2">
+            <div class="stat">
+                <div class="num text-success">924</div>
+                <small class="text-success-emphasis">Listos</small>
+            </div>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-2">
+            <div class="stat">
+                <div class="num text-body">924</div>
+                <small class="text-body-secondary">Entregados</small>
+            </div>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-2">
+            <div class="stat">
+                <div class="num text-danger">924</div>
+                <small class="text-danger-emphasis">Cancelados</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Título sección -->
+    <h6 class="fw-bold mt-2 mb-2">Pedidos</h6>
+
+    <!-- Tabla de pedidos -->
+    <div class="table-responsive rounded-3 bg-white border">
+        <table class="table align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col" class="w-50">Pedido</th>
+                    <th scope="col" class="w-25">Estado</th>
+                    <th scope="col" class="text-end w-25">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- fila: pendiente -->
+                <tr>
+                    <td>#1598</td>
+                    <td>
+                        <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill px-3">Pendiente</span>
+                    </td>
+                    <td class="text-end">
+                        <button class="btn btn-outline-secondary btn-sm"><a href="#" routerLink="/admin/detalle-pedido"><i class="fa-solid fa-pen"></i></a></button>
+                    </td>
+                </tr>
+
+                <!-- fila: listo -->
+                <tr>
+                    <td>#4578</td>
+                    <td>
+                        <span class="badge bg-success-subtle text-success-emphasis rounded-pill px-3">Listo</span>
+                    </td>
+                    <td class="text-end">
+                        <button class="btn btn-outline-secondary btn-sm"><a href="#" routerLink="/admin/detalle-pedido"><i class="fa-solid fa-pen"></i></a></button>
+                    </td>
+                </tr>
+
+                <!-- fila: cancelado -->
+                <tr>
+                    <td>#1456</td>
+                    <td>
+                        <span class="badge bg-danger-subtle text-danger-emphasis rounded-pill px-3">Cancelado</span>
+                    </td>
+                    <td class="text-end">
+                        <button class="btn btn-outline-secondary btn-sm"><a href="#" routerLink="/admin/detalle-pedido"><i class="fa-solid fa-pen"></i></a></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>

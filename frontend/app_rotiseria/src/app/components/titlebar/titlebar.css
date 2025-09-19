@@ -1,15 +1,19 @@
 .title-bar {
     width: 100%;
+    height: auto;
     background-color: rgb(10, 141, 10);
     border-radius: 0px 0px 30px 30px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-content: center;
     text-align: center;
     padding: 1.2rem;
 }
 
 .title-bar h6 {
+    width: 100%;
     color: white;
     font-size: 1.2rem;
     font-weight: 600;
+    align-self: center;
 }

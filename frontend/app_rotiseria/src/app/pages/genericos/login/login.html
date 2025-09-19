@@ -1,36 +1,35 @@
 <!-- Capa gris oscura -->
 <div id="overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(50,50,50,0.7); z-index: 1;"></div>
 
-<!-- Fondo -->>
-<div class="container d-flex flex-column justify-content-center align-items-center gap-5 mt-5">
+<!-- Fondo -->
+<div class="container d-flex flex-column min-vh-100 justify-content-center align-items-center gap-3 mt-5 w-80" style="max-width: 500px;">
+    
     <div class="row justify-content-center">
-        <img src="/assets/login.svg" alt="inicio" class="w-85">
+        <img src="/assets/login.svg" alt="inicio" class="w-100">
     </div>
-
-    <div class="row text-center flex-column justify-content-center align-items-center">
+    
+    <div class="row w-100 text-center flex-column">
         <h3 class="fw-bold" style="text-align: center;">¡Bienvenido!</h3>
-        <p class="w-75" style="text-align: center;">Antes de ingresar a UM Gang, necesitas iniciar sesión.</p>
+        <p class="w-80" style="text-align: center;">Antes de ingresar a UM Gang, necesitas iniciar sesión. </p>
     </div>
-
-    <div class="row w-75">
-        <div class="row w-100 g-3">
-            <button type="button" class="btn btn-success w-100"><a href="register.html" style="color: white; text-decoration: none;">Registrarse</a></button>
-            <button type="button" class="btn btn-light w-100">Iniciar Sesión</button>
+    
+    <div class="row w-100 d-flex flex-column g-3">
+            <button type="button" class="btn btn-success w-100"><a href="#" routerLink="/register" style="color: white; text-decoration: none;">Registrarse</a></button>
+            <button type="button" class="btn btn-light w-100"><a href="#" routerLink="/login">Iniciar Sesión</a></button>
             <p class="w-100 small text-center">Al tener una cuenta estás aceptando los <span style="color: green;">Términos y Condiciones</span> y la <span style="color: green;">Política de Privacidad.</span></p>
-        </div>
     </div>
 </div>
 <!-- formulario -->
-<div class="container align-items-center" style="border-radius: 30px 30px 0px 0px; border: 2px solid grey; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); background-color: white; z-index: 2; max-width: 400px; padding: 2rem;">
+<div class="container align-items-center" style="border-radius: 30px 30px 0px 0px; border: 2px solid grey; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); background-color: white; z-index: 2; padding: 2rem;">
     <div class="d-flex justify-content-center align-items-center mb-4" style="gap: 2rem;">
         <div style="width: 50px; height: 2px; background-color: grey;"></div>
     </div>
     <div class="d-flex justify-content-center align-items-center mb-4" style="gap: 2rem;">
         <div class="text-center pb-2">
-            <h3 style="margin-bottom: 0;">Registrarse</h3>
+            <h4 class="text-body-secondary" style="margin-bottom: 0;"><a href="#" routerLink="/register">Registrarse</a></h4>
         </div>
         <div class="text-center pb-2" style="border-bottom: 2px solid green; color: green;">
-            <h3 class="text-body-secondary" style="margin-bottom: 0;">Iniciar Sesión</h3>
+            <h4 class="" style="margin-bottom: 0; color: green;">Iniciar Sesión</h4>
         </div>
     </div>
     <div class="mb-3">
@@ -42,6 +41,6 @@
         <input type="password" class="form-control" aria-describedby="passwordHelpBlock">
     </div>
     <div class="tittle-bar col-12 d-flex justify-content-center ">
-        <a href="#" routerLink="/home" style="background-color: green; color: white;" class="col-10 btn mt-2 w-70">Registrarse</a>
+        <a href="#" routerLink="/home" style="background-color: green; color: white;" class="col-10 btn mt-2 w-70">Ingresar</a>
     </div>
 </div>

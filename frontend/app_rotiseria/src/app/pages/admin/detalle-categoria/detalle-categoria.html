@@ -1,0 +1,46 @@
+ <app-titlebar [title]="'Modificar Producto'" />
+ 
+<main class="container my-3" style="max-width:640px;">
+    <div style="padding: 10px; margin: 10px;">
+        <div style="height: 30px;" class=" m-1 d-inline-flex">
+            <app-back-button></app-back-button>
+        </div>
+        <div class="col-12 p-1 d-inline-flex">
+            <h2 class="text-primary text-black fw-bold">Categoría</h2>
+        </div>
+    </div>
+
+    <!-- Card: Datos del Producto -->
+    <div class="card card-round">
+        <div class="card-body">
+            <h6 class="fw-semibold mb-3">Datos de la categoría</h6>
+
+            <!-- Imagen + Cambiar -->
+            <div class="d-flex align-items-start gap-3 mb-3">
+                <img id="preview" class="img-preview"
+                    src="/assets/empanadas.webp" alt="Imagen del producto">
+                <div>
+                    <label for="file" class="btn btn-success">
+                        <i class="fa-solid fa-image me-1"></i> Cambiar imagen
+                    </label>
+                    <input type="file" id="file" class="d-none" accept="image/*">
+                    <div class="form-text mt-1">JPG o PNG. Máx 2 MB.</div>
+                </div>
+            </div>
+
+            <form id="formProducto" novalidate>
+                <!-- Nombre -->
+                <div class="mb-3">
+                    <label class="form-label text-uppercase small fw-semibold">Nombre</label>
+                    <input type="text" class="form-control" value="Empanada de Carne" required>
+                </div>
+
+                <!-- Botones -->
+                <div class="d-flex gap-2 justify-content-center pt-2" style="max-width: 600px; margin:auto;">
+                    <a href="#" routerLink="/admin/productos" class="btn btn-outline-secondary flex-fill">Cancelar</a>
+                    <button type="submit" class="btn btn-success flex-fill">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>

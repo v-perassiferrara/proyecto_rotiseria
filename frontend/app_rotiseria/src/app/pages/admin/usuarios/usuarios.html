@@ -1,0 +1,100 @@
+ <!-- Header -->
+<app-titlebar [title]="'Usuarios'" [admin]="true" />
+
+<div class="container-fluid justify-content-center">
+    <div
+        class="row justify-content-center align-items-center p-3 pt-0 pb-0">
+        <h1
+            class="text-primary text-black fw-bold my-4 text-center">Usuarios
+            Activos</h1>
+        <div
+            class="col-12 d-flex justify-content-center align-items-center mb-2">
+            <div class="stat w-50 text-center" style="border-radius: 20px; border: 1px solid #ccc; padding: 2rem 0; box-shadow: 0px 0px 10px grey;">
+                <div class="num text-success" style="font-size: 3rem; font-weight: bold; color: green;">924</div>
+            </div>
+        </div>
+
+        <!-- Buscador -->
+        <div class="p-1">
+            <div class="input-group">
+                <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search"></i></span>
+                <input type="text" class="form-control border-start-0" placeholder="Buscar">
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabla Empleados -->
+    <div class="mt-4">
+        <h3 class="fw-bold">Empleados</h3>
+        <div class="table-responsive rounded-3 bg-white border">
+            <table class="table align-middle mb-0" style="text-overflow: elipsis; overflow: hidden; table-layout: fixed;">
+                <thead class="table" >
+                    <tr>
+                        <th scope="col" class="w-25">Nombre</th>
+                        <th scope="col" class="w-50">Email</th>
+                        <th scope="col" class="text-end w-25"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mark</td>
+                        <td class="abreviado">markinhos@example.com</td>
+                        <td class="text-end">
+                            <a class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
+                            <a class="btn btn-outline-secondary btn-sm" href="#" routerLink="/admin/detalle-usuario"><i class="fa-solid fa-pen"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Jhon</td>
+                        <td class="abreviado">jhon@example.com</td>
+                        <td class="text-end">
+                            <a class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
+                            <a class="btn btn-outline-secondary btn-sm" href="#" routerLink="/admin/detalle-usuario"><i class="fa-solid fa-pen"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Valencia</td>
+                        <td class="abreviado">valentain@example.com</td>
+                        <td class="text-end"><a class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
+                            <a class="btn btn-outline-secondary btn-sm" href="#" routerLink="/admin/detalle-usuario"><i class="fa-solid fa-pen"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Tabla Clientes -->
+    <div class="mt-4">
+        <h3 class="fw-bold">Clientes</h3>
+        <div class="table-responsive rounded-3 bg-white border">
+            <table class="table align-middle mb-0" style="text-overflow: elipsis; overflow: hidden; table-layout: fixed;">
+                <thead class="table">
+                    <tr>
+                        <th scope="col" class="w-25">Nombre</th>
+                        <th scope="col" class="w-50">Email</th>
+                        <th scope="col"
+                            class="text-end w-25"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mark</td>
+                        <td class="abreviado">markinhos@example.com</td>
+                        <td class="text-end">
+                            <a class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
+                            <a class="btn btn-outline-secondary btn-sm" href="#" routerLink="/admin/detalle-usuario"><i
+                                    class="fa-solid fa-pen"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Jhon</td>
+                        <td class="abreviado">jhon@example.com</td>
+                        <td class="text-end">
+                            <a class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
+                            <a class="btn btn-outline-secondary btn-sm" href="#" routerLink="/admin/detalle-usuario"><i class="fa-solid fa-pen"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
