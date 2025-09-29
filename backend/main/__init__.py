@@ -1,7 +1,8 @@
 from flask import Flask
 from dotenv import load_dotenv
 from flask_restful import Api
-import os 
+import os
+from flask_cors import CORS
 
 #importar sqlalchemy
 from flask_sqlalchemy import SQLAlchemy
@@ -31,6 +32,8 @@ def create_app():
 
     # Cargar variables de entorno
     load_dotenv()
+    
+    CORS(app)   # Permite CORS para todos los origenes y rutas
 
     if not os.path.exists(os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME')):
         os.mknod(os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME'))

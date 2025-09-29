@@ -1,4 +1,4 @@
 interface LoginRequest {
     email: string;
-    password: string;
+    contrasena: string;
 }

@@ -32,15 +32,17 @@
             <h4 class="" style="margin-bottom: 0; color: green;">Iniciar Sesión</h4>
         </div>
     </div>
+    <form [formGroup]="loginForm">
     <div class="mb-3">
         <label class="form-label">Correo Electrónico</label>
-        <input type="email" class="form-control" placeholder="name@example.com">
+        <input type="email" formControlName="email" class="form-control" placeholder="name@example.com">
     </div>
     <div>
         <label class="form-label">Contraseña</label>
-        <input type="password" class="form-control" aria-describedby="passwordHelpBlock">
+        <input type="password" formControlName="password" class="form-control" aria-describedby="passwordHelpBlock">
     </div>
+    </form>
     <div class="tittle-bar col-12 d-flex justify-content-center ">
-        <a href="#" routerLink="/home" style="background-color: green; color: white;" class="col-10 btn mt-2 w-70">Ingresar</a>
+        <a (click)="irLogin()" style="background-color: green; color: white;" class="col-10 btn mt-2 w-70">Ingresar</a>
     </div>
 </div>
