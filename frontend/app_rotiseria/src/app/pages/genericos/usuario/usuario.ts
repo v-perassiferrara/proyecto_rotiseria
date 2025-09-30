@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Navbar } from '../../../components/navbar/navbar';
 import { Titlebar } from '../../../components/titlebar/titlebar';
 import { RouterLink } from '@angular/router';
@@ -17,14 +17,11 @@ import { Auth } from '../../../services/auth';
 })
 export class Usuario {
 
-  constructor(
-      private authService: Auth,
-      private router: Router
-    ) {}
+  authService = inject(Auth);
+  router = inject(Router);
 
   irLogout(){
     localStorage.removeItem("token");
     this.router.navigate(['/sesion']);
   }
-
 }

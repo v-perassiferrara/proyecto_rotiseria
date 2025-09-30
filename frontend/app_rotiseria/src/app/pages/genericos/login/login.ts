@@ -36,7 +36,12 @@ export class Login {
         alert("Login exitoso")
         console.log("Respuesta login: ",res);
         localStorage.setItem("token", res.access_token);
-        this.router.navigate(['/home']);
+        if(this.authService.getRole() == 'admin'){
+          this.router.navigate(['/admin/home']);
+        } 
+        else {
+          this.router.navigate(['/home'])
+        };
       },
       error: (err) => {
         alert("Usuario o contraseña incorrectos")

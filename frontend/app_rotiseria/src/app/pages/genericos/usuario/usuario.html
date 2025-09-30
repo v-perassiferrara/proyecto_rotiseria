@@ -31,5 +31,6 @@
         
     </div>
 </div>
-
-<app-navbar></app-navbar>
+@if(authService.getRole() == 'cliente'){
+    <app-navbar></app-navbar>
+}

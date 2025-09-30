@@ -36,6 +36,22 @@
             </div>
         </div>
 
+        @if(authService.getRole() == 'empleado'){
+        <div class="row g-3 align-items-center mb-3">
+            <div class="col-12">
+                <label class="form-label">Rol</label>
+                <div class="input-group">
+                    <select class="form-select" disabled>
+                        <option value="admin">Administrador</option>
+                        <option value="empleado">Empleado</option>
+                        <option value="usuario">Usuario</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        }
+
+        @if(authService.getRole() == 'admin'){
         <div class="row g-3 align-items-center mb-3">
             <div class="col-12">
                 <label class="form-label">Rol</label>
@@ -48,6 +64,7 @@
                 </div>
             </div>
         </div>
+        }
 
         <div class="row g-3 align-items-center mb-3">
             <div class="col-12">
@@ -68,5 +85,3 @@
     <a href="#" routerLink="/admin/usuarios"
         class="col-10 btn btn-success mt-2 w-70">Guardar</a>
 </div>
-
-<!-- nav bar en el Footer -->
