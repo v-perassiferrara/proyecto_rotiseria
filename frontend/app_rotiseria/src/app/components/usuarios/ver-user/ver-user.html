@@ -1,0 +1,37 @@
+<!-- Tabla Empleados -->
+<div class="mt-4">
+    <h3 class="fw-bold">{{ rol() + 's' }}</h3>
+    
+    <!-- Buscador -->
+    <div class="p-1 mb-2">
+        <div class="input-group">
+            <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search"></i></span>
+            <input (input)="buscar()" [(ngModel)]="nombre"  type="text" class="form-control border-start-0" placeholder="Buscar por nombre o apellido" >
+        </div>
+    </div>
+
+    <div class="table-responsive rounded-3 bg-white border">
+        <table class="table align-middle mb-0" style="text-overflow: elipsis; overflow: hidden; table-layout: fixed;">
+            <thead class="table">
+                <tr>
+                    <th scope="col" class="w-50">Nombre</th>
+                    <th scope="col" class="w-25">Estado</th>
+                    <th scope="col" class="text-end w-25"></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @for (usuario of arrayFiltered; track $index) {
+                <tr>
+                    <td class="abreviado"> {{usuario.nombre + ' ' + usuario.apellido}}</td>
+                    <td>{{usuario.estado}}</td>
+                    <td class="text-end">
+                        <a class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-ban"></i></a>
+                        <a class="btn btn-outline-secondary btn-sm" (click)="editarUsuario(usuario)"><i class="fa-solid fa-pen"></i></a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

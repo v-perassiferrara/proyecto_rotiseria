@@ -2,6 +2,8 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -9,7 +11,7 @@ export class Auth {
 
   private http = inject(HttpClient);
 
-  url = 'http://localhost:3435';
+  url = environment.apiUrl;
   
   /**
    * Realiza el login y guarda el token en localStorage si es exitoso.

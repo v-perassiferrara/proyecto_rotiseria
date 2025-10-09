@@ -1,5 +1,5 @@
 <!-- title bar  -->
- <app-titlebar [title]="'Modificar Usuario'" />
+<app-titlebar [title]="'Modificar Usuario'" />
 
 <div style="padding: 10px; margin: 10px;">
     <div style="height: 30px;" class=" m-1 d-inline-flex">
@@ -11,77 +11,7 @@
     </div>
 
     <!-- Formulario de datos personales-->
-    <form>
-        <div class="row g-3 align-items-center mb-3">
-            <div class="col-12">
-                <label class="form-label">Nombre</label>
-                <div class="input-group">
-                    <input type="text" class="form-control"
-                        placeholder="Nombre">
-                    <button type="button" class="btn btn-light ms-2"><i
-                            class="fa-solid fa-pencil"></i></button>
-                </div>
-            </div>
-        </div>
 
-        <div class="row g-3 align-items-center mb-3">
-            <div class="col-12">
-                <label class="form-label">Email</label>
-                <div class="input-group">
-                    <input type="email" class="form-control"
-                        placeholder="name@example.com">
-                    <button type="button" class="btn btn-light ms-2"><i
-                            class="fa-solid fa-pencil"></i></button>
-                </div>
-            </div>
-        </div>
+    <app-abm [userId]="userId"></app-abm>
 
-        @if(authService.getRole() == 'empleado'){
-        <div class="row g-3 align-items-center mb-3">
-            <div class="col-12">
-                <label class="form-label">Rol</label>
-                <div class="input-group">
-                    <select class="form-select" disabled>
-                        <option value="admin">Administrador</option>
-                        <option value="empleado">Empleado</option>
-                        <option value="usuario">Usuario</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        }
-
-        @if(authService.getRole() == 'admin'){
-        <div class="row g-3 align-items-center mb-3">
-            <div class="col-12">
-                <label class="form-label">Rol</label>
-                <div class="input-group">
-                    <select class="form-select">
-                        <option value="admin">Administrador</option>
-                        <option value="empleado">Empleado</option>
-                        <option value="usuario">Usuario</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        }
-
-        <div class="row g-3 align-items-center mb-3">
-            <div class="col-12">
-                <label class="form-label">Estado</label>
-                <div class="input-group">
-                    <select class="form-select">
-                        <option value="admin">Activo</option>
-                        <option value="empleado">Pendiente</option>
-                        <option value="usuario">Bloqueado</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-    </form>
-</div>
-<div class="tittle-bar col-12 d-flex justify-content-center ">
-    <a href="#" routerLink="/admin/usuarios"
-        class="col-10 btn btn-success mt-2 w-70">Guardar</a>
 </div>

@@ -35,16 +35,16 @@
     </div>
     <div class="mb-3">
         <label class="form-label">Nombre</label>
-        <input type="text" class="form-control" placeholder="Nombre">
+        <input type="text" class="form-control" placeholder="Nombre" maxlength="50">
     </div>
     <div class="mb-3">
         <label class="form-label">Correo Electrónico</label>
-        <input type="email" class="form-control" placeholder="name@example.com">
+        <input type="email" class="form-control" placeholder="name@example.com" maxlength="254">
     </div>
     <div>
         <label class="form-label">Contraseña</label>
         <input type="password" class="form-control"
-            aria-describedby="passwordHelpBlock">
+            aria-describedby="passwordHelpBlock" minlength="8" maxlength="20">
         <div id="passwordHelpBlock" class="form-text">
             <p style="font-size: 10px; color: grey;">La contraseña debe tener entre 8 y 20 caracteres, contener letras y números, y no debe contener espacios, caracteres especiales ni emojis.</p>
         </div>

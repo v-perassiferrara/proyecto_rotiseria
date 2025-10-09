@@ -21,10 +21,10 @@ export const routes: Routes = [
     
     // Admin
     {path:'admin/home',     loadComponent: () => import('./pages/admin/home/home').then(m => m.Home)},
-    {path:'admin/detalle-producto',    loadComponent: () => import('./pages/admin/detalle-producto/detalle-producto').then(m => m.DetalleProducto)}, 
-    {path:'admin/detalle-usuario',    loadComponent: () => import('./pages/admin/detalle-usuario/detalle-usuario').then(m => m.DetalleUsuario)},
-    {path:'admin/detalle-categoria',    loadComponent: () => import('./pages/admin/detalle-categoria/detalle-categoria').then(m => m.DetalleCategoria)}, 
-    {path:'admin/detalle-pedido',    loadComponent: () => import('./pages/admin/detalle-pedido/detalle-pedido').then(m => m.DetallePedido)}, 
+    {path:'admin/producto/:id',    loadComponent: () => import('./pages/admin/detalle-producto/detalle-producto').then(m => m.DetalleProducto)}, 
+    {path:'admin/usuario/:id',    loadComponent: () => import('./pages/admin/detalle-usuario/detalle-usuario').then(m => m.DetalleUsuario)},
+    {path:'admin/categoria/:id',    loadComponent: () => import('./pages/admin/detalle-categoria/detalle-categoria').then(m => m.DetalleCategoria)}, 
+    {path:'admin/pedido/:id',    loadComponent: () => import('./pages/admin/detalle-pedido/detalle-pedido').then(m => m.DetallePedido)}, 
     {path:'admin/promociones',    loadComponent: () => import('./pages/admin/promociones/promociones').then(m => m.Promociones)},
     {path:'admin/productos',    loadComponent: () => import('./pages/admin/productos/productos').then(m => m.Productos)},
     {path:'admin/pedidos',    loadComponent: () => import('./pages/admin/pedidos/pedidos').then(m => m.Pedidos)},

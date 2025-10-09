@@ -26,45 +26,33 @@
     </div>
   </div>
 
+
   <!-- Productos -->
   <div class="container my-3">
     <div class="row g-3">
-
-      <!-- Producto 1 -->
-      <div class="col-6" routerLink="/detalle-producto" style="cursor: pointer;">
-        <div class="card h-100">
-          <img src="assets/pizza.webp" class="card-img-top" alt="Pizza">
-          <div class="card-body text-center">
-            <h6 class="card-title mb-1">Pizza Muzzarella</h6>
-            <p class="text-success fw-bold">$18.400</p>
+      @for (producto of productos; track producto.id) {
+        <div 
+          class="col-12 col-sm-6 col-md-4 col-lg-3" 
+          [routerLink]="['/detalle-producto', producto.id]" 
+          style="cursor: pointer;"
+        >
+          <div class="card h-100">
+            <img [src]="'assets/' + producto.nombre + '.webp'" class="card-img-top" [alt]="producto.nombre">
+            <div class="card-body text-center">
+              <h6 class="card-title mb-1">{{ producto.nombre }}</h6>
+              <p class="text-success fw-bold">
+                {{ producto.precio }}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- Producto 2 -->
-      <div class="col-6" routerLink="/detalle-producto" style="cursor: pointer;">
-        <div class="card h-100">
-          <img src="assets/empanadas.webp" class="card-img-top" alt="Empanadas">
-          <div class="card-body text-center">
-            <h6 class="card-title mb-1">Empanadas</h6>
-            <p class="text-success fw-bold">$18.400</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Producto 3 -->
-      <div class="col-6" routerLink="/detalle-producto" style="cursor: pointer;">
-        <div class="card h-100">
-          <img src="assets/pollo.jpeg" class="card-img-top" alt="Pollo">
-          <div class="card-body text-center">
-            <h6 class="card-title mb-1">Pollo Asado</h6>
-            <p class="text-success fw-bold">$18.400</p>
-          </div>
-        </div>
-      </div>
-
+      } @empty {
+        <p class="text-center">No hay productos disponibles.</p>
+      }
     </div>
   </div>
+
+
 
   <!-- Footer -->
   <app-navbar></app-navbar>

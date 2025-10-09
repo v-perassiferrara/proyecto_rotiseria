@@ -35,8 +35,8 @@ class Usuarios(Resource):
             usuarios = usuarios.filter(Usuario_db.email.ilike(f"%{request.args.get('email')}%"))
 
         # # Filtrar por rol
-        # if request.args.get('rol'):
-        #     usuarios = usuarios.filter(Usuario_db.rol == request.args.get('rol'))
+        if request.args.get('rol'):
+            usuarios = usuarios.filter(Usuario_db.rol == request.args.get('rol'))
 
         # Filtrar por estado
         if request.args.get('estado'):
