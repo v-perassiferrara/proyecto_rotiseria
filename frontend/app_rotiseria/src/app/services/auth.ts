@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { environment } from '../../environments/environment';
 
@@ -33,11 +33,6 @@ export class Auth {
     
     try {
       const decodedToken = jwtDecode<TokenPayload>(token);
-
-
-      console.log("hola", decodedToken.rol)
-
-
 
       return decodedToken.rol;
     } catch (error) {

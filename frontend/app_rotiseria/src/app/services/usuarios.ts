@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 
@@ -28,6 +28,36 @@ export class Usuarios {
   console.log("Params: ", params);
 
   return this.http.get(this.url + "/usuarios", { headers, params });
-}
+  }
+
+  
+  getUsuarioPorId(id: string): Observable<any> { // Usamos la interfaz Usuario
+    const token = localStorage.getItem('token') || '';
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<any>(this.url + "/usuario/" + id, { headers }).pipe(
+      tap(datosDelUsuario => {
+        // 'tap' te permite "espiar" los datos sin modificar el flujo.
+        // Este console.log Si mostrara los datos del usuario cuando el componente se suscriba.
+        return(datosDelUsuario);
+      })
+    );
+  }
+
+
+  putUsuarioPorId(id: string, usuario: any): Observable<any> {
+    const token = localStorage.getItem('token') || '';
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.put<any>(this.url + "/usuario/" + id, usuario, { headers });
+  }
+
+
 
 }

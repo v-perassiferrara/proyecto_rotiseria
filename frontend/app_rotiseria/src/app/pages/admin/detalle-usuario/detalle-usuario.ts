@@ -4,6 +4,7 @@ import { BackButton } from '../../../components/back-button/back-button';
 import { ActivatedRoute } from '@angular/router';
 import { Auth } from '../../../services/auth';
 import { Abm } from "../../../components/usuarios/abm/abm";
+import { Usuarios } from '../../../services/usuarios';
 
 @Component({
   selector: 'app-detalle-usuario',
@@ -13,14 +14,17 @@ import { Abm } from "../../../components/usuarios/abm/abm";
 })
 export class DetalleUsuario {
   authService = inject(Auth);
-
-  userId!: string;
+  usuariosSvc = inject(Usuarios);
+  usuario: Usuarios | null = null;
 
   route = inject(ActivatedRoute)
 
   ngOnInit() {
-    this.userId = this.route.snapshot.params['id'] || '';
+    const id = this.route.snapshot.params['id'] || '';
+    this.usuariosSvc.getUsuarioPorId(id).subscribe((usuario) => {
+      this.usuario = usuario;
+    });
 
-    console.log("user id: ", this.userId);
+    
   }
 }

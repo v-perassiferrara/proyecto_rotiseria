@@ -1,75 +1,58 @@
-<form>
+<form [formGroup]="usuarioForm">
     <div class="row g-3 align-items-center mb-3">
         <div class="col-12">
-            <label class="form-label">Modificar Usuario {{userId === 'null' ? '' : userId}}</label>
-            <div class="input-group">
-                <input type="text" class="form-control"
-                    placeholder="Nombre">
-                <a routerLink="us"></a>
-                <button type="button" class="btn btn-light ms-2"><a href="#" routerLink="/admin/ver-user"><i
-                        class="fa-solid fa-pencil"></i></a></button>
-            </div>
+        <label class="form-label">Nombre</label>
+        <div class="input-group">
+            <input type="text" class="form-control" formControlName="nombre">
+            <button type="button" class="btn btn-light ms-2"><a href="#" routerLink="/admin/ver-user"><i
+                class="fa-solid fa-pencil"></i></a></button>
+        </div>
         </div>
     </div>
-
     <div class="row g-3 align-items-center mb-3">
         <div class="col-12">
-            <label class="form-label">Email</label>
-            <div class="input-group">
-                <input type="email" class="form-control"
-                    placeholder="name@example.com">
-                <button type="button" class="btn btn-light ms-2"><i
-                        class="fa-solid fa-pencil"></i></button>
-            </div>
+        <label class="form-label">Apellido</label>
+        <div class="input-group">
+            <input type="text" class="form-control" formControlName="apellido">
+            <button type="button" class="btn btn-light ms-2"><a href="#" routerLink="/admin/ver-user"><i
+                class="fa-solid fa-pencil"></i></a></button>
+        </div>
         </div>
     </div>
-
-    @if(authService.getRole() == 'empleado'){
     <div class="row g-3 align-items-center mb-3">
         <div class="col-12">
-            <label class="form-label">Rol</label>
-            <div class="input-group">
-                <select class="form-select" disabled>
-                    <option value="admin">Administrador</option>
-                    <option value="empleado">Empleado</option>
-                    <option value="usuario">Usuario</option>
-                </select>
-            </div>
+        <label class="form-label">Email</label>
+        <div class="input-group">
+            <input type="email" class="form-control" formControlName="email">
+            <button type="button" class="btn btn-light ms-2"><i class="fa-solid fa-pencil"></i></button>
+        </div>
         </div>
     </div>
-    }
-
-    @if(authService.getRole() == 'admin'){
     <div class="row g-3 align-items-center mb-3">
         <div class="col-12">
-            <label class="form-label">Rol</label>
-            <div class="input-group">
-                <select class="form-select">
-                    <option value="admin">Administrador</option>
-                    <option value="empleado">Empleado</option>
-                    <option value="usuario">Usuario</option>
-                </select>
-            </div>
+        <label class="form-label">Rol</label>
+        <div class="input-group">
+            <select class="form-select" formControlName="rol" [disabled]="authService.getRole() !== 'admin'">
+            <option value="admin">Administrador</option>
+            <option value="empleado">Empleado</option>
+            <option value="cliente">Cliente</option>
+            </select>
+        </div>
         </div>
     </div>
-    }
-
     <div class="row g-3 align-items-center mb-3">
         <div class="col-12">
-            <label class="form-label">Estado</label>
-            <div class="input-group">
-                <select class="form-select">
-                    <option value="admin">Activo</option>
-                    <option value="empleado">Pendiente</option>
-                    <option value="usuario">Bloqueado</option>
-                </select>
-            </div>
+        <label class="form-label">Estado</label>
+        <div class="input-group">
+            <select class="form-select" formControlName="estado">
+            <option value="activo">Activo</option>
+            <option value="pendiente">Pendiente</option>
+            <option value="bloqueado">Bloqueado</option>
+            </select>
+        </div>
         </div>
     </div>
-
 </form>
-
-<div class="tittle-bar col-12 d-flex justify-content-center ">
-    <a href="#" routerLink="/admin/usuarios"
-        class="col-10 btn btn-success mt-2 w-70">Guardar</a>
+<div class="tittle-bar col-12 d-flex justify-content-center">
+    <a href="#" (click)="guardarCambios()" class="col-10 btn btn-success mt-2 w-70">Guardar</a>
 </div>
