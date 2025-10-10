@@ -14,10 +14,18 @@ export class Auth {
   url = environment.apiUrl;
   
   /**
-   * Realiza el login y guarda el token en localStorage si es exitoso.
+   * Realiza el login
    */
   login(dataLogin: LoginRequest): Observable<any> {
     return this.http.post(this.url + "/auth/login", dataLogin)
+  }
+
+  /**
+   * Realiza el registro
+   */
+  register(dataRegister: RegisterRequest): Observable<any> {
+    console.log("Datos para registrar: ", dataRegister);
+    return this.http.post(this.url + "/auth/register", dataRegister)
   }
 
   

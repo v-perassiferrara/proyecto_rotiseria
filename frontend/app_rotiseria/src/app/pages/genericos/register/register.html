@@ -3,7 +3,7 @@
 <div id="overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(50,50,50,0.7); z-index: 1;"></div>
 
 <!-- Fondo -->
-<div class="container d-flex flex-column min-vh-100 justify-content-center align-items-center gap-3 mt-5 w-80" style="max-width: 500px;">
+<div class="container d-flex flex-column min-vh-100 justify-content-center align-items-center gap-3 mt-5 w-80 position-fixed bottom-0" style="max-width: 500px;">
     
     <div class="row justify-content-center">
         <img src="/assets/login.svg" alt="inicio" class="w-100">
@@ -33,23 +33,40 @@
             <h4 class="text-body-secondary" style="margin-bottom: 0;"><a href="#" routerLink="/login">Iniciar Sesión</a></h4>
         </div>
     </div>
+    <form [formGroup]="registerForm">
     <div class="mb-3">
         <label class="form-label">Nombre</label>
-        <input type="text" class="form-control" placeholder="Nombre" maxlength="50">
+        <input type="text" formControlName="name" class="form-control" placeholder="Nombre" maxlength="50">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Apellido</label>
+        <input type="text" formControlName="lastname" class="form-control" placeholder="Apellido" maxlength="50">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">DNI</label>
+        <input type="number" formControlName="dni" class="form-control" placeholder="DNI" maxlength="50">
     </div>
     <div class="mb-3">
         <label class="form-label">Correo Electrónico</label>
-        <input type="email" class="form-control" placeholder="name@example.com" maxlength="254">
+        <input type="email" formControlName="email" class="form-control" placeholder="name@example.com" maxlength="254">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Teléfono</label>
+        <input type="text" formControlName="telephone" class="form-control" placeholder="Teléfono" maxlength="254">
     </div>
     <div>
         <label class="form-label">Contraseña</label>
-        <input type="password" class="form-control"
+        <input type="password" formControlName="password" class="form-control" placeholder="Contraseña"
             aria-describedby="passwordHelpBlock" minlength="8" maxlength="20">
+            
         <div id="passwordHelpBlock" class="form-text">
             <p style="font-size: 10px; color: grey;">La contraseña debe tener entre 8 y 20 caracteres, contener letras y números, y no debe contener espacios, caracteres especiales ni emojis.</p>
         </div>
     </div>
     <div class="tittle-bar col-12 d-flex justify-content-center ">
-        <a href="#" routerLink="/home" style="background-color: green; color: white;" class="col-10 btn mt-2 w-70">Registrarse</a>
+        <a (click)="irRegister()" style="background-color: green; color: white;" class="col-10 btn mt-2 w-70">Registrarse</a>
     </div>
+</form>
+
+    
 </div>
