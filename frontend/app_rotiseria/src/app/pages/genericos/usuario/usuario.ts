@@ -20,6 +20,7 @@ export class Usuario {
   authService = inject(Auth);
   router = inject(Router);
 
+
   irLogout(){
     localStorage.removeItem("token");
     this.router.navigate(['/sesion']);

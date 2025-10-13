@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask import request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
-from main.auth.decorators import role_required
+from main.auth.decorators import role_required, activity_required
 from .. import db
 from main.models import Pedido_db
 from main.models import Usuario_db
@@ -78,6 +78,7 @@ class Pedidos(Resource):
 
     # POST: Crear un pedido
     @jwt_required(optional=False)
+    @activity_required
     def post(self):
         pedido = Pedido_db.from_json(request.get_json())
         db.session.add(pedido)
@@ -96,6 +97,7 @@ class Pedido(Resource):
     # Ver permisos por rol. Ej: Cliente debe poder borrar solo sus pedidos. Admin borrar cualquiera. Usar JWT Payload para verificar el rol
     @jwt_required(optional=True)
     @role_required(roles = ["admin", "empleado"])
+    @activity_required
     def delete(self, id):
         pedido = db.session.query(Pedido_db).get_or_404(id)
         setattr(pedido, 'estado', 'cancelado') 
@@ -109,6 +111,7 @@ class Pedido(Resource):
     # PUT: Editar un pedido. Rol: ADMIN  
     @jwt_required(optional=True)
     @role_required(roles = ["admin"])
+    @activity_required
     def put(self, id):
         pedido = db.session.query(Pedido_db).get_or_404(id)
         data = request.get_json().items()

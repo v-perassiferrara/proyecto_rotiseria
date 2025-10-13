@@ -25,9 +25,6 @@ def login():
     ## Devuelvo error si el usuario esta bloqueado
     if usuario.estado == 'bloqueado':
         return 'Usuario Bloqueado ', 401
-    ## Devuelvo error si el usuario esta pendiente de aprobación
-    elif usuario.estado == 'pendiente':
-        return 'Usuario Pendiente de Aprobación', 401
     
     ## Devuelvo error si no existe el usuario o si la contraseña no coincide
     if (usuario is None) or not usuario.validate_pass(request.get_json().get("contrasena")):

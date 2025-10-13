@@ -40,4 +40,36 @@ export class Auth {
       return null;
     }
   }
+
+  getEmail(): string | null {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return null;
+    }
+    
+    try {
+      const decodedToken = jwtDecode<TokenPayload>(token);
+
+      return decodedToken.email;
+    } catch (error) {
+      console.error("Error al decodificar el token:", error);
+      return null;
+    }
+  }
+
+  getId(): string | null {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return null;
+    }
+    
+    try {
+      const decodedToken = jwtDecode<TokenPayload>(token);
+
+      return decodedToken.id;
+    } catch (error) {
+      console.error("Error al decodificar el token:", error);
+      return null;
+    }
+  }
 }

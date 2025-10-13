@@ -31,7 +31,7 @@ export class Usuarios {
   }
 
   
-  getUsuarioPorId(id: string): Observable<any> { // Usamos la interfaz Usuario
+  getUsuarioPorId(id: string): Observable<any> {
     const token = localStorage.getItem('token') || '';
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -40,8 +40,8 @@ export class Usuarios {
 
     return this.http.get<any>(this.url + "/usuario/" + id, { headers }).pipe(
       tap(datosDelUsuario => {
-        // 'tap' te permite "espiar" los datos sin modificar el flujo.
-        // Este console.log Si mostrara los datos del usuario cuando el componente se suscriba.
+        // 'tap' permite "espiar" los datos sin modificar el flujo.
+        // Este console.log mostrara los datos del usuario cuando el componente se suscriba.
         return(datosDelUsuario);
       })
     );
