@@ -5,6 +5,7 @@ from .pedidos_db import Pedidos as Pedido_db
 from .notificaciones_db import Notificaciones as Notificacion_db
 from .valoraciones_db import Valoraciones as Valoracion_db
 from .promociones_db import Promociones as Promocion_db
+from .categorias_db import Categorias as Categoria_db
 
 
 

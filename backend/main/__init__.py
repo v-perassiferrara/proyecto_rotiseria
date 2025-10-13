@@ -61,6 +61,12 @@ def create_app():
 
     api.add_resource(resources.ValoracionesResource, "/valoraciones")
     api.add_resource(resources.ValoracionResource, "/valoracion/<int:id>")
+
+    api.add_resource(resources.CategoriasResource, "/categorias")
+    api.add_resource(resources.CategoriaResource, "/categoria/<int:id>")
+    
+
+
     
     
  #Cargar la aplicacion en la API de Flask Restful

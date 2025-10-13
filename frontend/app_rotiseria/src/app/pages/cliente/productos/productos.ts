@@ -26,7 +26,7 @@ export class Productos implements OnInit {
   ngOnInit(): void {
     this.productosService.getProductos().subscribe({
       next: (data: any) => {
-        this.productos = data.productos; // <-- Cambiá esta línea
+        this.productos = data.productos;
       },
       error: (err) => {
         console.error('Error al cargar productos:', err);

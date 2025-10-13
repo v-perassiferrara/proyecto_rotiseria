@@ -12,18 +12,39 @@ class Productos(Resource):
 # GET: obtener una lista de productos Rol: USER/ADMIN/EMPLEADO
     @jwt_required(optional=True)
     def get(self):
+
         #Página inicial por defecto
         page = 1
         #Cantidad de elementos por página por defecto
         per_page = 10
         
         productos = db.session.query(Producto_db)
+
+        # Bandera para saber si se usó el filtro top3
+        is_top3 = False
         
-        if request.args.get('page'):
-            page = int(request.args.get('page'))
-        if request.args.get('per_page'):
-            per_page = int(request.args.get('per_page'))
+        # Objeto de consulta final que se paginará
+        query_to_paginate = productos
+
+        # --- FILTRO PARA OBTENER LOS PRIMEROS 3 PRODUCTOS RECIENTES ---
+        if request.args.get('top3', type=str) and request.args.get('top3', type=str).lower() == 'true':
+
+            query_to_paginate = query_to_paginate.order_by(Producto_db.id.desc())
+            query_to_paginate = query_to_paginate.limit(3)
             
+            per_page = 3
+            page = 1
+            is_top3 = True
+        # -------------------------------------------------------------------------
+        
+        # --- MANEJO DE PAGINACIÓN ESTÁNDAR ---
+        if not is_top3:
+            if request.args.get('page'):
+                page = int(request.args.get('page'))
+            if request.args.get('per_page'):
+                per_page = int(request.args.get('per_page'))
+            
+
         # ---FILTROS PARA PRODUCTOS---
 
         # Filtrar por nombre (búsqueda parcial)
@@ -55,7 +76,7 @@ class Productos(Resource):
         
         if claims.get("rol") in ["admin", "empleado"]:
             return jsonify({
-        'productos': [producto.to_json_complete() for producto in productos],
+        'productos': [producto.to_json_complete() for producto in productos.items],
                 'total': productos.total,
                 'pages': productos.pages,
                 'page': page
@@ -63,7 +84,7 @@ class Productos(Resource):
 
         else:
             return jsonify({
-        'productos': [producto.to_json() for producto in productos],
+        'productos': [producto.to_json() for producto in productos.items],
                 'total': productos.total,
                 'pages': productos.pages,
                 'page': page

@@ -40,9 +40,7 @@
             <img [src]="producto.imagenUrl" class="card-img-top" [alt]="producto.nombre">
             <div class="card-body text-center">
               <h6 class="card-title mb-1">{{ producto.nombre }}</h6>
-              <p class="text-success fw-bold">
-                {{ producto.precio }}
-              </p>
+              <p class="text-success fw-bold">${{ producto.precio }}</p>
             </div>
           </div>
         </div>

@@ -19,4 +19,18 @@ export class ProductosService {
     });
     return this.http.get(this.url + '/productos', { headers });
   }
+  
+  getProductosTop3(): Observable<any> {
+    const token = localStorage.getItem('token') || '';
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    const urlConParams = `${this.url}/productos?top3=true`;  //funcion del back para traer el top3 
+
+
+    return this.http.get(urlConParams, { headers });
+  }
+
 }

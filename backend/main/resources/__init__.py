@@ -15,3 +15,6 @@ from .usuario import Usuario as UsuarioResource
 
 from .valoraciones import Valoraciones as ValoracionesResource
 from .valoraciones import Valoracion as ValoracionResource
+
+from .categoria import Categoria as CategoriaResource
+from .categoria import Categorias as CategoriasResource

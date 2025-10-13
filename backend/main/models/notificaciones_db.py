@@ -9,9 +9,10 @@ class Notificaciones(db.Model):
     leida = db.Column(db.Boolean, default=False)
     fecha = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
-    #Relacion uno a muchos con la tabla pedidos
-    usuarios = db.relationship('Usuarios', back_populates='notificaciones', cascade='all, delete-orphan', single_parent=True)     
-
+    #Relacion uno a muchos con la tabla usuarios
+    usuarios = db.relationship('Usuarios', back_populates='notificaciones', cascade='all, delete-orphan', single_parent=True)
+    
+    
     def to_json(self):
         notificacion_json = {
             'id': self.id,
