@@ -1,6 +1,6 @@
 import { Component, inject, Input, OnChanges } from '@angular/core';
 import { Auth } from '../../../services/auth';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Usuarios } from '../../../services/usuarios';
 import { FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -14,6 +14,7 @@ import { FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angula
 })
 export class Abm implements OnChanges{
 
+  router = inject(Router);
   authService = inject(Auth);
   usuarioSvc = inject(Usuarios)
   formBuilder = inject(FormBuilder);
@@ -40,6 +41,7 @@ export class Abm implements OnChanges{
         next: (response) => {
           console.log('Usuario actualizado:', response);
           alert('Cambios guardados exitosamente');
+          this.router.navigateByUrl("/admin/usuarios")
         },
         error: (error) => {
           console.error('Error updating user:', error);

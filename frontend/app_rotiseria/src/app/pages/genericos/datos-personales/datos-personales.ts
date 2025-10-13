@@ -4,6 +4,7 @@ import { Titlebar } from '../../../components/titlebar/titlebar';
 import {Usuarios} from '../../../services/usuarios';
 import { Auth } from '../../../services/auth';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-datos-personales',
@@ -16,6 +17,7 @@ export class DatosPersonales implements OnInit{
   authService = inject(Auth);
   usuarioSvc = inject(Usuarios)
   formBuilder = inject(FormBuilder);
+  router = inject(Router);
 
   usuario : any = null
   usuarioForm!: FormGroup;
@@ -66,6 +68,7 @@ export class DatosPersonales implements OnInit{
         next: (response) => {
           console.log('Usuario actualizado:', response);
           alert('Cambios guardados exitosamente');
+          this.router.navigateByUrl("/usuario")
         },
         error: (error) => {
           console.error('Error updating user:', error);

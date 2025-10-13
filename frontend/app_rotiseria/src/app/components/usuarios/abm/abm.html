@@ -4,8 +4,6 @@
             <label class="form-label">Nombre</label>
             <div class="input-group">
                 <input type="text" class="form-control" formControlName="nombre">
-                <button type="button" class="btn btn-light ms-2"><a href="#" routerLink="/admin/ver-user"><i
-                            class="fa-solid fa-pencil"></i></a></button>
             </div>
         </div>
     </div>
@@ -14,8 +12,6 @@
             <label class="form-label">Apellido</label>
             <div class="input-group">
                 <input type="text" class="form-control" formControlName="apellido">
-                <button type="button" class="btn btn-light ms-2"><a href="#" routerLink="/admin/ver-user"><i
-                            class="fa-solid fa-pencil"></i></a></button>
             </div>
         </div>
     </div>
@@ -24,7 +20,6 @@
             <label class="form-label">Email</label>
             <div class="input-group">
                 <input type="email" class="form-control" formControlName="email">
-                <button type="button" class="btn btn-light ms-2"><i class="fa-solid fa-pencil"></i></button>
             </div>
         </div>
     </div>
@@ -54,5 +49,5 @@
     </div>
 </form>
 <div class="tittle-bar col-12 d-flex justify-content-center">
-    <a href="#" (click)="guardarCambios()" class="col-10 btn btn-success mt-2 w-70">Guardar</a>
+    <a (click)="guardarCambios()" class="col-10 btn btn-success mt-2 w-70">Guardar</a>
 </div>
