@@ -4,6 +4,8 @@ class Productos(db.Model):
     __tablename__ = 'productos'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(50), nullable=False)
+    categoria = db.Column(db.String(50), nullable=False)
+    imagenUrl = db.Column(db.String(512), nullable=False)
     precio = db.Column(db.Float, nullable=False)
     visible = db.Column(db.Boolean, nullable=False, default=True)
 
@@ -22,6 +24,8 @@ class Productos(db.Model):
         producto_json = {
             'id': self.id,
             'nombre': self.nombre,
+            'categoria': self.categoria,
+            'imagenUrl': self.imagenUrl,
             'precio': self.precio
         }
         return producto_json
@@ -30,6 +34,8 @@ class Productos(db.Model):
         producto_json = {
             'id': self.id,
             'nombre': self.nombre,
+            'categoria': self.categoria,
+            'imagenUrl': self.imagenUrl,
             'precio': self.precio,
             'visible' : self.visible
         }
@@ -40,10 +46,12 @@ class Productos(db.Model):
         id = producto_json.get("id")
         nombre = producto_json.get('nombre')
         precio = producto_json.get('precio')
+        categoria = producto_json.get('categoria')
         visible = producto_json.get('visible')
         return Productos(
             id=id,
             nombre=nombre,
+            categoria=categoria,
             precio=precio,
             visible=visible
         )

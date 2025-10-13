@@ -5,7 +5,7 @@
   <app-back-button></app-back-button>
 
   <!-- Buscador -->
-  <div class="p-3">
+  <div class="p-3 mt-0">
     <div class="input-group">
       <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search"></i></span>
       <a href="#" routerLink="/productos" class="form-control border-start-0 text-decoration-none text-dark" style="cursor:pointer;">Buscar</a>
@@ -37,7 +37,7 @@
           style="cursor: pointer;"
         >
           <div class="card h-100">
-            <img [src]="'assets/' + producto.nombre + '.webp'" class="card-img-top" [alt]="producto.nombre">
+            <img [src]="producto.imagenUrl" class="card-img-top" [alt]="producto.nombre">
             <div class="card-body text-center">
               <h6 class="card-title mb-1">{{ producto.nombre }}</h6>
               <p class="text-success fw-bold">

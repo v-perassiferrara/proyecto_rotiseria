@@ -1,7 +1,7 @@
 @if (authService.getRole() != 'cliente') {
-    <app-titlebar [title]="'Perfil Admin'" [admin]="true" />    
+    <app-titlebar [title]="'Perfil Admin'" [admin]="true" />  
 } @else {
-    <app-titlebar [title]="'Perfil'"/>
+    <app-titlebar [title]="'Perfil'"/> 
 }
 
 <div class="justify-content-center align-items-center d-flex" style="min-height: 80vh;">
@@ -26,6 +26,8 @@
         
     </div>
 </div>
+
+
 @if(authService.getRole() == 'cliente'){
     <app-navbar></app-navbar>
 }

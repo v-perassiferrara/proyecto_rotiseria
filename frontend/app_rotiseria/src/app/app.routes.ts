@@ -33,7 +33,7 @@ export const routes: Routes = [
     
     // Errores
     {path:'error',    loadComponent: () => import('./pages/genericos/error-page/error-page').then(m => m.ErrorPage)},
-    {path:'', redirectTo:'home', pathMatch:'full'},  // Por defecto siempre redirecciona a home
+    {path:'', redirectTo:'start', pathMatch:'full'},  // Por defecto siempre redirecciona a start (pantalla de inicio)
     {path:'**', redirectTo:'error'} // Comodin: Cualquier otra ruta redirecciona a error
 
 ];

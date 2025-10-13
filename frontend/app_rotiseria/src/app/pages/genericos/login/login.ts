@@ -34,7 +34,6 @@ export class Login {
 
       next: (res: LoginResponse) => {
         alert("Login exitoso")
-        console.log("Respuesta login: ",res);
         localStorage.setItem("token", res.access_token);
         if(this.authService.getRole() == 'admin'){
           this.router.navigate(['/admin/home']);
