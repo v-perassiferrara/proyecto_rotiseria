@@ -33,4 +33,14 @@ export class ProductosService {
     return this.http.get(urlConParams, { headers });
   }
 
+  getProductosByCategoria(categoriaId: number): Observable<any> {
+    const token = localStorage.getItem('token') || '';
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    console.log(categoriaId);
+    return this.http.get(`${this.url}/productos?categoria=${categoriaId}`, { headers });
+  }
+
 }

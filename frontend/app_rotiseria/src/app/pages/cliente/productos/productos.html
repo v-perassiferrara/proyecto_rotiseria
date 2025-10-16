@@ -2,54 +2,11 @@
   <app-titlebar [title]="'Nuestros productos'" />
 
   <!-- Back button-->
-  <app-back-button></app-back-button>
+  <app-back-button [toHome]=true></app-back-button>
 
-  <!-- Buscador -->
-  <div class="p-3 mt-0">
-    <div class="input-group">
-      <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search"></i></span>
-      <a href="#" routerLink="/productos" class="form-control border-start-0 text-decoration-none text-dark" style="cursor:pointer;">Buscar</a>
-    </div>
-  </div>
+  <!-- Buscador, filtros y lista de productos -->
 
-  <!-- Filtro categorías -->
-  <div class="px-3">
-    <div class="card p-2">
-      <h6 class="fw-bold mb-2">Filtrar por categoría</h6>
-      <div class="d-flex flex-wrap gap-2">
-        <button class="btn btn-outline-dark btn-sm">PIZZAS</button>
-        <button class="btn btn-outline-dark btn-sm">EMPANADAS</button>
-        <button class="btn btn-outline-dark btn-sm">POLLOS</button>
-        <button class="btn btn-outline-dark btn-sm">LOMOS</button>
-        <button class="btn btn-outline-dark btn-sm">HAMBURGUESAS</button>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- Productos -->
-  <div class="container my-3">
-    <div class="row g-3">
-      @for (producto of productos; track producto.id) {
-        <div 
-          class="col-12 col-sm-6 col-md-4 col-lg-3" 
-          [routerLink]="['/detalle-producto', producto.id]" 
-          style="cursor: pointer;"
-        >
-          <div class="card h-100">
-            <img [src]="producto.imagenUrl" class="card-img-top" [alt]="producto.nombre">
-            <div class="card-body text-center">
-              <h6 class="card-title mb-1">{{ producto.nombre }}</h6>
-              <p class="text-success fw-bold">${{ producto.precio }}</p>
-            </div>
-          </div>
-        </div>
-      } @empty {
-        <p class="text-center">No hay productos disponibles.</p>
-      }
-    </div>
-  </div>
-
+  <app-ver-producto></app-ver-producto>
 
 
   <!-- Footer -->

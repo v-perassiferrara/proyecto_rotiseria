@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Navbar } from '../../../components/navbar/navbar';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Auth } from '../../../services/auth';
 import { ProductosService } from '../../../services/productos';
 import { CategoriasService } from '../../../services/categorias';
@@ -24,6 +24,8 @@ export class Home {
 
   productoSvc = inject(ProductosService)
   categoriaSvc = inject(CategoriasService)
+
+  constructor(private router: Router) {}
 
 
 
@@ -51,5 +53,9 @@ export class Home {
         console.error('Error al cargar categorías:', err);
       }
     });
+  }
+
+  goToProductosAndFocusSearch(): void {
+    this.router.navigate(['/productos'], { queryParams: { focusSearch: 'true' } });
   }
 }

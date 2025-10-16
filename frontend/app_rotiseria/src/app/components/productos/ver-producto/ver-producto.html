@@ -1,0 +1,40 @@
+<!-- Buscador -->
+    <div class="p-1 mb-2">
+        <div class="input-group">
+            <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search"></i></span>
+            <input #searchInput (input)="buscar()" [(ngModel)]="nombre" type="text" class="form-control border-start-0" placeholder="Buscar productos">
+        </div>
+    </div>
+
+  <!-- Filtro categorías -->
+  <div class="px-3">
+    <div class="card p-2">
+      <h6 class="fw-bold mb-2">Filtrar por categoría</h6>
+      <div class="d-flex flex-wrap gap-2">
+        <button class="btn btn-outline-dark btn-sm" (click)="mostrarTodos()">Todos</button>
+        @for (categoria of categorias; track categoria.id) {
+          <button class="btn btn-outline-dark btn-sm" (click)="getProductosByCategoria(categoria.id)">{{ categoria.nombre }}</button>
+        }
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Productos -->
+  <div class="container my-3">
+    <div class="row g-3">
+      @for (producto of arrayFiltered; track producto.id) {
+        <a class="col-12 col-sm-6 col-md-4 col-lg-3" routerLink="['/detalle-producto', producto.id]" style="cursor: pointer;">
+          <div class="card h-100">
+            <img [src]="producto.imagenUrl" class="card-img-top" [alt]="producto.nombre">
+            <div class="card-body text-center">
+              <h6 class="card-title mb-1">{{ producto.nombre }}</h6>
+              <p class="text-success fw-bold">${{ producto.precio }}</p>
+            </div>
+          </div>
+        </a>
+      } @empty {
+        <p class="text-center">No hay productos disponibles.</p>
+      }
+    </div>
+  </div>

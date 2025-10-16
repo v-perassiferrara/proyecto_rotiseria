@@ -12,9 +12,9 @@
 
 <!-- Buscador -->
 <div class="p-3">
-    <div class="input-group">
+    <div class="input-group" (click)="goToProductosAndFocusSearch()">
         <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search"></i></span>
-        <input type="text" class="form-control border-start-0" placeholder="Buscar">
+        <input type="text" class="form-control border-start-0" placeholder="Buscar" readonly>
     </div>
 </div>
 
@@ -67,7 +67,7 @@
                                 <h5 class="mb-1">{{categoria.nombre}}</h5>
                             </div>
 
-                            <a href="#" routerLink="" class="btn btn-success">Ver</a>
+                            <a [routerLink]="['/productos']" [queryParams]="{ categoria: categoria.id }" class="btn btn-success">Ver</a>
                         </div>
                     </div>
                     } @empty {

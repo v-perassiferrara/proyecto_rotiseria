@@ -48,10 +48,10 @@ export class VerUser implements OnInit {
       this.arrayFiltered = [...this.arrayUsuarios];
       return;
     }
-    let nombreNuevo = this.nombre.toLowerCase();
+    let nombreLower = this.nombre.toLowerCase();
     this.arrayFiltered = this.arrayUsuarios.filter((u: any) => 
-      u.nombre?.toLowerCase().includes(nombreNuevo) || 
-      u.apellido?.toLowerCase().includes(nombreNuevo)
+      u.nombre?.toLowerCase().includes(nombreLower) || 
+      u.apellido?.toLowerCase().includes(nombreLower)
     );
   }
 

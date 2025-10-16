@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-back-button',
@@ -8,9 +9,18 @@ import { Location } from '@angular/common';
   styleUrls: ['./back-button.css']
 })
 export class BackButton {
-  constructor(private location: Location) {}
+
+  router = inject(Router);
+  location = inject(Location);
+
+
+  toHome = input<boolean>(false);
 
   volver() {
-    this.location.back(); // navega a la ruta anterior
+    if (this.toHome()) {
+      this.router.navigate(['/home']); // navega a la página de inicio
+    }else{
+      this.location.back(); // navega a la ruta anterior
+    }
   }
 }

@@ -58,6 +58,10 @@ class Productos(Resource):
         # Filtrar por precio máximo
         if request.args.get('precio_max'):
             productos = productos.filter(Producto_db.precio <= float(request.args.get('precio_max')))
+            
+        # Filtrar por id de categoria
+        if request.args.get('categoria'):
+            productos = productos.filter(Producto_db.fk_id_categoria == int(request.args.get('categoria')))
 
         # Ordenar por nombre
         if request.args.get('sortby_nombre'):

@@ -60,7 +60,7 @@ class Categoria(Resource):
     @jwt_required(optional=False)
     def get(self, id):
         categoria = db.session.query(Categoria_db).get_or_404(id)     
-        return jsonify(categoria.to_json())
+        return jsonify(categoria.to_json_complete())
 
 
 # DELETE: Eliminar una categoria (ocultar/descontinuar). Rol: ADMIN
