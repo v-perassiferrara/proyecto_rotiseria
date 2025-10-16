@@ -8,7 +8,7 @@ import { FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angula
 @Component({
   selector: 'app-abm',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './abm.html',
   styleUrl: './abm.css'
 })

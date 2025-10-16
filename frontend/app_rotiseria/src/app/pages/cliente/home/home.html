@@ -26,26 +26,25 @@
             <p class="text-secondary fs-6" href="#">Disfruta de nuestros clásicos</p>
         </div>
         <div class="col-4 py-2 p-0">
-            <button type="button" class="btn"><a  href="#" routerLink="/productos">Ver <i class="fa-solid fa-arrow-right"></i></a></button>
+            <button type="button" class="btn"><a href="#" routerLink="/productos">Ver <i class="fa-solid fa-arrow-right"></i></a></button>
         </div>
     </div>
 
     <!-- Contenedor scrolleable -->
     <div class="d-flex justify-content-start overflow-auto pb-3" style="gap: 1rem;">
         @for (producto of top3; track producto.id) {
-            <div class="card" style="min-width: 16rem; cursor: pointer;" [routerLink]="['/productos', producto.id]" >
-                <img [src]="producto.imagenUrl" class="card-img-top" alt="producot.nombre">
-                <div class="card-body text-center pb-0">
-                    <h6 class="card-title">{{producto.nombre}}</h6>  
-                    <p class="fw-bold text-success">${{ producto.precio}}</p>
-                </div>
+        <div class="card" style="min-width: 16rem; cursor: pointer;" [routerLink]="['/productos', producto.id]">
+            <img [src]="producto.imagenUrl" class="card-img-top" alt="producot.nombre">
+            <div class="card-body text-center pb-0">
+                <h6 class="card-title">{{producto.nombre}}</h6>
+                <p class="fw-bold text-success">${{ producto.precio}}</p>
             </div>
-        } @empty {  
-            <p class="text-center">No hay productos disponibles.</p>
+        </div>
+        } @empty {
+        <p class="text-center">No hay productos disponibles.</p>
         }
     </div>
 </div>
-
 
 <!-- FALTA FOR  -->
 
@@ -54,57 +53,30 @@
     <div class="row d-flex align-items-center"> <!-- le agregamos margen arriba -->
         <h1 class="text-primary text-black fw-bold w-100">Categorías </h1>
         <div class="card-group">
-            
-            <!-- primera categoria -->
-            <div class="card mb-3 p-2">
-                <div class="d-flex align-items-center">
 
-                    <img src="#" class="rounded me-3" alt="Pizza" style="width: 80px; height: 80px; object-fit: cover;">
+            <!-- Productos -->
+            <div class="container my-3">
+                <div class="row g-3">
+                    @for (categoria of categorias; track categoria.id) {
+                    <div class="card mb-3 p-2">
+                        <div class="d-flex align-items-center">
 
-                    <div class="flex-grow-1">
-                        <h5 class="mb-1">Pizzas</h5>
+                            <img [src]="categoria.imagenUrl" class="rounded me-3" alt="Pizza" style="width: 80px; height: 80px; object-fit: cover;">
+
+                            <div class="flex-grow-1">
+                                <h5 class="mb-1">{{categoria.nombre}}</h5>
+                            </div>
+
+                            <a href="#" routerLink="" class="btn btn-success">Ver</a>
+                        </div>
                     </div>
-
-                    <a href="#" routerLink="/productos" class="btn btn-success">Ver</a>
-
-                </div>
-
-            </div>
-
-            <!-- segunda categoria -->
-            <div class="card mb-3 p-2">
-                <div class="d-flex align-items-center">
-
-                    <!-- Imagen -->
-                    <img src="" class="rounded me-3" alt="Empanadas" style="width: 80px; height: 80px; object-fit: cover;">
-
-                    <!-- Texto -->
-                    <div class="flex-grow-1">
-                        <h5 class="mb-1">Empanadas</h5>
-                    </div>
-
-                    <!-- Botón -->
-                    <a href="#" routerLink="/productos" class="btn btn-success">Ver</a>
-
+                    } @empty {
+                    <p class="text-center">No hay productos disponibles.</p>
+                    }
                 </div>
             </div>
 
-            <!-- tercera categoria -->
-            <div class="card mb-3 p-2">
-                <div class="d-flex align-items-center">
 
-                    <!-- Imagen -->
-                    <img src="" class="rounded me-3" alt="Pollo" style="width: 80px; height: 80px; object-fit: cover;">
-
-                    <!-- Texto -->
-                    <div class="flex-grow-1">
-                        <h5 class="mb-1">Pollos</h5>
-                    </div>
-
-                    <!-- Botón -->
-                    <a href="#" routerLink="/productos" class="btn btn-success">Ver</a>
-                </div>
-            </div>
         </div>
     </div>
 </div>

@@ -14,7 +14,7 @@ class Categorias(db.Model):
             'id': self.id,
             'nombre': self.nombre,
             'imagenUrl': self.imagenUrl,
-            'productos': [producto.to_json() for producto in self.productos]
+            'visible' : self.visible
         }
         return categoria_json
 

@@ -30,22 +30,12 @@ class Categorias(Resource):
         # Filtrar por nombre (búsqueda parcial)
         if request.args.get('nombre'):
             categorias = categorias.filter(Categoria_db.nombre.ilike(f"%{request.args.get('nombre')}%"))
+
                 
         #Obtener valor paginado
         categorias = categorias.paginate(page=page, per_page=per_page, error_out=False)
 
-        claims = get_jwt()
-        
-        if claims.get("rol") in ["admin", "empleado"]:
-            return jsonify({
-        'categorias': [categoria.to_json_complete() for categoria in categorias.items],
-                'total': categorias.total,
-                'pages': categorias.pages,
-                'page': page
-            })
-
-        else:
-            return jsonify({
+        return jsonify({
         'categorias': [categoria.to_json() for categoria in categorias.items],
                 'total': categorias.total,
                 'pages': categorias.pages,
@@ -69,7 +59,6 @@ class Categoria(Resource):
 # GET: Obtener una categoria. Rol: ADMIN/EMPLEADO/USER  
     @jwt_required(optional=False)
     def get(self, id):
-        claims = get_jwt()
         categoria = db.session.query(Categoria_db).get_or_404(id)     
         return jsonify(categoria.to_json())
 
