@@ -2,14 +2,24 @@
 
 <app-back-button></app-back-button>
 
+@if(producto){
 <div class="container w-100 bg-white p-3" style="border-radius: 12px;">
-    <h1 class="fw-bold">Pizza Muzzarella</h1>
-    <img src="/assets/pizza.webp" class="card-img-top" alt="Pizza" style="border-radius: 12px;">
+    <h1 class="fw-bold">{{producto.nombre}}</h1>
+    <img [src]="producto.imagenUrl" class="card-img-top" [alt]="producto.nombre" style="border-radius: 12px;">
+    <p class="fw-bold text-success">${{ producto.precio }}</p>
+    <p>{{ producto.descripcion }}</p>
+    <button class="btn btn-success w-100">Agregar al carrito</button>
 </div>
+}
 
 <div class="container w-100 bg-white p-3 g-3 mt-3" style="border-radius: 12px;">
 
-    <h1 class="fw-bold">Reseñas</h1>
+    <h1 class="fw-bold">Valoraciones</h1>
+    
+    <p>Valoracion: {{valoraciones}}</p>
+
+@for (valoracion of valoraciones; track valoracion.id) {
+
 
     <div class="card mb-3 p-2">
 
@@ -20,65 +30,26 @@
 
             <!-- Texto -->
             <div class="flex-grow-1">
+
                 <div class="d-flex flex-row">
                     <div class="col">
-                        <h5 class="mb-1">Juan Perez</h5>
+                        <h5 class="mb-1">Artal</h5>
                     </div>
+
                     <div class="col">
-                        <img src="/assets/stars.png" alt>
+                        <img src="/assets/stars.png" alt="Estrella">
                     </div>
+                    
                 </div>
                 <p style="font-size: 12px;">Lorem Ipsum is simply dummy text of the has been the industry's standard dummy.</p>
             </div>
         </div>
     </div>
 
-    <div class="card mb-3 p-2">
-
-        <div class="d-flex align-items-center border-2">
-
-            <!-- Imagen -->
-            <img src="/assets/user.png" class="rounded me-3" alt="Usuario" style="width: 80px; height: 80px; object-fit: cover;">
-
-            <!-- Texto -->
-            <div class="flex-grow-1">
-                <div class="d-flex flex-row">
-                    <div class="col">
-                        <h5 class="mb-1">Juan Perez</h5>
-                    </div>
-                    <div class="col">
-                        <img src="/assets/stars.png" alt>
-                    </div>
-                </div>
-                <p style="font-size: 12px;">Lorem Ipsum is simply dummy text of the has been the industry's standard dummy.</p>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="card mb-3 p-2">
-
-        <div class="d-flex align-items-center border-2">
-
-            <!-- Imagen -->
-            <img src="/assets/user.png" class="rounded me-3" alt="Usuario" style="width: 80px; height: 80px; object-fit: cover;">
-
-            <!-- Texto -->
-            <div class="flex-grow-1">
-                <div class="d-flex flex-row">
-                    <div class="col">
-                        <h5 class="mb-1">Juan Perez</h5>
-                    </div>
-                    <div class="col">
-                        <img src="/assets/stars.png" alt>
-                    </div>
-                </div>
-                <p style="font-size: 12px;">Lorem Ipsum is simply dummy text of the has been the industry's standard dummy.</p>
-            </div>
-
-        </div>
-    </div>
-
+} @empty {
+    <!-- No hay valoraciones -->
+    <p class="text-center">No hay valoraciones.</p>
+}
 </div>
 
 <app-navbar></app-navbar>

@@ -33,7 +33,7 @@
     <!-- Contenedor scrolleable -->
     <div class="d-flex justify-content-start overflow-auto pb-3" style="gap: 1rem;">
         @for (producto of top3; track producto.id) {
-        <div class="card" style="min-width: 16rem; cursor: pointer;" [routerLink]="['/productos', producto.id]">
+        <div class="card" style="min-width: 16rem; cursor: pointer;" [routerLink]="['/detalle-producto', producto.id]">
             <img [src]="producto.imagenUrl" class="card-img-top" alt="producot.nombre">
             <div class="card-body text-center pb-0">
                 <h6 class="card-title">{{producto.nombre}}</h6>

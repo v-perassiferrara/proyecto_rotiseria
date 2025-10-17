@@ -15,8 +15,8 @@ export const routes: Routes = [
     {path:'home',     loadComponent: () => import('./pages/cliente/home/home').then(m => m.Home), canActivate: [authsessionGuard]},
     {path:'carrito',    loadComponent: () => import('./pages/cliente/carrito/carrito').then(m => m.Carrito), canActivate: [authsessionGuard]},
     {path:'notificaciones',    loadComponent: () => import('./pages/cliente/notificaciones/notificaciones').then(m => m.Notificaciones), canActivate: [authsessionGuard]},
-    {path:'detalle-pedido',    loadComponent: () => import('./pages/cliente/detalle-pedido/detalle-pedido').then(m => m.DetallePedido), canActivate: [authsessionGuard]},
-    {path:'detalle-producto',    loadComponent: () => import('./pages/cliente/detalle-producto/detalle-producto').then(m => m.DetalleProducto), canActivate: [authsessionGuard]},
+    {path:'detalle-pedido/:id',    loadComponent: () => import('./pages/cliente/detalle-pedido/detalle-pedido').then(m => m.DetallePedido), canActivate: [authsessionGuard]},
+    {path:'detalle-producto/:id',    loadComponent: () => import('./pages/cliente/detalle-producto/detalle-producto').then(m => m.DetalleProducto), canActivate: [authsessionGuard]},
     {path:'productos',    loadComponent: () => import('./pages/cliente/productos/productos').then(m => m.Productos), canActivate: [authsessionGuard]},
     {path:'pedidos',    loadComponent: () => import('./pages/cliente/pedidos/pedidos').then(m => m.Pedidos), canActivate: [authsessionGuard]},
     

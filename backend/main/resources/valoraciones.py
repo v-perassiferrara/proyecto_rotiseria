@@ -40,15 +40,6 @@ class Valoraciones(Resource):
                 valoraciones = valoraciones.order_by(Usuario_db.nombre.desc() if request.args.get('sortby_usuario_email') == 'desc' else Usuario_db.nombre.asc())
 
 
-        # Filtrar por nombre de producto (búsqueda parcial)
-        if request.args.get('producto'):
-            valoraciones = valoraciones.join(Producto_db, Valoracion_db.id_producto == Producto_db.id).filter(
-                Producto_db.nombre.ilike(f"%{request.args.get('producto')}%")
-            )
-            if request.args.get('sortby_producto_nombre'):
-                valoraciones = valoraciones.order_by(Producto_db.nombre.desc() if request.args.get('sortby_producto_nombre') == 'desc' else Producto_db.nombre.asc())
-
-
         # Filtrar por estrellas
         if request.args.get('estrellas'):
             valoraciones = valoraciones.filter(Valoracion_db.estrellas == int(request.args.get('estrellas')))
@@ -65,6 +56,13 @@ class Valoraciones(Resource):
             valoraciones = valoraciones.join(Producto_db, Valoracion_db.id_producto == Producto_db.id, isouter=True).order_by(
                 Producto_db.nombre.desc() if request.args.get('sortby_producto') == 'desc' else Producto_db.nombre.asc()
             )
+
+
+        # filtrar por por id producto y ordenar el id_valoracion descendente 
+        if request.args.get('producto'):      
+            valoraciones = valoraciones.filter(Valoracion_db.id_producto == int(request.args.get('producto')))    
+        if request.args.get('sortby_id'):
+            valoraciones = valoraciones.order_by(Valoracion_db.id.desc() if request.args.get('sortby_id') == 'desc' else Valoracion_db.id.asc())
             
 
 
