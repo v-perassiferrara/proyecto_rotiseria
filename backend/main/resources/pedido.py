@@ -11,15 +11,29 @@ from main.models import Pedidos_Productos_db
 
 class Pedidos(Resource):
 
-    # GET: obtener una lista de Pedidos Rol: ADMIN  
+    # GET: obtener una lista de Pedidos  
     @jwt_required(optional=True)
-    @role_required(roles = ["admin"])
     def get(self):
         page = 1 #Página inicial por defecto
         per_page = 10  #Cantidad de elementos por página por defecto
         
-        #no ejecuto el .all()
-        pedidos = db.session.query(Pedido_db)
+            
+        claims = get_jwt()
+        current_identity = int(get_jwt_identity())
+
+        if claims.get("rol") == 'admin':
+            # Al admin le devuelve todas los pedidos
+            pedidos = db.session.query(Pedido_db)
+        else:
+            # A los demás les devuelve solo sus pedidos
+            
+            print(Pedido_db.fk_id_usuario)
+            print(current_identity)
+            
+            pedidos = db.session.query(Pedido_db).filter(Pedido_db.fk_id_usuario == current_identity)
+
+            
+
         if request.args.get('page'):
             page = int(request.args.get('page'))
         if request.args.get('per_page'):
@@ -46,16 +60,6 @@ class Pedidos(Resource):
             pedidos = pedidos.filter(Pedido_db.estado == request.args.get('estado'))
             if request.args.get('sortby_pedido_estado'):
                 pedidos = pedidos.order_by(Pedido_db.estado.desc() if request.args.get('sortby_estado') == 'desc' else Pedido_db.estado.asc())
-
-        
-        # Filtrar por rango de fechas
-        if request.args.get('fecha_inicio') and request.args.get('fecha_fin'):
-            fecha_inicio = request.args.get('fecha_inicio')
-            fecha_fin = request.args.get('fecha_fin')
-            notificaciones = notificaciones.filter(Pedido_db.fecha >= fecha_inicio, Pedido_db.fecha <= fecha_fin)   
-            if request.args.get('sortby_pedido_fecha'):
-                notificaciones = notificaciones.order_by(Pedido_db.fecha.desc() if request.args.get('sortby_pedido_fecha') == 'desc' else Pedido_db.fecha.asc())
-
         
         # Ordenar por fecha
         if request.args.get('sortby_fecha'):

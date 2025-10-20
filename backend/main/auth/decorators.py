@@ -57,11 +57,11 @@ def activity_required(fn):
         usuario_id = claims['id']
         #Consultar la base de datos para obtener el usuario completo
         usuario = db.session.query(Usuario_db).get(usuario_id)
-        #Verificar que el estado del usuario sea 'aprobado'
-        if usuario and usuario.estado == 'aprobado':
-            #Ejecutar función si el usuario está aprobado
+        #Verificar que el estado del usuario sea 'activo'
+        if usuario and usuario.estado == 'activo':
+            #Ejecutar función si el usuario está activo
             return fn(*args, **kwargs)
         else:
-            #Devolver error si el usuario no está aprobado
+            #Devolver error si el usuario no está activo
             return 'El usuario no se encuentra activo para realizar esta acción', 403
     return wrapper

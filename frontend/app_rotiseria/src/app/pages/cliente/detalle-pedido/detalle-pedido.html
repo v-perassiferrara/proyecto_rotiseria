@@ -3,7 +3,7 @@
 <div>
     <app-back-button></app-back-button>
     <div class="col-12 d-inline-flex p-3 pt-0 pb-0">
-        <h1 class="text-primary text-black fw-bold" href="#">Pedido #5351</h1>
+        <h1 class="text-primary text-black fw-bold">Pedido #{{pedido?.id}}</h1>
     </div>
 </div>
 
@@ -17,87 +17,67 @@
                 <p class="text-secondary">Estado</p>
             </div>
             <div class="col-4 offset-4 p-0 text-end">
-                <h1 class="text-primary text-success fw-bold">$18.400</h1>
+                <h1 class="text-primary text-success fw-bold">${{calcularTotal()}}</h1>
                 <p class="text-secondary">28/08/2025</p>
-                <p class="text-secondary text-success">Pendiente</p>
+
+                @if (pedido?.estado === 'pendiente') {
+                    <p class="text-secondary text-capitalize">{{pedido?.estado}}</p>
+                }
+
+                @if (pedido?.estado === 'listo') {
+                    <p class="text-secondary text-success text-capitalize">{{pedido?.estado}}</p>
+                }
+
+                @if (pedido?.estado === 'preparacion') {
+                    <p class="text-secondary text-warning text-capitalize">{{pedido?.estado}}</p>
+                }
+
+                @if (pedido?.estado === 'entregado') {
+                    <p class="text-secondary text-b text-capitalize">{{pedido?.estado}}</p>
+                }
+
+                @if (pedido?.estado === 'cancelado') {
+                    <p class="text-secondary text-danger text-capitalize">{{pedido?.estado}}</p>
+                }
             </div>
         </div>
 
         <!-- Contenido del pedido -->
         <div class="card-cont">
 
-            <!-- primer producto -->
+            @for (producto of pedido?.productos; track producto.id ) {
             <div class="card mb-3 p-2">
                 <div class="d-flex align-items-center">
 
                     <!-- Imagen -->
-                    <img src="/assets/pizza.webp" class="rounded me-3" alt="Pizza" style="width: 80px; height: 80px; object-fit: cover;">
+                    <img [src]="producto.imagenUrl" class="rounded me-3" alt="Pizza" style="width: 80px; height: 80px; object-fit: cover;">
 
                     <!-- Texto -->
                     <div class="flex-grow-1">
-                        <h5 class="mb-1"><span class="text-secondary">1x</span> Pizza Muzzarella</h5>
-                        <p class="card-text"><small class="text-body-secondary"><i class="bi bi-clock-fill"></i>$18.400</small></p>
+                        <h5 class="mb-1"><span class="text-secondary">{{producto.cantidad}}x </span>{{producto.nombre}}</h5>
+                        <p class="card-text"><small class="text-body-secondary"><i class="bi bi-clock-fill"></i>${{producto.precio}}</small></p>
                     </div>
 
+                    @if(pedido?.estado === 'entregado') {
                     <!-- Botón valorar -->
                     <div class="botones-container d-flex">
                         <a href="#" class="btn btn-success d-flex justify-content-center align-items-center">Valorar</a>
                     </div>
-
+                    }
                 </div>
-
             </div>
-
-            <!-- segundo producto -->
-            <div class="card mb-3 p-2">
-
-                <div class="d-flex align-items-center">
-
-                    <!-- Imagen -->
-                    <img src="/assets/empanadas.webp" class="rounded me-3" alt="Empanadas" style="width: 80px; height: 80px; object-fit: cover;">
-
-                    <!-- Texto -->
-                    <div class="flex-grow-1">
-                        <h5 class="mb-1"><span class="text-secondary">2x</span> Empanadas de carne</h5>
-                        <p class="card-text"><small class="text-body-secondary"><i class="bi bi-clock-fill"></i>$12.000</small></p>
-                    </div>
-
-                    <!-- Botón valorar -->
-                    <div class="botones-container d-flex">
-                        <a href="#" class="btn btn-success d-flex justify-content-center align-items-center">Valorar</a>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- tercer producto -->
-            <div class="card mb-3 p-2">
-                <div class="d-flex align-items-center">
-
-                    <!-- Imagen -->
-                    <img src="/assets/pollo.jpeg" class="rounded me-3" alt="Pollo" style="width: 80px; height: 80px; object-fit: cover;">
-
-                    <!-- Texto -->
-                    <div class="flex-grow-1">
-                        <h5 class="mb-1"><span class="text-secondary">1x</span> Pollo</h5>
-                        <p class="card-text"><small class="text-body-secondary"><i class="bi bi-clock-fill"></i>$6.800</small></p>
-                    </div>
-
-                    <!-- Botón valorar -->
-                    <div class="botones-container d-flex">
-                        <a href="#" class="btn btn-success d-flex justify-content-center align-items-center">Valorar</a>
-                    </div>
-
-                </div>
-                
-            </div>
-
-            <!-- Botón Cancelar -->
-            <div class="botones-container d-flex justify-content-center align-items-center mt-4">
-                <a href="#" class="btn btn-danger d-flex justify-content-center align-items-center" style="width: 40%;"><i class="fa-solid fa-xmark me-2"></i>Cancelar</a>
-            </div>
+            }
+            
         </div>
+
+        <!-- Botón Cancelar -->
+        @if(pedido?.estado === 'pendiente'){
+        <div class="botones-container d-flex justify-content-center align-items-center mt-4" style="cursor: pointer;">
+            <a (click)="cancelarPedido()" class="btn btn-danger d-flex justify-content-center align-items-center" style="width: 40%;"><i
+                    class="fa-solid fa-xmark me-2" ></i>Cancelar</a>
+        </div>
+        }
+
     </div>
 </div>
 
