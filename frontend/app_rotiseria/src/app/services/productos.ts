@@ -39,7 +39,6 @@ export class ProductosService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    console.log(categoriaId);
     return this.http.get(`${this.url}/productos?categoria=${categoriaId}`, { headers });
   }
 

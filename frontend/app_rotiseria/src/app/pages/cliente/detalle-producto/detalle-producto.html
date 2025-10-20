@@ -6,7 +6,7 @@
 <div class="container w-100 bg-white p-3" style="border-radius: 12px;">
     <h1 class="fw-bold">{{producto.nombre}}</h1>
     <img [src]="producto.imagenUrl" class="card-img-top" [alt]="producto.nombre" style="border-radius: 12px;">
-    <p class="fw-bold text-success">${{ producto.precio }}</p>
+    <p class="fw-bold fs-2 text-success mt-2">${{ producto.precio }}</p>
     <p>{{ producto.descripcion }}</p>
     <button class="btn btn-success w-100">Agregar al carrito</button>
 </div>
@@ -15,11 +15,8 @@
 <div class="container w-100 bg-white p-3 g-3 mt-3" style="border-radius: 12px;">
 
     <h1 class="fw-bold">Valoraciones</h1>
-    
-    <p>Valoracion: {{valoraciones}}</p>
 
-@for (valoracion of valoraciones; track valoracion.id) {
-
+    @for (valoracion of valoraciones; track valoracion.id) {
 
     <div class="card mb-3 p-2">
 
@@ -33,23 +30,30 @@
 
                 <div class="d-flex flex-row">
                     <div class="col">
-                        <h5 class="mb-1">Artal</h5>
+                        <h5 class="mb-1">{{valoracion.nombre}}</h5>
                     </div>
 
                     <div class="col">
-                        <img src="/assets/stars.png" alt="Estrella">
+                        @for (estrella of getStarArray(valoracion.estrellas) ; track estrella) {
+                            @if (estrella === 1){
+                                <span>★</span>
+                            }@else {
+                                <span>☆</span>
+                            }
+                        }
                     </div>
-                    
+
                 </div>
-                <p style="font-size: 12px;">Lorem Ipsum is simply dummy text of the has been the industry's standard dummy.</p>
+                <p style="font-size: 14px;">{{valoracion.comentario}}</p>
             </div>
         </div>
+
     </div>
 
-} @empty {
+    } @empty {
     <!-- No hay valoraciones -->
     <p class="text-center">No hay valoraciones.</p>
-}
+    }
 </div>
 
 <app-navbar></app-navbar>

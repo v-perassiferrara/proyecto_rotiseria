@@ -19,9 +19,9 @@ export class ValoracionesService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
+
     return this.http.get(`${this.url}/valoraciones?producto=${productoId}`, { headers });
   }
-
   
 }
 

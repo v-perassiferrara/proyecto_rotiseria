@@ -22,7 +22,11 @@ export class DetalleProducto implements OnInit {
   producto: any;
   usuario: any;
   valoraciones: any[] = [];
-  // estrellas: number[] = [];
+
+
+  getStarArray(estrellas: number): number[] {
+    return Array(5).fill(0).map((_, i) => i < estrellas ? 1 : 0);
+  }
 
 
   activatedRoute = inject(ActivatedRoute);
@@ -45,13 +49,12 @@ export class DetalleProducto implements OnInit {
         
 
         this.valoracionesService.getValoracionesPorProducto(productoId).subscribe({
-          next: (valoraciones: ValoracionResponse[]) => {
-            this.valoraciones = valoraciones;
-            // this.valoraciones.forEach(valoracion => {
-            // this.usuario = this.usuariosService.getUsuarioPorId(valoracion.id_usuario);
-            // this.estrellas = Array(valoracion.estrellas).fill(0);
-            // console.log(this.valoraciones);
-            // });
+          next: (data: any) => {
+            for (let i = 0; i < data.valoraciones.length; i++) {
+              let valoracion = data.valoraciones[i];
+              this.valoraciones.push(valoracion);
+            }
+            // // this.estrellas = Array(valoracion.estrellas).fill(0);
           },
           error: (err: any) => {
             console.error('Error al cargar las valoraciones:', err);
