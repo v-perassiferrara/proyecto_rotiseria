@@ -11,13 +11,13 @@ export class ProductosService {
 
   url = environment.apiUrl;
 
-  getProductos(): Observable<any>{
+  getProductos(page: number = 1, perPage: number = 10): Observable<any>{
     const token = localStorage.getItem('token') || '';
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get(this.url + '/productos', { headers });
+    return this.http.get(`${this.url}/productos?page=${page}&per_page=${perPage}`, { headers });
   }
   
   getProductosTop3(): Observable<any> {
@@ -33,13 +33,13 @@ export class ProductosService {
     return this.http.get(urlConParams, { headers });
   }
 
-  getProductosByCategoria(categoriaId: number): Observable<any> {
+  getProductosByCategoria(categoriaId: number, page: number = 1, perPage: number = 10): Observable<any> {
     const token = localStorage.getItem('token') || '';
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get(`${this.url}/productos?categoria=${categoriaId}`, { headers });
+    return this.http.get(`${this.url}/productos?categoria=${categoriaId}&page=${page}&per_page=${perPage}`, { headers });
   }
 
   getProducto(id: number): Observable<any> {

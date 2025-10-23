@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Auth } from './auth';
 
@@ -14,36 +15,32 @@ export class CarritoService {
   authService = inject(Auth);
 
   // Crear pedido y luego los productos
-  postPedidoProducto(carrito: any[]): void {
+  postPedidoProducto(carrito: any[]): Observable<any> {
     const token = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
 
-    this.postPedido(carrito).subscribe({
-      next: (respuestaPedido: any) => {
+    return this.postPedido(carrito).pipe(
+      switchMap((respuestaPedido: any) => {
         const idPedido = respuestaPedido.id || respuestaPedido.id_pedido;
-        if (!idPedido) {
-          console.error('No se recibió ID del pedido');
-          return;
-        }
+        console.log('ID del pedido creado:', idPedido);
+        console.log('Carrito:', carrito);
 
-        for (const producto of carrito) {
+        const peticiones = carrito.map(producto => {
           const pedidoProducto = {
             fk_id_pedido: idPedido,
             fk_id_producto: producto.id,
             cantidad: producto.cantidad
           };
-          this.http.post(`${this.url}/pedidos_productos`, pedidoProducto, { headers })
-            .subscribe({
-              next: (resp) => console.log('Producto agregado:', resp),
-              error: (err) => console.error('Error al agregar producto:', err)
-            });
-        }
-      },
-      error: (err) => console.error('Error al crear pedido:', err)
-    });
+          console.log('Enviando producto:', pedidoProducto);
+          return this.http.post(`${this.url}/pedidos-productos`, pedidoProducto, { headers });
+        });
+
+        return forkJoin(peticiones);
+      })
+    );
   }
 
   // Crear pedido

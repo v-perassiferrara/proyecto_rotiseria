@@ -59,22 +59,22 @@ class Pedidos(Resource):
         if request.args.get('estado'):
             pedidos = pedidos.filter(Pedido_db.estado == request.args.get('estado'))
             if request.args.get('sortby_pedido_estado'):
-                pedidos = pedidos.order_by(Pedido_db.estado.desc() if request.args.get('sortby_estado') == 'desc' else Pedido_db.estado.asc())
+                pedidos = pedidos.order_by(Pedido_db.estado.desc() if request.args.get('sortby-estado') == 'desc' else Pedido_db.estado.asc())
         
         # Ordenar por fecha
-        if request.args.get('sortby_fecha'):
-            pedidos = pedidos.order_by(Pedido_db.fecha.desc() if request.args.get('sortby_fecha') == 'desc' else Pedido_db.fecha.asc())
+        if request.args.get('sortby-fecha'):
+            pedidos = pedidos.order_by(Pedido_db.fecha.desc() if request.args.get('sortby-fecha') == 'desc' else Pedido_db.fecha.asc())
 
         # Ordenar por estado
-        if request.args.get('sortby_estado'):
-            pedidos = pedidos.order_by(Pedido_db.estado.desc() if request.args.get('sortby_estado') == 'desc' else Pedido_db.estado.asc())
+        if request.args.get('sortby-estado'):
+            pedidos = pedidos.order_by(Pedido_db.estado.desc() if request.args.get('sortby-estado') == 'desc' else Pedido_db.estado.asc())
 
         
         
         #Obtener valor paginado
         pedidos = pedidos.paginate(page=page, per_page=per_page, error_out=False)
-    
-        return jsonify({'pedidos': [pedido.to_json() for pedido in pedidos],
+
+        return jsonify({'pedidos': [pedido.to_json() for pedido in pedidos.items],
                   'total': pedidos.total,
                   'pages': pedidos.pages,
                   'page': page

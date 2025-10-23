@@ -1,13 +1,13 @@
 <app-titlebar [title]="'Historial de pedidos'" />
 
-<div>
+<div style="padding-bottom: 55px;"> 
     <div class="col-12 p-0 d-inline-flex p-3">
         <h1 class="text-primary text-black fw-bold" href="#">Pedidos Anteriores</h1>
     </div>
 
-    <div class="card-cont container-fluid">
+    <div class="card-cont container-fluid pb-3">
 
-        @for (pedido of arrayPedidos; track pedido.id) {
+        @for (pedido of arrayPedidos; track $index) {
             <div class="card mb-3 p-2">
                 <div class="d-flex align-items-center">
                     <!-- Texto -->

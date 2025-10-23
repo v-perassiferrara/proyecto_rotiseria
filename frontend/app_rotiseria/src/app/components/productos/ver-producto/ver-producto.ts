@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CategoriasService } from '../../../services/categorias';
 import { ProductosService } from '../../../services/productos';
@@ -21,42 +21,24 @@ export class VerProducto implements OnInit {
 
   categorias: any[] = [];
 
+  currentPage: number = 1;
+  totalPages: number = 1;
+  isLoading: boolean = false;
+  currentCategoriaId: number | null = null;
+
   route = inject(ActivatedRoute);
   router = inject(Router);
   productoService = inject(ProductosService);
   categoriasService = inject(CategoriasService);
 
   ngOnInit(): void {
-
     this.route.queryParams.subscribe(params => {
-      const categoriaId = params['categoria'];
-      if (categoriaId) {
-        this.productoService.getProductosByCategoria(categoriaId).subscribe({
-          next: (data: any) => {
-            this.arrayProductos = data.productos;
+      this.currentCategoriaId = params['categoria'] ? Number(params['categoria']) : null;
+      this.currentPage = 1;
+      this.arrayProductos = [];
+      this.arrayFiltered = [];
 
-            this.arrayProductos = this.arrayProductos.sort()
-
-            this.arrayFiltered = [...this.arrayProductos]
-          },
-          error: (err) => {
-            console.error('Error al cargar productos por categoría:', err);
-          }
-        });
-      } else {
-        this.productoService.getProductos().subscribe({
-          next: (res: any) => {
-            this.arrayProductos = res.productos;
-
-            this.arrayProductos = this.arrayProductos.sort()
-
-            this.arrayFiltered = [...this.arrayProductos]
-          },
-          error: (err) => {
-            console.log("Error al traer usuarios: ", err);
-          }
-        })
-      }
+      this.loadProductos();
 
       if (params['focusSearch'] === 'true') {
         setTimeout(() => {
@@ -73,6 +55,46 @@ export class VerProducto implements OnInit {
         console.error('Error al cargar categorías:', err);
       }
     });
+  }
+
+  loadProductos(): void {
+    if (this.isLoading) return;
+    if (this.totalPages > 1 && this.currentPage > this.totalPages) return;
+
+    this.isLoading = true;
+
+    const request = this.currentCategoriaId
+      ? this.productoService.getProductosByCategoria(this.currentCategoriaId, this.currentPage, 10)
+      : this.productoService.getProductos(this.currentPage, 10);
+
+    request.subscribe({
+      next: (data: any) => {
+        console.log('Respuesta del backend:', data);
+        const newProductos = data.productos || [];
+        this.arrayProductos = [...this.arrayProductos, ...newProductos];
+        this.arrayFiltered = [...this.arrayProductos];
+        this.totalPages = data.pages || 1;
+        console.log(`Página ${this.currentPage} de ${this.totalPages}. Productos cargados: ${this.arrayProductos.length}`);
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Error al cargar productos:', err);
+        this.isLoading = false;
+      }
+    });
+  }
+
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    if (this.nombre) return;
+
+    const scrollPosition = window.innerHeight + window.scrollY;
+    const documentHeight = document.documentElement.scrollHeight;
+
+    if (scrollPosition >= documentHeight - 100 && !this.isLoading && this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.loadProductos();
+    }
   }
 
 

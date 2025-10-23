@@ -64,8 +64,8 @@ import { CommonModule } from '@angular/common';
   }
 
   confirmarPedido() {
-    this.carritoService.postPedido(this.carritoList).subscribe({
-      next: (response) => {
+    this.carritoService.postPedidoProducto(this.carritoList).subscribe({
+      next: (response: any) => {
         console.log('Pedido creado:', response);
         alert('Pedido creado exitosamente');
         this.router.navigateByUrl("/pedidos")
