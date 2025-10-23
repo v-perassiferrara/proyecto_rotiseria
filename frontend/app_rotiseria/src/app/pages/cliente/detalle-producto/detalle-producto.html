@@ -8,7 +8,7 @@
     <img [src]="producto.imagenUrl" class="card-img-top" [alt]="producto.nombre" style="border-radius: 12px;">
     <p class="fw-bold fs-2 text-success mt-2">${{ producto.precio }}</p>
     <p>{{ producto.descripcion }}</p>
-    <button class="btn btn-success w-100">Agregar al carrito</button>
+    <button class="btn btn-success w-100" (click)="agregarAlCarrito()">Agregar al carrito</button>
 </div>
 }
 
@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="col">
-                        @for (estrella of getStarArray(valoracion.estrellas) ; track estrella) {
+                        @for (estrella of getStarArray(valoracion.estrellas) ; track $index) {
                             @if (estrella === 1){
                                 <span>★</span>
                             }@else {

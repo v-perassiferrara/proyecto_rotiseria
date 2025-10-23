@@ -5,7 +5,8 @@ import { BackButton } from '../../../components/back-button/back-button';
 import { ProductosService } from '../../../services/productos';
 import { ActivatedRoute } from '@angular/router';
 import { ValoracionesService } from '../../../services/valoraciones';
-import { Usuarios } from '../../../services/usuarios';
+import { UsuariosService } from '../../../services/usuarios';
+import { CarritoService } from '../../../services/carrito';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -28,11 +29,21 @@ export class DetalleProducto implements OnInit {
     return Array(5).fill(0).map((_, i) => i < estrellas ? 1 : 0);
   }
 
+  agregarAlCarrito() {
+    const producto = this.producto;
+    const usuario = this.usuario;
+
+    this.carritoService.agregarProducto(producto);
+    alert(`Producto "${producto.nombre}" agregado al carrito.`);
+  
+  }
+
 
   activatedRoute = inject(ActivatedRoute);
   productosService = inject(ProductosService);
   valoracionesService = inject(ValoracionesService);
-  usuariosService = inject(Usuarios);
+  usuariosService = inject(UsuariosService);
+  carritoService = inject(CarritoService);
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -61,7 +72,7 @@ export class DetalleProducto implements OnInit {
           }
         });
 
-        }
+      }
     });
   }
 

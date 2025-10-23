@@ -1,7 +1,7 @@
 import { Component, inject, input, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { Usuarios } from '../../../services/usuarios';
+import { UsuariosService } from '../../../services/usuarios';
 
 @Component({
   selector: 'app-ver-user',
@@ -20,7 +20,7 @@ export class VerUser implements OnInit {
   arrayFiltered: any[] = [];
   
   router = inject(Router)
-  usuarioSvc = inject(Usuarios)
+  usuarioSvc = inject(UsuariosService)
 
   
   ngOnInit(){

@@ -17,8 +17,8 @@
                 <p class="text-secondary">Estado</p>
             </div>
             <div class="col-4 offset-4 p-0 text-end">
-                <h1 class="text-primary text-success fw-bold">${{calcularTotal()}}</h1>
-                <p class="text-secondary">28/08/2025</p>
+                <h1 class="text-primary text-success fw-bold">${{pedido?.total}}</h1>
+                <p class="text-secondary">{{pedido?.fecha}}</p>
 
                 @if (pedido?.estado === 'pendiente') {
                     <p class="text-secondary text-capitalize">{{pedido?.estado}}</p>

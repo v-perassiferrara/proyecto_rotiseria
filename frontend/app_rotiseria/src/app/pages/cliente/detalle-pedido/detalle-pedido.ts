@@ -23,25 +23,27 @@ export class DetallePedido implements OnInit {
   activatedRoute = inject(ActivatedRoute);
   pedidosService = inject(PedidosService);
 
-  calcularTotal(): number {
-    if (!this.pedido || !this.pedido.productos) {
-      return 0;
-    }
-    let total = 0;
-    let productos = this.pedido.productos;
-    for (let i = 0; i < productos.length; i++) {
-      total += productos[i].precio * productos[i].cantidad;
-    }
-    return total;
-  }
+  // cancelarPedido(){
+  //   this.pedidosService.cancelarPedido(this.pedido.id).subscribe({
+  //     next: (pedido: PedidoResponse) => {
+  //       this.pedido = pedido;
+  //       console.log('Pedido cancelado con éxito');
+  //       // Recarga la página para actualizar el estado del pedido
+  //       this.router.navigateByUrl('/pedidos');
+  //     },
+  //     error: (err: any) => {
+  //       console.error('Error al cancelar el pedido:', err);
+  //     }
+  //   });
+  // }
 
   cancelarPedido(){
     this.pedidosService.cancelarPedido(this.pedido.id).subscribe({
-      next: (pedido: PedidoResponse) => {
-        this.pedido = pedido;
+      next: (response: any) => {
+        this.pedido.estado = 'cancelado';
         console.log('Pedido cancelado con éxito');
-        // Recarga la página para actualizar el estado del pedido
-        this.router.navigateByUrl('/pedidos');
+      // Recarga la página para actualizar el estado del pedido
+      this.router.navigateByUrl('/pedidos');
       },
       error: (err: any) => {
         console.error('Error al cancelar el pedido:', err);

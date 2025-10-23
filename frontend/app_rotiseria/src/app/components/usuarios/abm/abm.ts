@@ -1,7 +1,7 @@
 import { Component, inject, Input, OnChanges } from '@angular/core';
 import { Auth } from '../../../services/auth';
 import { Router, RouterLink } from '@angular/router';
-import { Usuarios } from '../../../services/usuarios';
+import { UsuariosService } from '../../../services/usuarios';
 import { FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 
@@ -16,7 +16,7 @@ export class Abm implements OnChanges{
 
   router = inject(Router);
   authService = inject(Auth);
-  usuarioSvc = inject(Usuarios)
+  usuarioSvc = inject(UsuariosService)
   formBuilder = inject(FormBuilder);
 
   @Input() usuario: any = null;

@@ -26,7 +26,7 @@ class Pedidos_Productos(Resource):
         #Obtener valor paginado
         pedidos_productos = pedidos_productos.paginate(page=page, per_page=per_page, error_out=False)
     
-        return jsonify({'pedidos_productos': [linea.to_json() for linea in pedidos_productos],
+        return jsonify({'pedidos-productos': [linea.to_json() for linea in pedidos_productos],
                   'total': pedidos_productos.total,
                   'pages': pedidos_productos.pages,
                   'page': page

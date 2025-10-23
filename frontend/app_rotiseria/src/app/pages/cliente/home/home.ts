@@ -37,7 +37,6 @@ export class Home {
       next: (data) => {
         // Asignamos el array de productos de la respuesta a top3
         this.top3 = data.productos;
-        console.log("Productos Top 3 cargados:", this.top3);
       },
       error: (err) => {
         console.error('Error al cargar productos:', err);

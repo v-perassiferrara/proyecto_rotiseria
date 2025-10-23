@@ -27,13 +27,27 @@ export class PedidosService {
     return this.http.get(`${this.url}/pedido/${id}`, { headers });
   }
 
+  // cancelarPedido(id: number): Observable<any> {
+  //   const token = localStorage.getItem('token') || '';
+  //   let headers = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Authorization': `Bearer ${token}`,
+  //     'Body': JSON.stringify({ estado: 'cancelado' })
+  //   });
+  //   return this.http.delete(`${this.url}/pedido/${id}`, { headers });
+  // }
+
   cancelarPedido(id: number): Observable<any> {
     const token = localStorage.getItem('token') || '';
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-      'Body': JSON.stringify({ estado: 'cancelado' })
+      'Authorization': `Bearer ${token}`
     });
-    return this.http.delete(`${this.url}/pedido/${id}`, { headers });
+    
+    // Usar PUT en lugar de DELETE
+    return this.http.put(`${this.url}/pedido/${id}`, 
+      { estado: 'cancelado' }, 
+      { headers }
+    );
   }
 }

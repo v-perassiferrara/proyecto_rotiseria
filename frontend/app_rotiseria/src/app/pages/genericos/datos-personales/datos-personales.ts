@@ -1,7 +1,7 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { BackButton } from '../../../components/back-button/back-button';
 import { Titlebar } from '../../../components/titlebar/titlebar';
-import {Usuarios} from '../../../services/usuarios';
+import {UsuariosService} from '../../../services/usuarios';
 import { Auth } from '../../../services/auth';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class DatosPersonales implements OnInit{
 
   authService = inject(Auth);
-  usuarioSvc = inject(Usuarios)
+  usuarioSvc = inject(UsuariosService)
   formBuilder = inject(FormBuilder);
   router = inject(Router);
 

@@ -4,7 +4,7 @@ import { BackButton } from '../../../components/back-button/back-button';
 import { ActivatedRoute } from '@angular/router';
 import { Auth } from '../../../services/auth';
 import { Abm } from "../../../components/usuarios/abm/abm";
-import { Usuarios } from '../../../services/usuarios';
+import { UsuariosService } from '../../../services/usuarios';
 
 @Component({
   selector: 'app-detalle-usuario',
@@ -14,8 +14,8 @@ import { Usuarios } from '../../../services/usuarios';
 })
 export class DetalleUsuario {
   authService = inject(Auth);
-  usuariosSvc = inject(Usuarios);
-  usuario: Usuarios | null = null;
+  usuariosSvc = inject(UsuariosService);
+  usuario: UsuariosService | null = null;
 
   route = inject(ActivatedRoute)
 
