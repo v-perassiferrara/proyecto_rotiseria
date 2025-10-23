@@ -7,44 +7,20 @@
         <div class="container-lg">
             <h1 class="fw-bold mt-4" style="border-radius: 14px;">Categorías</h1>
 
-            <div class="d-flex flex-row align-content-center g-3 p-2 align-items-center mb-3 bg-white rounded-3" style="margin-bottom: 50px;">
-                <div class="col">
-                    <img src="/assets/pizza.webp" class="rounded me-3" alt="Pizza" style="width: 80px; height: 80px; object-fit: cover;">
+            @for (categoria of categorias; track categoria.id) {
+                <div class="d-flex flex-row justify-content-between align-content-center g-3 p-2 align-items-center mb-3 bg-white rounded-3" style="margin-bottom: 50px;">
+                    <div class="col">
+                        <img [src]="categoria.imagenUrl" class="rounded me-3" alt="{{categoria.nombre}}" style="width: 80px; height: 80px; object-fit: cover;">
+                    </div>
+                    <div class="col">
+                        <h5>{{categoria.nombre}}</h5>
+                    </div>
+                    <div class="col d-flex justify-content-end text-end gap-2">
+                        <button class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                        <button class="btn btn-outline-secondary btn-sm" (click)="editarCategoria(categoria)"><i class="fa-solid fa-pen"></i></button>
+                    </div>
                 </div>
-                <div class="col">
-                    <h5>Pizzas</h5>
-                </div>
-                <div class="col">
-                    <button class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-                    <button class="btn btn-outline-secondary btn-sm"><a href="#" routerLink="/admin/detalle-categoria"><i class="fa-solid fa-pen"></i></a></button>
-                </div>
-            </div>
-
-            <div class="d-flex flex-row align-content-center g-3 p-2 align-items-center mb-3 bg-white rounded-3" style="margin-bottom: 50px;">
-                <div class="col">
-                    <img src="/assets/pizza.webp" class="rounded me-3" alt="Pizza" style="width: 80px; height: 80px; object-fit: cover;">
-                </div>
-                <div class="col">
-                    <h5>Pizzas</h5>
-                </div>
-                <div class="col">
-                    <button class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-                    <button class="btn btn-outline-secondary btn-sm"><a href="#" routerLink="/admin/detalle-categoria"><i class="fa-solid fa-pen"></i></a></button>
-                </div>
-            </div>
-
-            <div class="d-flex flex-row align-content-center g-3 p-2 align-items-center mb-3 bg-white rounded-3" style="margin-bottom: 50px;">
-                <div class="col">
-                    <img src="/assets/pizza.webp" class="rounded me-3" alt="Pizza" style="width: 80px; height: 80px; object-fit: cover;">
-                </div>
-                <div class="col">
-                    <h5>Pizzas</h5>
-                </div>
-                <div class="col">
-                    <button class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-                    <button class="btn btn-outline-secondary btn-sm"><a href="#" routerLink="/admin/detalle-categoria"><i class="fa-solid fa-pen"></i></a></button>
-                </div>
-            </div>
+            }
 
         </div>
     </div>
@@ -54,44 +30,30 @@
         <div class="container-lg">
             <h1 class="fw-bold mt-4" style="border-radius: 14px;">Productos</h1>
 
-            <div class="d-flex flex-row align-content-center g-3 p-2 align-items-center mb-3 bg-white rounded-3" style="margin-bottom: 50px;">
-                <div class="col">
-                    <img src="/assets/pizza.webp" class="rounded me-3" alt="Pizza" style="width: 80px; height: 80px; object-fit: cover;">
-                </div>
-                <div class="col">
-                    <h5>Pizzas</h5>
-                </div>
-                <div class="col">
-                    <button class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-                    <button class="btn btn-outline-secondary btn-sm"><a href="#" routerLink="/admin/detalle-producto"><i class="fa-solid fa-pen"></i></a></button>
+            <div class="p-1 mb-2">
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search"></i></span>
+                    <input (input)="buscarProducto()" [(ngModel)]="nombreProducto"  type="text" class="form-control border-start-0" placeholder="Buscar por nombre" >
                 </div>
             </div>
 
-            <div class="d-flex flex-row align-content-center g-3 p-2 align-items-center mb-3 bg-white rounded-3" style="margin-bottom: 50px;">
-                <div class="col">
-                    <img src="/assets/pizza.webp" class="rounded me-3" alt="Pizza" style="width: 80px; height: 80px; object-fit: cover;">
-                </div>
-                <div class="col">
-                    <h5>Pizzas</h5>
-                </div>
-                <div class="col">
-                    <button class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-                    <button class="btn btn-outline-secondary btn-sm"><a href="#" routerLink="/admin/detalle-producto"><i class="fa-solid fa-pen"></i></a></button>
-                </div>
-            </div>
 
-            <div class="d-flex flex-row align-content-center g-3 p-2 align-items-center mb-3 bg-white rounded-3" style="margin-bottom: 50px;">
-                <div class="col">
-                    <img src="/assets/pizza.webp" class="rounded me-3" alt="Pizza" style="width: 80px; height: 80px; object-fit: cover;">
+            @for (producto of productosFiltred; track producto.id) {
+                <div class="d-flex flex-row justify-content-between align-content-center g-3 p-2 align-items-center mb-3 bg-white rounded-3" style="margin-bottom: 50px;">
+                    <div class="col">
+                        <img [src]="producto.imagenUrl" class="rounded me-3" alt="{{producto.nombre}}" style="width: 80px; height: 80px; object-fit: cover;">
+                    </div>
+                    <div class="col">
+                        <h5>{{producto.nombre}}</h5>
+                        <p class="text-muted mb-0">${{producto.precio}}</p>
+                    </div>
+                    <div class="col d-flex justify-content-end text-end gap-2">
+                        <button class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                        <button class="btn btn-outline-secondary btn-sm" (click)="editarProducto(producto)"><i class="fa-solid fa-pen"></i></button>
+                    </div>
                 </div>
-                <div class="col">
-                    <h5>Pizzas</h5>
-                </div>
-                <div class="col">
-                    <button class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-                    <button class="btn btn-outline-secondary btn-sm"><a href="#" routerLink="/admin/detalle-producto"><i class="fa-solid fa-pen"></i></a></button>
-                </div>
-            </div>
+            }
+
 
         </div>
     </div>
