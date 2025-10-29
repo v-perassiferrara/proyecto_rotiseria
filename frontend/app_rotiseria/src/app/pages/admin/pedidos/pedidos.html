@@ -10,31 +10,31 @@
     <div class="row g-2 mb-3">
         <div class="col-6 col-sm-4 col-lg-2">
             <div class="stat">
-                <div class="num text-secondary">924</div>
+                <div class="num text-secondary">{{ totalPendientes }}</div>
                 <small class="text-secondary">Pendientes</small>
             </div>
         </div>
         <div class="col-6 col-sm-4 col-lg-2">
             <div class="stat">
-                <div class="num text-warning">924</div>
+                <div class="num text-warning">{{ totalPreparacion }}</div>
                 <small class="text-warning-emphasis">Preparación</small>
             </div>
         </div>
         <div class="col-6 col-sm-4 col-lg-2">
             <div class="stat">
-                <div class="num text-success">924</div>
+                <div class="num text-success">{{ totalListos }}</div>
                 <small class="text-success-emphasis">Listos</small>
             </div>
         </div>
         <div class="col-6 col-sm-4 col-lg-2">
             <div class="stat">
-                <div class="num text-body">924</div>
+                <div class="num text-body">{{ totalEntregados }}</div>
                 <small class="text-body-secondary">Entregados</small>
             </div>
         </div>
         <div class="col-6 col-sm-4 col-lg-2">
             <div class="stat">
-                <div class="num text-danger">924</div>
+                <div class="num text-danger">{{ totalCancelados }}</div>
                 <small class="text-danger-emphasis">Cancelados</small>
             </div>
         </div>
@@ -54,38 +54,41 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- fila: pendiente -->
-                <tr>
-                    <td>#1598</td>
-                    <td>
-                        <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill px-3">Pendiente</span>
-                    </td>
-                    <td class="text-end">
-                        <button class="btn btn-outline-secondary btn-sm"><a href="#" routerLink="/admin/detalle-pedido"><i class="fa-solid fa-pen"></i></a></button>
-                    </td>
-                </tr>
+                @for pedido of arrayPedidos; track pedido.id {
+    <tr>
+        <td>#{{pedido.id}}</td>
+        
+        <td>
+            @switch (pedido.estado) {
+                @case ('Pendiente') {
+                    <span class="badge bg-secondary-subtle text-secondary-emphasis rounded-pill px-3">Pendiente</span>
+                }
+                @case ('Listo') {
+                    <span class="badge bg-success-subtle text-success-emphasis rounded-pill px-3">Listo</span>
+                }
+                @case ('Cancelado') {
+                    <span class="badge bg-danger-subtle text-danger-emphasis rounded-pill px-3">Cancelado</span>
+                }
+                @case ('Preparación') {
+                    <span class="badge bg-info-subtle text-info-emphasis rounded-pill px-3">Preparación</span>
+                }
+                @case ('Entregado') {
+                    <span class="badge bg-body-secondary text-body-secondary rounded-pill px-3">Entregado</span>
+                }
+                @default {
+                    <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill px-3">Desconocido</span>
+                }
+            }
+        </td>
+        
+        <td class="text-end">
+            <button class="btn btn-outline-secondary btn-sm" (click)="editarPedido(pedido)">
+                <i class="fa-solid fa-pen"></i>
+            </button>
+        </td>
+    </tr>
+}
 
-                <!-- fila: listo -->
-                <tr>
-                    <td>#4578</td>
-                    <td>
-                        <span class="badge bg-success-subtle text-success-emphasis rounded-pill px-3">Listo</span>
-                    </td>
-                    <td class="text-end">
-                        <button class="btn btn-outline-secondary btn-sm"><a href="#" routerLink="/admin/detalle-pedido"><i class="fa-solid fa-pen"></i></a></button>
-                    </td>
-                </tr>
-
-                <!-- fila: cancelado -->
-                <tr>
-                    <td>#1456</td>
-                    <td>
-                        <span class="badge bg-danger-subtle text-danger-emphasis rounded-pill px-3">Cancelado</span>
-                    </td>
-                    <td class="text-end">
-                        <button class="btn btn-outline-secondary btn-sm"><a href="#" routerLink="/admin/detalle-pedido"><i class="fa-solid fa-pen"></i></a></button>
-                    </td>
-                </tr>
             </tbody>
         </table>
     </div>
