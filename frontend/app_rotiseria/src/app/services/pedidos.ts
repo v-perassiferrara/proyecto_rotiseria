@@ -40,4 +40,13 @@ export class PedidosService {
       { headers }
     );
   }
+
+  cantidadPedidos(): Observable<any> {
+    const token = localStorage.getItem('token') || '';
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get(`${this.url}/pedidos?countEstado=true`, { headers });
+  }
 }

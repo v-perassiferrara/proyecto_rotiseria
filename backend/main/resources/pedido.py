@@ -10,75 +10,101 @@ from main.models import Pedidos_Productos_db
 
 
 class Pedidos(Resource):
-
-    # GET: obtener una lista de Pedidos  
+    # GET: obtener una lista de Pedidos
     @jwt_required(optional=True)
     def get(self):
-        page = 1 #Página inicial por defecto
-        per_page = 10  #Cantidad de elementos por página por defecto
-        
-            
+        page = 1  # Página inicial por defecto
+        per_page = 10  # Cantidad de elementos por página por defecto
+
         claims = get_jwt()
         current_identity = int(get_jwt_identity())
 
-        if claims.get("rol") == 'admin':
+        if claims.get("rol") == "admin":
             # Al admin le devuelve todas los pedidos
             pedidos = db.session.query(Pedido_db)
         else:
             # A los demás les devuelve solo sus pedidos
-            
+
             print(Pedido_db.fk_id_usuario)
             print(current_identity)
-            
-            pedidos = db.session.query(Pedido_db).filter(Pedido_db.fk_id_usuario == current_identity)
 
-            
+            pedidos = db.session.query(Pedido_db).filter(
+                Pedido_db.fk_id_usuario == current_identity
+            )
 
-        if request.args.get('page'):
-            page = int(request.args.get('page'))
-        if request.args.get('per_page'):
-            per_page = int(request.args.get('per_page'))
+        if request.args.get("page"):
+            page = int(request.args.get("page"))
+        if request.args.get("per_page"):
+            per_page = int(request.args.get("per_page"))
 
-        
         # ---FILTROS PARA PEDIDOS---
 
         # Filtrar por email de usuario (búsqueda parcial)
-        if request.args.get('email'):
-            pedidos = pedidos.join(Usuario_db, Pedido_db.fk_id_usuario == Usuario_db.id).filter(
-                Usuario_db.email.ilike(f"%{request.args.get('email')}%")
-            )
+        if request.args.get("email"):
+            pedidos = pedidos.join(
+                Usuario_db, Pedido_db.fk_id_usuario == Usuario_db.id
+            ).filter(Usuario_db.email.ilike(f"%{request.args.get('email')}%"))
 
         # Filtrar por nombre de producto (búsqueda parcial)
-        if request.args.get('producto'):
-            pedidos = pedidos.join(Pedidos_Productos_db, Pedido_db.id == Pedidos_Productos_db.fk_id_pedido).join(
-            Producto_db, Pedidos_Productos_db.fk_id_producto == Producto_db.id).filter(
-            Producto_db.nombre.ilike(f"%{request.args.get('producto')}%")
+        if request.args.get("producto"):
+            pedidos = (
+                pedidos.join(
+                    Pedidos_Productos_db,
+                    Pedido_db.id == Pedidos_Productos_db.fk_id_pedido,
+                )
+                .join(
+                    Producto_db, Pedidos_Productos_db.fk_id_producto == Producto_db.id
+                )
+                .filter(Producto_db.nombre.ilike(f"%{request.args.get('producto')}%"))
             )
-        
+
         # Filtrar por estado de pedido
-        if request.args.get('estado'):
-            pedidos = pedidos.filter(Pedido_db.estado == request.args.get('estado'))
-            if request.args.get('sortby_pedido_estado'):
-                pedidos = pedidos.order_by(Pedido_db.estado.desc() if request.args.get('sortby-estado') == 'desc' else Pedido_db.estado.asc())
-        
+        if request.args.get("estado"):
+            pedidos = pedidos.filter(Pedido_db.estado == request.args.get("estado"))
+            if request.args.get("sortby_pedido_estado"):
+                pedidos = pedidos.order_by(
+                    Pedido_db.estado.desc()
+                    if request.args.get("sortby-estado") == "desc"
+                    else Pedido_db.estado.asc()
+                )
+
         # Ordenar por fecha
-        if request.args.get('sortby-fecha'):
-            pedidos = pedidos.order_by(Pedido_db.fecha.desc() if request.args.get('sortby-fecha') == 'desc' else Pedido_db.fecha.asc())
+        if request.args.get("sortby-fecha"):
+            pedidos = pedidos.order_by(
+                Pedido_db.fecha.desc()
+                if request.args.get("sortby-fecha") == "desc"
+                else Pedido_db.fecha.asc()
+            )
 
         # Ordenar por estado
-        if request.args.get('sortby-estado'):
-            pedidos = pedidos.order_by(Pedido_db.estado.desc() if request.args.get('sortby-estado') == 'desc' else Pedido_db.estado.asc())
+        if request.args.get("sortby-estado"):
+            pedidos = pedidos.order_by(
+                Pedido_db.estado.desc()
+                if request.args.get("sortby-estado") == "desc"
+                else Pedido_db.estado.asc()
+            )
 
+        # Traer solo los estados y contar cuantos hay
         
-        
-        #Obtener valor paginado
+        if request.args.get("countEstado"):
+            # Contamos los pedidos por estado
+            count_by_estado = db.session.query(Pedido_db.estado, db.func.count(Pedido_db.id))
+            count_by_estado = count_by_estado.group_by(Pedido_db.estado).all()
+            count_by_estado = dict(count_by_estado)
+            
+            return jsonify(count_by_estado)
+
+        # Obtener valor paginado
         pedidos = pedidos.paginate(page=page, per_page=per_page, error_out=False)
 
-        return jsonify({'pedidos': [pedido.to_json() for pedido in pedidos.items],
-                  'total': pedidos.total,
-                  'pages': pedidos.pages,
-                  'page': page
-                })
+        return jsonify(
+            {
+                "pedidos": [pedido.to_json() for pedido in pedidos.items],
+                "total": pedidos.total,
+                "pages": pedidos.pages,
+                "page": page,
+            }
+        )
 
     # POST: Crear un pedido
     @jwt_required(optional=False)
@@ -87,7 +113,8 @@ class Pedidos(Resource):
         pedido = Pedido_db.from_json(request.get_json())
         db.session.add(pedido)
         db.session.commit()
-        return pedido.to_json(), 201 
+        return pedido.to_json(), 201
+
 
 class Pedido(Resource):
     # GET: Obtener un pedido. Rol: USER/ADMIN/EMPLEADO
@@ -95,26 +122,25 @@ class Pedido(Resource):
     def get(self, id):
         pedido = db.session.query(Pedido_db).get_or_404(id)
         return jsonify(pedido.to_json_completo())
-    
 
-    # DELETE: Eliminar un pedido. Rol: ADMIN/EMPLEADO   
+    # DELETE: Eliminar un pedido. Rol: ADMIN/EMPLEADO
     # Ver permisos por rol. Ej: Cliente debe poder borrar solo sus pedidos. Admin borrar cualquiera. Usar JWT Payload para verificar el rol
     @jwt_required(optional=True)
-    @role_required(roles = ["admin", "empleado"])
+    @role_required(roles=["admin", "empleado"])
     @activity_required
     def delete(self, id):
         pedido = db.session.query(Pedido_db).get_or_404(id)
-        setattr(pedido, 'estado', 'cancelado') 
+        setattr(pedido, "estado", "cancelado")
         db.session.add(pedido)
         db.session.commit()
         return {
-            'message': 'Pedido cancelado con éxito',
-            'pedido': pedido.to_json()
+            "message": "Pedido cancelado con éxito",
+            "pedido": pedido.to_json(),
         }, 200  # con 204 flask no devuelve el mensaje
 
-    # PUT: Editar un pedido. Rol: ADMIN  
+    # PUT: Editar un pedido. Rol: ADMIN
     @jwt_required(optional=True)
-    @role_required(roles = ["admin"])
+    @role_required(roles=["admin"])
     @activity_required
     def put(self, id):
         pedido = db.session.query(Pedido_db).get_or_404(id)

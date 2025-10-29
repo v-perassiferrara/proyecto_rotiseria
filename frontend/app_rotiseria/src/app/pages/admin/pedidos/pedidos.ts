@@ -1,12 +1,11 @@
 import { Component, HostListener, inject, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { Titlebar } from '../../../components/titlebar/titlebar';
 import { PedidosService } from '../../../services/pedidos';
 
 @Component({
   selector: 'app-pedidos',
   imports: [
-    RouterLink,
     Titlebar
 
   ],
@@ -23,60 +22,20 @@ export class Pedidos implements OnInit {
 
   pedidosService = inject(PedidosService);
   // totales por estado
-  totalPendientes = 0;
-  totalPreparacion = 0;
-  totalListos = 0;
-  totalEntregados = 0;
-  totalCancelados = 0;
+  pendiente = 0;
+  preparacion = 0;
+  listo = 0;
+  entregado = 0;
+  cancelado = 0;
 
-  calcularTotalProductos(): void {
-    this.totalPendientes = 0;
-    this.totalPreparacion = 0;
-    this.totalListos = 0;
-    this.totalEntregados = 0;
-    this.totalCancelados = 0;
-
-    // fuente de elementos: preferir verProductoComponents si existe
-    const source: any[] = Array.isArray((this as any).verProductoComponents)
-      ? (this as any).verProductoComponents
-      : this.arrayPedidos.flatMap(p => p.productos || []);
-
-    source.forEach((item: any) => {
-      const estado = (item.estado ?? '').toString().trim().toLowerCase();
-      // Normaliza diferentes nombres de cantidad posibles
-      const cantidad = Number(item.cantidadUsuarios ?? item.cantidad ?? item.quantity ?? 0) || 0;
-
-      switch (estado) {
-        case 'pendiente':
-        case 'pendientes':
-          this.totalPendientes += cantidad;
-          break;
-        case 'preparacion':
-        case 'en preparación':
-        case 'preparación':
-          this.totalPreparacion += cantidad;
-          break;
-        case 'listo':
-        case 'listos':
-          this.totalListos += cantidad;
-          break;
-        case 'entregado':
-        case 'entregados':
-          this.totalEntregados += cantidad;
-          break;
-        case 'cancelado':
-        case 'cancelados':
-          this.totalCancelados += cantidad;
-          break;
-        default:
-          break;
-      }
-    });
-  }
-  
-  ngOnInit(): void {
-    this.loadPedidos();
-  }
+  calcularTotalPedidos(): void {    
+    this.pedidosService.cantidadPedidos().subscribe((data: any) => {
+      this.pendiente = data['pendiente'];
+      this.preparacion = data['preparacion'];
+      this.listo = data['listo'];
+      this.entregado = data['entregado'];      
+      this.cancelado = data['cancelado'];
+  });}
 
   loadPedidos(): void {
     if (this.isLoading) return;
@@ -90,6 +49,7 @@ export class Pedidos implements OnInit {
         this.arrayPedidos = [...this.arrayPedidos, ...newPedidos];
         this.totalPages = data.pages || 1;
         this.isLoading = false;
+        this.calcularTotalPedidos();
       },
       error: (err) => {
         console.error('Error al cargar pedidos:', err);
@@ -98,13 +58,16 @@ export class Pedidos implements OnInit {
     });
   }
 
+  ngOnInit(): void {
+    this.loadPedidos();
+  }
+
   editarPedido(pedido:any){
     this.router.navigateByUrl(`/admin/detalle-pedido/${pedido.id}`);
   }
 
   
-
-  // 
+  // cuando el usuario llega al final de un paginate, trae mas
   @HostListener('window:scroll', [])
   onScroll(): void {
     const scrollPosition = window.innerHeight + window.scrollY;
