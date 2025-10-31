@@ -1,96 +1,14 @@
 <app-titlebar [title]="'Modificar Producto'" />
 
-<main class="container my-3" style="max-width:640px;">
-    <div style="padding: 10px; margin: 10px;">
-        <div style="height: 30px;" class=" m-1 d-inline-flex">
-            <app-back-button></app-back-button>
-        </div>
-        <div class="col-12 p-1 d-inline-flex">
-            <h2 class="text-primary text-black fw-bold" href="#">Producto</h2>
-        </div>
+<div style="padding: 10px; margin: 10px;">
+    <div style="height: 30px;" class=" m-1 d-inline-flex">
+        <app-back-button></app-back-button>
     </div>
 
-    <!-- Card: Datos del Producto -->
-    <div class="card card-round">
-        <div class="card-body">
-            <h6 class="fw-semibold mb-3">Datos del Producto</h6>
-
-            <!-- Imagen + Cambiar -->
-            <div class="d-flex align-items-start gap-3 mb-3">
-                <img id="preview" class="img-preview"
-                    src="/assets/pizza.webp" alt="Imagen del producto">
-                <div>
-                    <label for="file" class="btn btn-success">
-                        <i class="fa-solid fa-image me-1"></i> Cambiar imagen
-                    </label>
-                    <input type="file" id="file" class="d-none" accept="image/*">
-                    <div class="form-text mt-1">JPG o PNG. Máx 2 MB.</div>
-                </div>
-            </div>
-
-            <form id="formProducto" novalidate>
-                <!-- Nombre -->
-                <div class="mb-3">
-                    <label class="form-label text-uppercase small fw-semibold">Nombre</label>
-                    <input type="text" class="form-control" value="Empanada de Carne" required>
-                </div>
-
-                <!-- Precio -->
-                <div class="mb-3">
-                    <label class="form-label text-uppercase small fw-semibold">Precio</label>
-                    <div class="input-group">
-                        <span class="input-group-text">$</span>
-                        <input type="number" class="form-control" value="15000" min="0" step="1" required>
-                    </div>
-                </div>
-
-                <!-- Cantidad -->
-                <div class="mb-3">
-                    <label class="form-label text-uppercase small fw-semibold">Cantidad</label>
-                    <input type="number" class="form-control" value="24" min="0" step="1">
-                </div>
-
-                <!-- Categoría -->
-                <div class="mb-3">
-                    <label class="form-label text-uppercase small fw-semibold">Categoría</label>
-                    <select class="form-select">
-                        <option>Empanadas</option>
-                        <option>Pizzas</option>
-                        <option>Pollos</option>
-                        <option>Lomitos</option>
-                    </select>
-                </div>
-
-                <!-- Disponible / Destacado -->
-                <div class="row g-3 mb-2">
-                    <div class="col-12 col-sm-6">
-                        <label class="form-label text-uppercase small fw-semibold d-block">Disponible</label>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="chkDisponible" checked>
-                            <label class="form-check-label" for="chkDisponible">Mostrar en la carta</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <label class="form-label text-uppercase small fw-semibold d-block">Destacado</label>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="chkDestacado">
-                            <label class="form-check-label" for="chkDestacado">Aparecer en “Lo más pedido”</label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Descripción (opcional) -->
-                <div class="mb-1">
-                    <label class="form-label text-uppercase small fw-semibold">Descripción</label>
-                    <textarea class="form-control" rows="2" placeholder="Detalle breve del producto"></textarea>
-                </div>
-
-                <!-- Botones -->
-                <div class="d-flex gap-2 justify-content-center pt-2" style="max-width: 600px; margin:auto;">
-                    <a href="#" routerLink="/admin/productos" class="btn btn-outline-secondary flex-fill">Cancelar</a>
-                    <button type="submit" class="btn btn-success flex-fill">Guardar</button>
-                </div>
-            </form>
-        </div>
+    <div class="col-12 p-1 d-inline-flex">
+        <h2 class="text-primary text-black fw-bold" href="#">Datos del Producto</h2>
     </div>
-</main>
+
+    <!-- Formulario de datos del producto-->
+    <app-abm-producto [producto]="producto"></app-abm-producto>
+</div>

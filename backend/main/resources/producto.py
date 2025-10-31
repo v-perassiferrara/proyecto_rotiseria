@@ -22,28 +22,29 @@ class Productos(Resource):
 
         # Bandera para saber si se usó el filtro top3
         is_top3 = False
-        
+
         # Objeto de consulta final que se paginará
         query_to_paginate = productos
 
         # --- FILTRO PARA OBTENER LOS PRIMEROS 3 PRODUCTOS RECIENTES ---
         if request.args.get('top3', type=str) and request.args.get('top3', type=str).lower() == 'true':
 
+            query_to_paginate = query_to_paginate.filter(Producto_db.visible == True)
             query_to_paginate = query_to_paginate.order_by(Producto_db.id.desc())
             query_to_paginate = query_to_paginate.limit(3)
-            
+
             per_page = 3
             page = 1
             is_top3 = True
         # -------------------------------------------------------------------------
-        
+
         # --- MANEJO DE PAGINACIÓN ESTÁNDAR ---
         if not is_top3:
             if request.args.get('page'):
                 page = int(request.args.get('page'))
             if request.args.get('per_page'):
                 per_page = int(request.args.get('per_page'))
-            
+
 
         # ---FILTROS PARA PRODUCTOS---
 
@@ -58,7 +59,7 @@ class Productos(Resource):
         # Filtrar por precio máximo
         if request.args.get('precio_max'):
             productos = productos.filter(Producto_db.precio <= float(request.args.get('precio_max')))
-            
+
         # Filtrar por id de categoria
         if request.args.get('categoria'):
             productos = productos.filter(Producto_db.fk_id_categoria == int(request.args.get('categoria')))
@@ -71,7 +72,7 @@ class Productos(Resource):
         if request.args.get('sortby_precio'):
             productos = productos.order_by(Producto_db.precio.desc() if request.args.get('sortby_precio') == 'desc' else Producto_db.precio.asc())
 
-                
+
         #Obtener valor paginado
         productos = productos.paginate(page=page, per_page=per_page, error_out=False)
 

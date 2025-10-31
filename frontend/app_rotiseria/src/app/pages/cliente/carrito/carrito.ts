@@ -64,6 +64,11 @@ import { CommonModule } from '@angular/common';
   }
 
   confirmarPedido() {
+    if (!this.carritoList || this.carritoList.length === 0) {
+      alert('El carrito está vacío. Agrega productos antes de confirmar el pedido.');
+      return;
+    }
+
     this.carritoService.postPedidoProducto(this.carritoList).subscribe({
       next: (response: any) => {
         console.log('Pedido creado:', response);
@@ -75,6 +80,10 @@ import { CommonModule } from '@angular/common';
         alert('Error al crear el pedido');
       }
     });
+  }
+
+  carritoVacio(): boolean {
+    return !this.carritoList || this.carritoList.length === 0;
   }
 
   ngOnInit(): void {

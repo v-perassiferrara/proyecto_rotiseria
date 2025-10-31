@@ -55,7 +55,7 @@
              }
 
             <div class="tittle-bar col-12 d-flex justify-content-center">
-                <a (click)="confirmarPedido()" class="col-10 btn btn-success mt-2 w-70">Confirmar</a>
+                <a (click)="confirmarPedido()" [class.disabled]="carritoVacio()" [attr.aria-disabled]="carritoVacio()" class="col-10 btn btn-success mt-2 w-70">Confirmar</a>
             </div>
 
         </div>
