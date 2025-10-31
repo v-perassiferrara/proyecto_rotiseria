@@ -23,18 +23,20 @@
             </div>
         </div>
     </div>
-    <div class="row g-3 align-items-center mb-3">
-        <div class="col-12">
-            <label class="form-label">Rol</label>
-            <div class="input-group">
-                <select class="form-select" formControlName="rol" [disabled]="authService.getRole() !== 'admin'">
-                    <option value="admin">Administrador</option>
-                    <option value="empleado">Empleado</option>
-                    <option value="cliente">Cliente</option>
-                </select>
+    @if (authService.getRole() === 'admin') {
+        <div class="row g-3 align-items-center mb-3">
+            <div class="col-12">
+                <label class="form-label">Rol</label>
+                <div class="input-group">
+                    <select class="form-select" formControlName="rol">
+                        <option value="admin">Administrador</option>
+                        <option value="empleado">Empleado</option>
+                        <option value="cliente">Cliente</option>
+                    </select>
+                </div>
             </div>
         </div>
-    </div>
+    }
     <div class="row g-3 align-items-center mb-3">
         <div class="col-12">
             <label class="form-label">Estado</label>

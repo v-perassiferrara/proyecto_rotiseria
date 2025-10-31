@@ -26,7 +26,8 @@
             <p class="text-secondary fs-6" href="#">Disfruta de nuestros clásicos</p>
         </div>
         <div class="col-4 py-2 p-0">
-            <button type="button" class="btn"><a href="#" routerLink="/productos">Ver <i class="fa-solid fa-arrow-right"></i></a></button>
+            <button type="button" class="btn"><a href="#" routerLink="/productos">Ver <i
+                        class="fa-solid fa-arrow-right"></i></a></button>
         </div>
     </div>
 
@@ -58,18 +59,19 @@
             <div class="container my-3">
                 <div class="row g-3">
                     @for (categoria of categorias; track categoria.id) {
+                    @if (categoria.visible){
                     <div class="card mb-3 p-2">
                         <div class="d-flex align-items-center">
-
-                            <img [src]="categoria.imagenUrl" class="rounded me-3" alt="Pizza" style="width: 80px; height: 80px; object-fit: cover;">
-
+                            <img [src]="categoria.imagenUrl" class="rounded me-3" alt="Pizza"
+                                style="width: 80px; height: 80px; object-fit: cover;">
                             <div class="flex-grow-1">
                                 <h5 class="mb-1">{{categoria.nombre}}</h5>
                             </div>
-
-                            <a [routerLink]="['/productos']" [queryParams]="{ categoria: categoria.id }" class="btn btn-success">Ver</a>
+                            <a [routerLink]="['/productos']" [queryParams]="{ categoria: categoria.id }"
+                                class="btn btn-success">Ver</a>
                         </div>
                     </div>
+                    }
                     } @empty {
                     <p class="text-center">No hay productos disponibles.</p>
                     }

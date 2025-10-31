@@ -14,8 +14,9 @@
     <div class="d-flex flex-wrap gap-2">
       <button class="btn btn-outline-dark btn-sm" (click)="mostrarTodos()">Todos</button>
       @for (categoria of categorias; track categoria.id) {
-      <button class="btn btn-outline-dark btn-sm" (click)="getProductosByCategoria(categoria.id)">{{ categoria.nombre
-        }}</button>
+        @if (categoria.visible) {
+          <button class="btn btn-outline-dark btn-sm" (click)="getProductosByCategoria(categoria.id)">{{ categoria.nombre }}</button>
+        }
       }
     </div>
   </div>
@@ -23,7 +24,7 @@
 
 
 <!-- Productos -->
-<div class="container my-3">
+<div class="container my-3" style="padding-bottom: 90px;">
   <div class="row g-3">
     @for (producto of arrayFiltered; track producto.id) {
       @if (producto.visible){

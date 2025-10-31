@@ -7,6 +7,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class ProductosService {
+
   private http = inject(HttpClient);
 
   url = environment.apiUrl;
@@ -58,6 +59,15 @@ export class ProductosService {
       'Authorization': `Bearer ${token}`
     });
     return this.http.put(`${this.url}/producto/${id}`, producto, { headers });
+  }
+
+  putProductosVisibilityByCategoria(categoriaId: number, visible: boolean): Observable<any> {
+    const token = localStorage.getItem('token') || '';
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.put(`${this.url}/productos?categoriaId=${categoriaId}`, { visible }, { headers });
   }
 
 }

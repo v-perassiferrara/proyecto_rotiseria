@@ -1,12 +1,13 @@
- <!-- Header -->
+<!-- Header -->
 <app-titlebar [title]="'Promociones'" [admin]="true" />
 
 <main class="container py-3">
 
     <!-- Agregar promociones -->
     <div class="width-100 d-flex justify-content-end my-2 align-items-end">
-        <button type="button" class="btn btn-success w-25"><a class="btn-success" href="#" routerLink="/admin/detalle-promocion"
-                data-bs-toggle="modal" data-bs-target="#detallePromocionModal"><i class="fa-solid fa-add"></i></a></button>
+        <button type="button" class="btn btn-success w-25"><a class="btn-success" href="#"
+                routerLink="/admin/detalle-promocion" data-bs-toggle="modal" data-bs-target="#detallePromocionModal"><i
+                    class="fa-solid fa-add"></i></a></button>
     </div>
 
     <!-- Tabla de promociones -->
@@ -14,51 +15,31 @@
         <table class="table align-middle mb-0">
             <thead class="table-light">
                 <tr>
-                    <th scope="col" class="w-30">Título</th>
-                    <th scope="col" class="w-40">Válida Hasta</th>
-                    <th scope="col" class="text-end w-30"></th>
+                    <th scope="col" class="w-60">Título</th>
+                    <th scope="col" class="w-20">Válida Hasta</th>
+                    <th scope="col" class="text-end w-20"></th>
                 </tr>
             </thead>
             <tbody>
-
+                @for (promocion of arrayPromociones; track promocion.id) {
                 <tr>
-                    <td>#1598</td>
+                    <td class="abreviado">{{promocion.nombre}}</td>
                     <td>
-                        <span class="badge text-dark">17/02</span>
+                        <span class="badge text-dark">{{ promocion.fecha_fin }}</span>
                     </td>
                     <td class="text-end">
-                        <button class="btn btn-outline-secondary btn-sm"><a href="#" routerLink="/admin/detalle-pedido"><i
+                        <button class="btn btn-outline-secondary btn-sm"><a><i
                                     class="fa-solid fa-trash"></i></a></button>
                     </td>
                 </tr>
-
-                <tr>
-                    <td>#4578</td>
-                    <td>
-                        <span class="badge text-dark">21/09</span>
-                    </td>
-                    <td class="text-end">
-                        <button class="btn btn-outline-secondary btn-sm"><a href="#" routerLink="/admin/detalle-pedido"><i
-                                    class="fa-solid fa-trash"></i></a></button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>#1456</td>
-                    <td>
-                        <span class="badge text-dark">24/10</span>
-                    </td>
-                    <td class="text-end">
-                        <button class="btn btn-outline-secondary btn-sm"><a href="#" routerLink="/admin/detalle-pedido"><i
-                                    class="fa-solid danger fa-trash"></i></a></button>
-                    </td>
-                </tr>
+                }
             </tbody>
         </table>
     </div>
 
     <!-- Modal Detalle Promocion -->
-    <div class="modal fade" id="detallePromocionModal" tabindex="-1" aria-labelledby="detallePromocionModalLabel" aria-hidden="true">
+    <div class="modal fade" id="detallePromocionModal" tabindex="-1" aria-labelledby="detallePromocionModalLabel"
+        aria-hidden="true">
 
         <div class="modal-dialog modal-dialog-centered">
 
@@ -72,7 +53,8 @@
                 <div class="modal-body">
 
                     <!-- formulario -->
-                    <div class="container align-items-center" style="background-color: white; z-index: 2; padding: 1rem;">
+                    <div class="container align-items-center"
+                        style="background-color: white; z-index: 2; padding: 1rem;">
                         <div class="d-flex justify-content-center align-items-center" style="gap: 2rem;">
                             <div class="text-center pb-2" style="border-bottom: 2px solid green; color: green;"></div>
                         </div>
@@ -97,7 +79,7 @@
                         </div>
 
                         <!-- Botones -->
-                        
+
                     </div>
 
                 </div>

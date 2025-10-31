@@ -3,7 +3,7 @@ from flask import request, jsonify
 from .. import db
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 from main.auth.decorators import role_required
-from main.models import Categoria_db
+from main.models import Categoria_db, Producto_db
 
 
 class Categorias(Resource):
@@ -68,7 +68,11 @@ class Categoria(Resource):
     @role_required(roles = ["admin"]) 
     def delete(self, id):
         categoria = db.session.query(Categoria_db).get_or_404(id)
-        setattr(categoria, 'visible', False) 
+        setattr(categoria, 'visible', False)
+
+        for producto in categoria.productos:
+            setattr(producto, 'visible', False)
+
         db.session.add(categoria)
         db.session.commit()
         return {
@@ -82,9 +86,15 @@ class Categoria(Resource):
     @role_required(roles = ["admin", "empleado"]) 
     def put(self, id):
         categoria = db.session.query(Categoria_db).get_or_404(id)
-        data = request.get_json().items()
-        for key, value in data:
+        data = request.get_json()
+
+        if 'visible' in data:
+            for producto in categoria.productos:
+                setattr(producto, 'visible', data['visible'])
+
+        for key, value in data.items():
             setattr(categoria, key, value)
+            
         db.session.add(categoria)
         db.session.commit()
         return categoria.to_json_complete(), 201
