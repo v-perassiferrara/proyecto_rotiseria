@@ -3,36 +3,33 @@
 
 <main class="container py-3">
 
-    <!-- Saludo -->
-    <h4 class="fw-bold mb-3">Hola, <span class="text-body-secondary">@nombre</span>!</h4>
-
     <!-- Stats -->
     <div class="row g-2 mb-3">
-        <div class="col-6 col-sm-4 col-lg-2">
+        <div class="col-6 col-sm-4 col-lg-2" (click)="filtrarPorEstado('pendiente')">
             <div class="stat">
                 <div class="num text-secondary">{{ pendiente }}</div>
                 <small class="text-secondary">Pendientes</small>
             </div>
         </div>
-        <div class="col-6 col-sm-4 col-lg-2">
+        <div class="col-6 col-sm-4 col-lg-2" (click)="filtrarPorEstado('preparacion')">
             <div class="stat">
                 <div class="num text-warning">{{ preparacion }}</div>   
                 <small class="text-warning-emphasis">En Preparación</small>
             </div>
         </div>
-        <div class="col-6 col-sm-4 col-lg-2">
+        <div class="col-6 col-sm-4 col-lg-2" (click)="filtrarPorEstado('listo')">
             <div class="stat">
                 <div class="num text-success">{{ listo }}</div>
                 <small class="text-success-emphasis">Listos</small>
             </div>
         </div>
-        <div class="col-6 col-sm-4 col-lg-2">
+        <div class="col-6 col-sm-4 col-lg-2" (click)="filtrarPorEstado('entregado')">
             <div class="stat">
                 <div class="num text-primary">{{ entregado }}</div>
                 <small class="text-primary">Entregados</small>
             </div>
         </div>
-        <div class="col-6 col-sm-4 col-lg-2">
+        <div class="col-6 col-sm-4 col-lg-2" (click)="filtrarPorEstado('cancelado')">
             <div class="stat">
                 <div class="num text-danger">{{ cancelado }}</div>
                 <small class="text-danger-emphasis">Cancelados</small>
@@ -41,7 +38,18 @@
     </div>
 
     <!-- Título sección -->
-    <h6 class="fw-bold mt-2 mb-2">Pedidos</h6>
+    <div class="d-flex justify-content-between align-items-center">
+        <h6 class="fw-bold mt-2 mb-2">Pedidos</h6>
+        <button class="btn btn-outline-dark btn-sm" (click)="mostrarTodos()">Mostrar Todos</button>
+    </div>
+
+    <!-- Buscador -->   
+    <div class="p-1 mb-2">
+            <div class="input-group">
+                <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search"></i></span>
+                <input #searchInput (input)="buscarPedido()" [(ngModel)]="numeroPedido"  type="number" class="form-control border-start-0" placeholder="Buscar por numero" >
+            </div>
+    </div>
 
     <!-- Tabla de pedidos -->
     <div class="table-responsive rounded-3 bg-white border">
@@ -54,7 +62,7 @@
                 </tr>
             </thead>
             <tbody>
-                @for (pedido of arrayPedidos; track $index) {
+                @for (pedido of pedidosFiltered; track $index) {
                 <tr>
                     <td>#{{pedido.id}}</td>
                     <td>

@@ -1,31 +1,22 @@
-import { Component, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
+import { Component, ViewChildren, QueryList, AfterViewInit, inject } from '@angular/core';
 import { Titlebar } from '../../../components/titlebar/titlebar';
 import { VerUser } from '../../../components/usuarios/ver-user/ver-user';
+import { NgClass } from '@angular/common';
+import { UsuariosService } from '../../../services/usuarios';
 
 @Component({
   selector: 'app-usuarios',
   imports: [
     Titlebar,
-    VerUser
+    VerUser,
+    NgClass
   ],
   templateUrl: './usuarios.html',
   styleUrl: './usuarios.css'
 })
-export class Usuarios implements AfterViewInit {
-  @ViewChildren(VerUser) verUserComponents!: QueryList<VerUser>;
+export class Usuarios {
   
   totalUsuarios = 0;
-
-  ngAfterViewInit() {
-    // Esperar a que los componentes hijos carguen sus datos
-    setTimeout(() => {
-      this.calcularTotalUsuarios();
-    }, 1000);
-  }
-
-  calcularTotalUsuarios() {
-    this.totalUsuarios = this.verUserComponents.reduce((total, component) => {
-      return total + component.cantidadUsuarios;
-    }, 0);
-  }
+  selectedTab: 'empleados' | 'clientes' = 'empleados';
+  usuariosService = inject(UsuariosService);
 }

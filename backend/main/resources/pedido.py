@@ -44,6 +44,9 @@ class Pedidos(Resource):
             pedidos = pedidos.join(
                 Usuario_db, Pedido_db.fk_id_usuario == Usuario_db.id
             ).filter(Usuario_db.email.ilike(f"%{request.args.get('email')}%"))
+        
+        if request.args.get("numeroPedido"):
+            pedidos = pedidos.filter(Pedido_db.id == int(request.args.get("numeroPedido")))
 
         # Filtrar por nombre de producto (búsqueda parcial)
         if request.args.get("producto"):
@@ -57,6 +60,7 @@ class Pedidos(Resource):
                 )
                 .filter(Producto_db.nombre.ilike(f"%{request.args.get('producto')}%"))
             )
+
 
         # Filtrar por estado de pedido
         if request.args.get("estado"):

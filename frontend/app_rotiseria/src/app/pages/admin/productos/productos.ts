@@ -4,13 +4,16 @@ import { Titlebar } from '../../../components/titlebar/titlebar';
 import { ProductosService } from '../../../services/productos';
 import { CategoriasService } from '../../../services/categorias';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-productos',
   imports: [
     RouterLink,
     Titlebar,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   templateUrl: './productos.html',
   styleUrl: './productos.css'
@@ -18,14 +21,16 @@ import { FormsModule } from '@angular/forms';
 export class Productos implements OnInit{
 
   productos: any[] = [];
-  productosFiltred: any[] = [];
+  productosFiltered: any[] = [];
 
   categorias: any[] = [];
-  categoriasFiltred: any[] = [];
+  categoriasFiltered: any[] = [];
 
   currentPage: number = 1;
   totalPages: number = 1;
   isLoading: boolean = false;
+
+  selectedTab: 'productos' | 'categorias' = 'productos';
 
   rol = input.required<string>();
   router = inject(Router);
@@ -40,7 +45,7 @@ export class Productos implements OnInit{
     this.categoriasService.getCategorias().subscribe({
       next: (data: any) => {
         this.categorias = data.categorias || [];
-        this.categoriasFiltred = [...this.categorias];
+        this.categoriasFiltered = [...this.categorias];
       },
       error: (err) => {
         console.error('Error al cargar categorías:', err);
@@ -58,7 +63,7 @@ export class Productos implements OnInit{
       next: (data: any) => {
         const newProductos = data.productos || [];
         this.productos = [...this.productos, ...newProductos];
-        this.productosFiltred = [...this.productos];
+        this.productosFiltered = [...this.productos];
         this.totalPages = data.pages || 1;
         this.isLoading = false;
       },
@@ -87,14 +92,28 @@ nombreProducto!: string;
 
 buscarProducto() {
   if (!this.nombreProducto) {
-    this.productosFiltred = [...this.productos];
+    this.productosFiltered = [...this.productos];
     return;
   }
   let nombreLower = this.nombreProducto.toLowerCase();
-  this.productosFiltred = this.productos.filter((p: any) =>
+  this.productosFiltered = this.productos.filter((p: any) =>
     p.nombre?.toLowerCase().includes(nombreLower)
   );
 }
+
+// Para búsqueda de categorias
+nombreCategoria!: string;
+buscarCategoria() {
+  if (!this.nombreCategoria) {
+    this.categoriasFiltered = [...this.categorias];
+    return;
+  }
+  let nombreLower = this.nombreCategoria.toLowerCase();
+  this.categoriasFiltered = this.categorias.filter((c: any) =>
+    c.nombre?.toLowerCase().includes(nombreLower)
+  );
+}
+
   editarProducto(producto:any){
     console.log("Editando producto: ", producto);
     this.router.navigateByUrl(`/admin/producto/${producto.id}`);

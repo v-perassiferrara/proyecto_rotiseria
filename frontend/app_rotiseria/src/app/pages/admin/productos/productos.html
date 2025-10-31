@@ -1,12 +1,94 @@
- <!-- Header -->
+<!-- Header -->
 <app-titlebar [title]="'Productos'" [admin]="true" />
 
+<!-- pestañas pequeñas -->
+<div class="container mt-3">
+    <ul class="nav nav-pills justify-content-start gap-2">
+        <li class="nav-item">
+            <button class="btn btn-sm"
+                [ngClass]="{'btn-success': selectedTab === 'productos', 'btn-outline-secondary': selectedTab !== 'productos'}"
+                (click)="selectedTab = 'productos'">
+                Productos
+            </button>
+        </li>
+        <li class="nav-item">
+            <button class="btn btn-sm"
+                [ngClass]="{'btn-success': selectedTab === 'categorias', 'btn-outline-secondary': selectedTab !== 'categorias'}"
+                (click)="selectedTab = 'categorias'">
+                Categorías
+            </button>
+        </li>
+    </ul>
+</div>
 <main class="container py-3">
     <div class="container w-100">
+        <div class="container-lg">
+            @if (selectedTab === 'categorias') {
+            <!-- Categorías (se muestra solo si selectedTab === 'categorias') -->
+            <h1 class="fw-bold mt-4" style="border-radius: 14px;">Categorías</h1>
+            <div class="p-1 mb-2">
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search"></i></span>
+                    <input (input)="buscarCategoria()" [(ngModel)]="nombreCategoria" type="text"
+                        class="form-control border-start-0" placeholder="Buscar por nombre">
+                </div>
+            </div>
+            @for (categoria of categorias; track categoria.id) {
+            <div class="d-flex flex-row justify-content-between align-content-center g-3 p-2 align-items-center mb-3 bg-white rounded-3"
+                style="margin-bottom: 50px;">
+                <div class="col">
+                    <img [src]="categoria.imagenUrl" class="rounded me-3" alt="{{categoria.nombre}}"
+                        style="width: 80px; height: 80px; object-fit: cover;">
+                </div>
+                <div class="col">
+                    <p><b>{{categoria.nombre}}</b></p>
+                </div>
+                <div class="col d-flex justify-content-end text-end gap-2">
+                    <button class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                    <button class="btn btn-outline-secondary btn-sm" (click)="editarCategoria(categoria)"><i
+                            class="fa-solid fa-pen"></i></button>
+                </div>
+            </div>
+            }
+            } @else {
+            <!-- Productos (se muestra solo si selectedTab === 'productos') -->
+            <h1 class="fw-bold mt-4" style="border-radius: 14px;">Productos</h1>
+            <div class="p-1 mb-2">
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search"></i></span>
+                    <input (input)="buscarProducto()" [(ngModel)]="nombreProducto" type="text"
+                        class="form-control border-start-0" placeholder="Buscar por nombre">
+                </div>
+            </div>
+            @for (producto of productosFiltered; track producto.id) {
+            <div class="d-flex flex-row justify-content-between align-content-center g-3 p-2 align-items-center mb-3 bg-white rounded-3"
+                style="margin-bottom: 50px;">
+                <div class="col">
+                    <img [src]="producto.imagenUrl" class="rounded me-3" alt="{{producto.nombre}}"
+                        style="width: 80px; height: 80px; object-fit: cover;">
+                </div>
+                <div class="col">
+                    <p><b>{{producto.nombre}}</b></p>
+                    <p class="text-muted mb-0">${{producto.precio}}</p>
+                </div>
+                <div class="col d-flex justify-content-end text-end gap-2">
+                    <button class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                    <button class="btn btn-outline-secondary btn-sm" (click)="editarProducto(producto)"><i
+                            class="fa-solid fa-pen"></i></button>
+                </div>
+            </div>
+            }
 
+            }
+        </div>
+    </div>
+
+    <!--<div class="container w-100"></div>   
+        
         <div class="container-lg">
             <h1 class="fw-bold mt-4" style="border-radius: 14px;">Categorías</h1>
-
+            <div class="p-1 mb-2">
+            </div>
             @for (categoria of categorias; track categoria.id) {
                 <div class="d-flex flex-row justify-content-between align-content-center g-3 p-2 align-items-center mb-3 bg-white rounded-3" style="margin-bottom: 50px;">
                     <div class="col">
@@ -26,19 +108,9 @@
     </div>
 
     <div class="container w-100">
-
         <div class="container-lg">
             <h1 class="fw-bold mt-4" style="border-radius: 14px;">Productos</h1>
-
-            <div class="p-1 mb-2">
-                <div class="input-group">
-                    <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search"></i></span>
-                    <input (input)="buscarProducto()" [(ngModel)]="nombreProducto"  type="text" class="form-control border-start-0" placeholder="Buscar por nombre" >
-                </div>
-            </div>
-
-
-            @for (producto of productosFiltred; track producto.id) {
+            @for (producto of productosFiltered; track producto.id) {
                 <div class="d-flex flex-row justify-content-between align-content-center g-3 p-2 align-items-center mb-3 bg-white rounded-3" style="margin-bottom: 50px;">
                     <div class="col">
                         <img [src]="producto.imagenUrl" class="rounded me-3" alt="{{producto.nombre}}" style="width: 80px; height: 80px; object-fit: cover;">
@@ -53,9 +125,8 @@
                     </div>
                 </div>
             }
-
-
         </div>
     </div>
+    -->
 
 </main>

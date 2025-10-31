@@ -30,7 +30,9 @@ export const routes: Routes = [
     {path:'admin/productos',    loadComponent: () => import('./pages/admin/productos/productos').then(m => m.Productos),canActivate: [authsessionGuard]},
     {path:'admin/pedidos',    loadComponent: () => import('./pages/admin/pedidos/pedidos').then(m => m.Pedidos),canActivate: [authsessionGuard]},
     {path:'admin/usuarios',    loadComponent: () => import('./pages/admin/usuarios/usuarios').then(m => m.Usuarios),canActivate: [authsessionGuard]},
-    
+    {path: 'admin/detalle-pedido/:id', loadComponent: () => import('./pages/admin/detalle-pedido/detalle-pedido').then(m => m.DetallePedido), canActivate: [authsessionGuard]},
+    {path: 'admin/detalle-producto/:id', loadComponent: () => import('./pages/admin/detalle-producto/detalle-producto').then(m => m.DetalleProducto), canActivate: [authsessionGuard]},
+    {path: 'admin/detalle-usuario/:id', loadComponent: () => import('./pages/admin/detalle-usuario/detalle-usuario').then(m => m.DetalleUsuario), canActivate: [authsessionGuard]},
     
     // Errores
     {path:'error',    loadComponent: () => import('./pages/genericos/error-page/error-page').then(m => m.ErrorPage)},

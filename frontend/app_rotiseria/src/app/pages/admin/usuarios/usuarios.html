@@ -1,22 +1,32 @@
  <!-- Header -->
 <app-titlebar [title]="'Usuarios'" [admin]="true" />
 
-<div class="container-fluid justify-content-center">
-    <div
-        class="row justify-content-center align-items-center p-3 pt-0 pb-0">
-        <h1
-            class="text-primary text-black fw-bold my-4 text-center">Usuarios
-            Activos</h1>
-        <div
-            class="col-12 d-flex justify-content-center align-items-center mb-2">
-            <div class="stat w-50 text-center" style="border-radius: 20px; border: 1px solid #ccc; padding: 2rem 0; box-shadow: 0px 0px 10px grey;">
-                <div class="num text-success" style="font-size: 3rem; font-weight: bold; color: green;">{{ totalUsuarios }}</div>
-            </div>
-        </div>
-    </div>
+<!-- pestañas pequeñas -->
+<div class="container mt-3">
+    <ul class="nav nav-pills justify-content-start gap-2">
+        <li class="nav-item">
+            <button class="btn btn-sm"
+                [ngClass]="{'btn-success': selectedTab === 'empleados', 'btn-outline-secondary': selectedTab !== 'empleados'}"
+                (click)="selectedTab = 'empleados'">
+                Empleados
+            </button>
+        </li>
+        <li class="nav-item">
+            <button class="btn btn-sm"
+                [ngClass]="{'btn-success': selectedTab === 'clientes', 'btn-outline-secondary': selectedTab !== 'clientes'}"
+                (click)="selectedTab = 'clientes'">
+                Clientes
+            </button>
+        </li>
+    </ul>
+</div>
 
+<div class="container-fluid justify-content-center">
+    @if (selectedTab === 'empleados') {
     <!-- Tabla Empleados -->
     <app-ver-user [rol]="'Empleado'"></app-ver-user>
-
+    } @else {
     <!-- Tabla Clientes -->
     <app-ver-user [rol]="'Cliente'"></app-ver-user>
+    }
+</div>

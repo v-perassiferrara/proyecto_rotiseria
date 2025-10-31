@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PedidosService {
+
   private http = inject(HttpClient);
 
   url = 'http://localhost:3435';
@@ -48,5 +49,23 @@ export class PedidosService {
       'Authorization': `Bearer ${token}`
     });
     return this.http.get(`${this.url}/pedidos?countEstado=true`, { headers });
+  }
+
+  getPedidosByNumeroPedido(numeroPedido: number) {
+    const token = localStorage.getItem('token') || '';
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get(`${this.url}/pedidos?numeroPedido=${numeroPedido}`, { headers });
+  }
+
+  getPedidosByEstado(estado: string) {
+    const token = localStorage.getItem('token') || '';
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get(`${this.url}/pedidos?estado=${estado}`, { headers });
   }
 }

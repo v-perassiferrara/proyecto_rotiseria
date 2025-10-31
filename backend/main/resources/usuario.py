@@ -50,6 +50,12 @@ class Usuarios(Resource):
         if request.args.get('sortby_email'):
             usuarios = usuarios.order_by(Usuario_db.email.desc() if request.args.get('sortby_email') == 'desc' else Usuario_db.email.asc())
  
+        # Cantidad de usuarios por rol
+        if request.args.get('count'):
+            count_by_rol = db.session.query(Usuario_db.rol, db.func.count(Usuario_db.id))
+            count_by_rol = count_by_rol.group_by(Usuario_db.rol).all()
+            count_by_rol = dict(count_by_rol)
+            return jsonify(count_by_rol)
 
         #Obtener valor paginado
         usuarios = usuarios.paginate(page=page, per_page=per_page, error_out=False)
