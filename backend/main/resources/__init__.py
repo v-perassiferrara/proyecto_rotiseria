@@ -18,3 +18,6 @@ from .valoraciones import Valoracion as ValoracionResource
 
 from .categoria import Categoria as CategoriaResource
 from .categoria import Categorias as CategoriasResource
+
+from .promocion import Promocion as PromocionResource
+from .promocion import Promociones as PromocionesResource

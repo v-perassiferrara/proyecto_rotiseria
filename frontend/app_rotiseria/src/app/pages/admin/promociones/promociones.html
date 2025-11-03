@@ -1,13 +1,12 @@
 <!-- Header -->
 <app-titlebar [title]="'Promociones'" [admin]="true" />
-
 <main class="container py-3">
 
     <!-- Agregar promociones -->
     <div class="width-100 d-flex justify-content-end my-2 align-items-end">
-        <button type="button" class="btn btn-success w-25"><a class="btn-success" href="#"
-                routerLink="/admin/detalle-promocion" data-bs-toggle="modal" data-bs-target="#detallePromocionModal"><i
-                    class="fa-solid fa-add"></i></a></button>
+        <button type="button" class="btn btn-success w-25" (click)="crearPromocion()">
+            <i class="fa-solid fa-add"></i>
+        </button>
     </div>
 
     <!-- Tabla de promociones -->
@@ -28,72 +27,12 @@
                         <span class="badge text-dark">{{ promocion.fecha_fin }}</span>
                     </td>
                     <td class="text-end">
-                        <button class="btn btn-outline-secondary btn-sm"><a><i
-                                    class="fa-solid fa-trash"></i></a></button>
+                        <button class="btn btn-outline-danger btn-sm"><i
+                                    class="fa-solid fa-trash"></i></button>
                     </td>
                 </tr>
                 }
             </tbody>
         </table>
     </div>
-
-    <!-- Modal Detalle Promocion -->
-    <div class="modal fade" id="detallePromocionModal" tabindex="-1" aria-labelledby="detallePromocionModalLabel"
-        aria-hidden="true">
-
-        <div class="modal-dialog modal-dialog-centered">
-
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h5 class="modal-title" id="detallePromocionModalLabel">Nueva Promoción</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                </div>
-
-                <div class="modal-body">
-
-                    <!-- formulario -->
-                    <div class="container align-items-center"
-                        style="background-color: white; z-index: 2; padding: 1rem;">
-                        <div class="d-flex justify-content-center align-items-center" style="gap: 2rem;">
-                            <div class="text-center pb-2" style="border-bottom: 2px solid green; color: green;"></div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Titulo</label>
-                            <input type="text" class="form-control" placeholder="Martes de pizza!!">
-                        </div>
-                        <div class='mb-3'>
-                            <label for="file" class="btn btn-success">
-                                <i class="fa-solid fa-image me-1"></i> Cambiar imagen
-                            </label>
-                            <input type="file" id="file" class="d-none" accept="image/*">
-                            <div class="form-text mt-1">JPG o PNG. Máx 2 MB.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Descripcion</label>
-                            <textarea class="form-control" rows="3" placeholder="Desde UM Gang queriamos..."></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Valido hasta</label>
-                            <input type="date" class="form-control">
-                        </div>
-
-                        <!-- Botones -->
-
-                    </div>
-
-                </div>
-
-                <div class="modal-footer">
-                    <div class="d-flex gap-2 justify-content-center align-items-end pt-1" style="margin:auto;">
-                        <button type="submit" class="btn btn-success flex-fill">Guardar</button>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
 </main>

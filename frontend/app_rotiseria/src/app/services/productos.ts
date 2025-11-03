@@ -70,4 +70,13 @@ export class ProductosService {
     return this.http.put(`${this.url}/productos?categoriaId=${categoriaId}`, { visible }, { headers });
   }
 
+  postProductos(producto: any){
+    const token = localStorage.getItem('token') || '';
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.post(`${this.url}/promociones`, producto, { headers });
+  }
+
 }

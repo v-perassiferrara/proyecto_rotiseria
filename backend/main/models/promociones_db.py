@@ -21,13 +21,28 @@ class Promociones(db.Model):
         }
 
     @staticmethod
-    def from_json(valoracion_json):
-        id = valoracion_json.get("id")
-        nombre = valoracion_json.get('nombre')
-        fecha_inicio = valoracion_json.get('fecha_inicio')
-        fecha_fin = valoracion_json.get('fecha_fin')
-        descripcion = valoracion_json.get('descripcion')
-        imagenUrl = valoracion_json.get('imagenUrl')
+    def from_json(promocion_json):
+        id = promocion_json.get('id')
+        nombre = promocion_json.get('nombre')
+        fecha_inicio_str = promocion_json.get('fecha_inicio')
+        fecha_fin_str = promocion_json.get('fecha_fin')
+        descripcion = promocion_json.get('descripcion')
+        imagenUrl = promocion_json.get('imagenUrl')
+
+        fecha_inicio = None
+        if fecha_inicio_str:
+            try:
+                fecha_inicio = datetime.strptime(fecha_inicio_str, "%d-%m-%Y %H:%M:%S")
+            except ValueError:
+                fecha_inicio = datetime.strptime(fecha_inicio_str, "%d-%m-%Y")
+
+        fecha_fin = None
+        if fecha_fin_str:
+            try:
+                fecha_fin = datetime.strptime(fecha_fin_str, "%d-%m-%Y %H:%M:%S")
+            except ValueError:
+                fecha_fin = datetime.strptime(fecha_fin_str, "%d-%m-%Y")
+
         return Promociones(
             id=id,
             nombre=nombre,
