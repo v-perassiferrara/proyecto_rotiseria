@@ -8,7 +8,7 @@ import { PromocionesService } from '../../../services/promociones';
 
 @Component({
   selector: 'app-detalle-promocion',
-  imports: [Titlebar, BackButton, AbmPromocion, RouterLink],
+  imports: [Titlebar, BackButton, AbmPromocion],
   templateUrl: './detalle-promocion.html',
   styleUrl: './detalle-promocion.css'
 })

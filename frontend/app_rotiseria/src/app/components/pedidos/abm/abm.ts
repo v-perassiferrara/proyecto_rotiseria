@@ -3,6 +3,7 @@ import { Auth } from '../../../services/auth';
 import { Router } from '@angular/router';
 import { PedidosService } from '../../../services/pedidos';
 import { FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NotificacionesService } from '../../../services/notificaciones';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class AbmPedido implements OnChanges{
   router = inject(Router);
   authService = inject(Auth);
   pedidoSvc = inject(PedidosService)
+  notificacionesSvc = inject(NotificacionesService)
   formBuilder = inject(FormBuilder);
 
   @Input() pedido: any = null;
@@ -31,13 +33,23 @@ export class AbmPedido implements OnChanges{
 
 
   guardarCambios() {
+    this.pedidoSvc.getPedidoCompleto(this.pedido.id).subscribe((pedido) => {
+      this.pedido = pedido;
+    });
     if (this.pedidoForm.valid) {
-      const pedido_nuevo = this.pedidoForm.value;
-      this.pedidoSvc.putPedido(this.pedido.id, pedido_nuevo).subscribe({
+      const estado = this.pedidoForm.value;
+      this.pedidoSvc.putPedido(this.pedido, estado).subscribe({
         next: (response) => {
-          console.log('Pedido actualizado:', response);
-          alert('Cambios guardados exitosamente');
-          this.router.navigateByUrl("/admin/pedidos")
+          this.notificacionesSvc.postNotificacion(response.id_usuario, response.id, response.estado).subscribe({
+            next: (notifResponse) => {
+              alert('Cambios guardados y notificación enviada exitosamente');
+              this.router.navigateByUrl("/admin/pedidos");
+            },
+            error: (notifError) => {
+              console.error('Error creating notification:', notifError);
+              alert('Cambios guardados, pero falló el envío de la notificación.');
+            }
+          });
         },
         error: (error) => {
           console.error('Error updating pedido:', error);

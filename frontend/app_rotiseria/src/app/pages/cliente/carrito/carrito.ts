@@ -12,14 +12,12 @@ import { CommonModule } from '@angular/common';
   imports: [
     Navbar,
     Titlebar,
-    CommonModule,
-    RouterLink
+    CommonModule
   ],
   templateUrl: './carrito.html',
   styleUrl: './carrito.css'
 })
 
-// FALTA HACER TODO, SOLO LO COPIE DE DETALLE-PEDIDO
  export class Carrito implements OnInit{
 
   carrito: any = localStorage.getItem('carrito');

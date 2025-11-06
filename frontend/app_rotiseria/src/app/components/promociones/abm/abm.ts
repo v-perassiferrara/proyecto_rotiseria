@@ -24,31 +24,36 @@ export class AbmPromocion {
   @Input() promocion: any = null;
   promocionForm!: FormGroup;
 
+
   ngOnInit() {
     this.promocionForm = this.formBuilder.group({
-      titulo:   [this.promocion?.titulo   || '', Validators.required],
+      nombre:   [this.promocion?.nombre   || '', Validators.required],
       descripcion: [this.promocion?.descripcion || '', Validators.required],
-      fecha_fin: [this.promocion?.fecha_fin || '', Validators.required],
+      fecha_fin: [this.promocion?.fecha_fin.toLocaleDateString('en-GB') || '11-11-2025', Validators.required],
     });
   }
 
-
   guardarCambios() {
 
-    
-
     if (this.promocionForm.valid) {
-      const promocion_nueva = this.promocionForm.value;
+      const formValue = this.promocionForm.value;
+      
+      // Formatear la fecha de YYYY-MM-DD a DD-MM-YYYY
+      const [year, month, day] = formValue.fecha_fin.split('-');
+      const formattedDate = `${day}-${month}-${year}`;
 
+      const promocion_nueva = {
+        ...formValue,
+        fecha_fin: formattedDate
+      };
 
-      console.log("Cambios en:", promocion_nueva);
-
+      console.log("Enviando promoción:", promocion_nueva);
 
       this.promocionesService.postPromocion(promocion_nueva).subscribe({
         next: (response) => {
           console.log('Promoción creada:', response);
           alert('Promoción creada exitosamente');
-          this.router.navigateByUrl("/admin/promociones")
+          this.router.navigateByUrl("/admin/promociones");
         },
         error: (error) => {
           console.error('Error creating promotion:', error);

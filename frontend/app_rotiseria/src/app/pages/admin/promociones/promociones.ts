@@ -1,19 +1,18 @@
-import { Component, HostListener, inject, Input, input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { Titlebar } from '../../../components/titlebar/titlebar';
 import { PromocionesService } from '../../../services/promociones';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-promociones',
   imports: [
-    Titlebar,
-    RouterLink
+    Titlebar
   ],
   templateUrl: './promociones.html',
   styleUrl: './promociones.css'
 })
-export class Promociones implements OnInit{
+export class Promociones implements OnInit {
 
   arrayPromociones: any[] = [];
   promocionesService = inject(PromocionesService);
@@ -33,12 +32,26 @@ export class Promociones implements OnInit{
         console.error('Error al cargar promociones:', err);
       }
     });
-    console.log(this.arrayPromociones )
   }
 
   crearPromocion(){
-    console.log("Editando categoria: ");
+    console.log("Editando promocion: ");
     this.router.navigateByUrl(`/admin/detalle-promocion`);
   }
 
+  eliminarPromocion(promocion: any){
+    console.log("Eliminando promocion: ", promocion);
+    console.log("id", promocion.id);
+    this.promocionesService.deletePromocion(promocion.id).subscribe({
+      next: (data: any) => {
+        console.log("data", data);
+        window.location.reload(); // Para recargar la pagina y ver los cambios
+      },
+      error: (err) => {
+        console.error('Error al eliminar promocion:', err);
+      }
+    });
+  }
+
 }
+ 

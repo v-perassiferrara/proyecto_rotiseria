@@ -69,12 +69,13 @@ export class PedidosService {
     return this.http.get(`${this.url}/pedidos?estado=${estado}`, { headers });
   }
 
-  putPedido(id: number, pedido: any): Observable<any> {
+  putPedido(pedido: any, estado: any): Observable<any> {
     const token = localStorage.getItem('token') || '';
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.put(`${this.url}/pedido/${id}`, pedido, { headers });
+    return this.http.put(`${this.url}/pedido/${pedido.id}`, estado, { headers });
   }
+
 }

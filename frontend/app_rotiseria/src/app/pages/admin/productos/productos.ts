@@ -10,7 +10,6 @@ import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-productos',
   imports: [
-    RouterLink,
     Titlebar,
     FormsModule,
     CommonModule

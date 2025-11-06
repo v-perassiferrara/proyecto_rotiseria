@@ -48,7 +48,6 @@ export class AbmCategoria implements OnChanges{
         }
       this.categoriaSvc.putCategoria(this.categoria.id, categoria_nueva).subscribe({
         next: (response) => {
-          console.log('Categoria actualizada:', response);
           alert('Cambios guardados exitosamente');
           this.router.navigateByUrl("/admin/home")
         },
