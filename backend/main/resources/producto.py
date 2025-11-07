@@ -77,23 +77,14 @@ class Productos(Resource):
         productos = productos.paginate(page=page, per_page=per_page, error_out=False)
 
         
-        claims = get_jwt()
         
-        if claims.get("rol") in ["admin", "empleado"]:
-            return jsonify({
+        return jsonify({
         'productos': [producto.to_json_complete() for producto in productos.items],
                 'total': productos.total,
                 'pages': productos.pages,
                 'page': page
             })
 
-        else:
-            return jsonify({
-        'productos': [producto.to_json() for producto in productos.items],
-                'total': productos.total,
-                'pages': productos.pages,
-                'page': page
-            })
 
     
 
@@ -111,15 +102,11 @@ class Productos(Resource):
 
 class Producto(Resource):
 
-# GET: Obtener un producto. Rol: ADMIN  
+# GET: Obtener un producto. Rol: ADMIN/CLIENTE/EMPLEADO  
     @jwt_required(optional=False)
     def get(self, id):
-        claims = get_jwt()
         producto = db.session.query(Producto_db).get_or_404(id)     
-        if claims.get("rol") == "admin":
-            return jsonify(producto.to_json_complete())
-        else:
-            return jsonify(producto.to_json())
+        return jsonify(producto.to_json_complete())
 
 
 # DELETE: Eliminar un producto (ocultar/descontinuar). Rol: ADMIN

@@ -4,6 +4,7 @@ from .. import db
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 from main.auth.decorators import role_required
 from main.models import Usuario_db
+from main.mail.functions import sendMail
 
 class Usuarios(Resource):
 
@@ -111,9 +112,13 @@ class Usuario(Resource):
     def put(self, id):
 
         usuario = db.session.query(Usuario_db).get_or_404(id)
+        original_estado = usuario.estado # Guardar el estado original
         data = request.get_json().items()
         for key, value in data:
             setattr(usuario, key, value)
         db.session.add(usuario)
         db.session.commit()
+        # Si el estado ha cambiado, enviar un correo electrónico
+        if original_estado != usuario.estado:
+            sendMail([usuario.email],"Cambio en el estado de tu cuenta",'account_status_change',usuario = usuario)
         return usuario.to_json(), 201

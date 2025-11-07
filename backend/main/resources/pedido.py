@@ -7,6 +7,7 @@ from main.models import Pedido_db
 from main.models import Usuario_db
 from main.models import Producto_db
 from main.models import Pedidos_Productos_db
+from main.mail.functions import sendMail
 
 
 class Pedidos(Resource):
@@ -117,6 +118,10 @@ class Pedidos(Resource):
         pedido = Pedido_db.from_json(request.get_json())
         db.session.add(pedido)
         db.session.commit()
+        # Obtener el usuario para enviar el correo
+        usuario = db.session.query(Usuario_db).get(pedido.fk_id_usuario)
+        if usuario:
+            sendMail([usuario.email],"Confirmación de tu pedido",'new_order', pedido = pedido, usuario = usuario)
         return pedido.to_json(), 201
 
 
@@ -137,6 +142,9 @@ class Pedido(Resource):
         setattr(pedido, "estado", "cancelado")
         db.session.add(pedido)
         db.session.commit()
+        usuario = db.session.query(Usuario_db).get(pedido.fk_id_usuario)
+        if usuario:
+            sendMail([usuario.email],f"Tu pedido ha sido cancelado",'order_status_change', pedido = pedido, usuario = usuario)
         return {
             "message": "Pedido cancelado con éxito",
             "pedido": pedido.to_json(),
@@ -148,9 +156,15 @@ class Pedido(Resource):
     @activity_required
     def put(self, id):
         pedido = db.session.query(Pedido_db).get_or_404(id)
+        original_estado = pedido.estado # Guardar el estado original
         data = request.get_json().items()
         for key, value in data:
             setattr(pedido, key, value)
         db.session.add(pedido)
         db.session.commit()
+        # Si el estado ha cambiado, enviar un correo electrónico
+        if original_estado != pedido.estado:
+            usuario = db.session.query(Usuario_db).get(pedido.fk_id_usuario)
+            if usuario:
+                sendMail([usuario.email],f"Cambio en el estado de tu pedido: {pedido.estado}",'order_status_change', pedido = pedido, usuario = usuario)
         return pedido.to_json(), 201

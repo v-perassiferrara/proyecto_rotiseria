@@ -1,0 +1,8 @@
+Hola {{ usuario.nombre }},
+
+El estado de tu cuenta en la Rotisería UM GANG ha cambiado a: {{ usuario.estado }}.
+
+Si tienes alguna pregunta, no dudes en contactarnos.
+
+Saludos,
+El equipo de la Rotisería UM GANG

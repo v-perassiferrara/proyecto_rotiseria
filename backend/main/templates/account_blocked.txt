@@ -1,0 +1,8 @@
+Hola {{ usuario.nombre }},
+
+Tu cuenta en la Rotisería UM GANG ha sido bloqueada.
+
+Si crees que esto es un error, por favor contacta con el soporte.
+
+Saludos,
+El equipo de la Rotisería UM GANG

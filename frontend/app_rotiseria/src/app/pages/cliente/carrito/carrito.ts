@@ -61,6 +61,9 @@ import { CommonModule } from '@angular/common';
     localStorage.setItem('carrito', JSON.stringify(this.carritoList));
   }
 
+  //     localStorage.setItem('carrito', JSON.stringify(this.carritoList.map(p => p.id)));
+
+
   confirmarPedido() {
     if (!this.carritoList || this.carritoList.length === 0) {
       alert('El carrito está vacío. Agrega productos antes de confirmar el pedido.');
@@ -72,6 +75,8 @@ import { CommonModule } from '@angular/common';
         console.log('Pedido creado:', response);
         alert('Pedido creado exitosamente');
         this.router.navigateByUrl("/pedidos")
+        localStorage.removeItem('carrito');
+    
       },
       error: (error) => {
         console.error('Error creating order:', error);

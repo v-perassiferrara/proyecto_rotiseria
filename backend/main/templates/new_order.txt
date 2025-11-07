@@ -1,0 +1,18 @@
+Hola {{ usuario.nombre }},
+
+Gracias por tu pedido en la Rotisería UM GANG!
+
+Tu pedido #{{ pedido.id }} ha sido recibido y está siendo procesado.
+
+Aquí tienes un resumen de tu pedido:
+
+{% for item in pedido.pedidos_productos %}
+- {{ item.producto.nombre }} (x{{ item.cantidad }}): ${{ item.producto.precio * item.cantidad }}
+{% endfor %}
+
+Total: ${{ pedido.total }}
+
+Te mantendremos informado sobre el estado de tu pedido.
+
+Saludos,
+El equipo de la Rotisería UM GANG
