@@ -18,17 +18,13 @@ class Pedidos(Resource):
         per_page = 10  # Cantidad de elementos por página por defecto
 
         claims = get_jwt()
-        current_identity = int(get_jwt_identity())
 
-        if claims.get("rol") == "admin":
-            # Al admin le devuelve todas los pedidos
+        if claims.get("rol") in ["admin", "empleado"]:
+            # Al admin y al empleado les devuelve todos los pedidos
             pedidos = db.session.query(Pedido_db)
         else:
-            # A los demás les devuelve solo sus pedidos
-
-            print(Pedido_db.fk_id_usuario)
-            print(current_identity)
-
+            # A los demás (clientes) les devuelve solo sus pedidos
+            current_identity = int(get_jwt_identity())
             pedidos = db.session.query(Pedido_db).filter(
                 Pedido_db.fk_id_usuario == current_identity
             )
@@ -152,7 +148,7 @@ class Pedido(Resource):
 
     # PUT: Editar un pedido. Rol: ADMIN
     @jwt_required(optional=True)
-    @role_required(roles=["admin"])
+    @role_required(roles=["admin", "empleado"])
     @activity_required
     def put(self, id):
         pedido = db.session.query(Pedido_db).get_or_404(id)

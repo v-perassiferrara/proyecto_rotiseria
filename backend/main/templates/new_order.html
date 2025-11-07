@@ -26,33 +26,8 @@
                                 ¡Gracias por tu pedido, {{usuario.nombre}}!
                             </h2>
                             <p style="font-size: 16px; line-height: 1.6; color: #555555; margin: 0 0 25px;">
-                                Hemos recibido tu pedido #{{pedido.id}} y ya lo estamos preparando.
+                                El estado actual de tu pedido es: <strong>{{ pedido.estado }}</strong>.
                             </p>
-                            
-                            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border: 1px solid #dddddd; border-radius: 6px;">
-                                <thead>
-                                    <tr style="background-color: #f2f2f2;">
-                                        <th style="padding: 12px; text-align: left; font-size: 16px; color: #333;">Producto</th>
-                                        <th style="padding: 12px; text-align: center; font-size: 16px; color: #333;">Cantidad</th>
-                                        <th style="padding: 12px; text-align: right; font-size: 16px; color: #333;">Precio</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for item in pedido.pedidos_productos %}
-                                    <tr>
-                                        <td style="padding: 12px; border-top: 1px solid #dddddd;">{{ item.producto.nombre }}</td>
-                                        <td style="padding: 12px; border-top: 1px solid #dddddd; text-align: center;">{{ item.cantidad }}</td>
-                                        <td style="padding: 12px; border-top: 1px solid #dddddd; text-align: right;">${{ "%.2f"|format(item.producto.precio * item.cantidad) }}</td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                                <tfoot>
-                                    <tr style="background-color: #f2f2f2;">
-                                        <td colspan="2" style="padding: 12px; text-align: right; font-weight: bold; font-size: 18px; color: #333;">Total:</td>
-                                        <td style="padding: 12px; text-align: right; font-weight: bold; font-size: 18px; color: #333;">${{ "%.2f"|format(pedido.total) }}</td>
-                                    </tr>
-                                </tfoot>
-                            </table>
 
                         </td>
                     </tr>
