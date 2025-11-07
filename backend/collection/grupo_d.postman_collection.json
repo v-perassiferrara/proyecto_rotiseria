@@ -1,1449 +1,1471 @@
 {
-	"info": {
-		"_postman_id": "ae471611-6592-4f69-a428-f3bd07a1563e",
-		"name": "grupo_d",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "43533896",
-		"_collection_link": "https://francozapata.postman.co/workspace/Franco-Zapata's-Workspace~8d08b7e4-d0e9-4ec5-85c2-1f6972b0c55e/collection/43533896-ae471611-6592-4f69-a428-f3bd07a1563e?action=share&source=collection_link&creator=43533896"
-	},
-	"item": [
-		{
-			"name": "Usuario",
-			"item": [
-				{
-					"name": "Usuarios",
-					"request": {
-						"auth": {
-							"type": "jwt",
-							"jwt": [
-								{
-									"key": "secret",
-									"value": "nomelase",
-									"type": "string"
-								},
-								{
-									"key": "algorithm",
-									"value": "HS256",
-									"type": "string"
-								},
-								{
-									"key": "isSecretBase64Encoded",
-									"value": false,
-									"type": "boolean"
-								},
-								{
-									"key": "payload",
-									"value": "{}",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "headerPrefix",
-									"value": "Bearer",
-									"type": "string"
-								},
-								{
-									"key": "queryParamKey",
-									"value": "token",
-									"type": "string"
-								},
-								{
-									"key": "header",
-									"value": "{}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3435/usuarios",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3435",
-							"path": [
-								"usuarios"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Usuarios",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n        \"apellido\": \"Quiroga\",\n        \"contrasena\": \"1234\",\n        \"dni\": 12345678,\n        \"email\": \"srquiroga@gmail.com\",\n        \"nombre\": \"Sr\",\n        \"telefono\": \"261785478\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/usuarios",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"usuarios"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Usuario",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyMTkyNywianRpIjoiYzg2NDMzNTgtZGNiMS00Mzg0LWJmNmItNmQ4YWU5MTZmOTMyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg1MjE5MjcsImNzcmYiOiI1ZTM1MDc2NC0wMTZjLTQzYmQtODU2Zi0wMDU3NTdiM2UzMmMiLCJleHAiOjE3NDg1MjU1MjcsInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.bjbzG0akXGSdikHLLbAjv36cr2Nqb1fmbsuJ7oREo3Y",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0NzMyMDA5NywianRpIjoiNjg5M2Q0NWItOGE0MS00MGEyLWEzOTktMzQwYzQwZDA0MjkzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNzQ3MzIwMDk3LCJjc3JmIjoiNDZiMTIxOTUtMGIxOC00NzA2LWI3NTMtYTJhYTFkOGQ3YTM2Iiwicm9sIjoidXN1YXJpbyIsImlkIjozLCJlbWFpbCI6ImZyYW5jby56YXBhdGEyQGdtYWlsLmNvbSJ9.dUuV3xeiJY6KTtl-I2TSBgFwNg8fjaB0BToBZnVao5M",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/usuario/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"usuario",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Usuario",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0NzgzNTU4MSwianRpIjoiYTNmZjM4OTMtYzk4Yi00NDA5LWIzOGMtYzAyYzg3OTgxNDhhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDc4MzU1ODEsImNzcmYiOiIwZWQ2NGZiMS01ODQ3LTRmNjgtYjA3Mi0wNDM0MjU4ZWVjZDMiLCJyb2wiOiJhZG1pbiIsImlkIjoxLCJlbWFpbCI6ImZyYW5jby56YXBhdGFAZ21haWwuY29tIn0.4h3BhG6iLjkRynXZ90GcKiaduGsskqwOZ_SZudDeAVQ",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/usuario/2",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"usuario",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Usuario",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"rol\": \"admin\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/usuario/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"usuario",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Producto",
-			"item": [
-				{
-					"name": "Productos",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyNDQ3MywianRpIjoiZjExZDhiM2YtN2M1NS00NjVkLTk4NGUtZGZiZjEyNDYwZTUwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg1MjQ0NzMsImNzcmYiOiIwODEzZTQ1Mi1kOGNhLTRkYzItOTMyNC1kYmIzZmE4YWUyMWUiLCJleHAiOjE3NDg1MjgwNzMsInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.8_cE1XpKcTJd6_8VWbGMUtimdJhU47Ecuu9V31aeN78",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3435/productos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3435",
-							"path": [
-								"productos"
-							],
-							"query": [
-								{
-									"key": "nombre",
-									"value": "Egg And Bacon",
-									"disabled": true
-								},
-								{
-									"key": "precio_min",
-									"value": "15",
-									"disabled": true
-								},
-								{
-									"key": "precio_max",
-									"value": "35",
-									"disabled": true
-								},
-								{
-									"key": "sortby_precio",
-									"value": "desc",
-									"disabled": true
-								},
-								{
-									"key": "page",
-									"value": "1",
-									"disabled": true
-								},
-								{
-									"key": "per_page",
-									"value": "5",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Productos",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0NzgzNjkzNSwianRpIjoiMDcxNTBhNjMtOWZmOC00OTZiLTgzOGEtZDU3NGU3YTdhYWI3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjMiLCJuYmYiOjE3NDc4MzY5MzUsImNzcmYiOiIyMDdlN2NjOC1iZjUyLTQ4ZTctYjk1YS03YzcxYmQ4ZWI1ZGIiLCJleHAiOjE3NDc4NDA1MzUsInJvbCI6ImNsaWVudGUiLCJpZCI6MywiZW1haWwiOiJzcnF1aXJvZ2FAZ21haWwuY29tIn0.voM5_SgnQuSoGP2pwChUCbq1Vwz4GQBhoAk2w_wQlCQ",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"nombre\": \"Egg And Bacon 5\" ,\n\"stock\" : 15 ,\n\"precio\" : 32 }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/productos",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"productos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Producto",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyMzQyOSwianRpIjoiM2IwMTY1NzctZmI3My00NWE3LWIzODItMmUzYzAxYWE4NjIzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjMiLCJuYmYiOjE3NDg1MjM0MjksImNzcmYiOiIxYzY1NDg5ZS0xYzU3LTQ5ZmQtOGQ3MC1iMTU2YmFjZmJjMmEiLCJleHAiOjE3NDg1MjcwMjksInJvbCI6ImNsaWVudGUiLCJpZCI6MywiZW1haWwiOiJzcnF1aXJvZ2FAZ21haWwuY29tIn0.XcwHr2LCyWDAJ6C_cJEPT0cq_IzSGF3Xip4ePjV7RmU",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/producto/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"producto",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Producto",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0NzgzNzA0MywianRpIjoiYjFhOGQxMTQtMDYxYi00ZjYwLWI4NTAtNmNkMTY5YjQxOWEzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDc4MzcwNDMsImNzcmYiOiIxYTg0NjUyNS0wZDUwLTRkZjMtOTc2YS1iMWMyNjlhNjExOTQiLCJleHAiOjE3NDc4NDA2NDMsInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.NrBz-k3REJ8jMElw1cMCVZZUkzoQExdU0vaYJhuLL0o",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/producto/3",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"producto",
-								"3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Producto",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyNDAwOSwianRpIjoiYjVkMzM2YWItYjE0ZS00OGIzLTg2ZGQtMjgzNDM3ZDMyYTFhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg1MjQwMDksImNzcmYiOiI5ZGFlOGNjNi0zYzZiLTQ0ZDktOWQyYy1mNmY1OGZhNjMzZDciLCJleHAiOjE3NDg1Mjc2MDksInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.RdTz6PYeE5118K7mgNYO8TIbLjwmTKlHie0XkxVnfHk",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{   \"id\": 1,\n    \"visible\": 0\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/producto/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"producto",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Pedido",
-			"item": [
-				{
-					"name": "Pedidos",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyNTE3MCwianRpIjoiZjI4NWE5YWUtNTBkZC00NmY0LTg3NmItMTdhMjY5OWJkYTNlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg1MjUxNzAsImNzcmYiOiI0ZGRkMzY2My1hYTEwLTRkNGYtYWNkYy1jOWZlNDdmZjEyY2YiLCJleHAiOjE3NDg1Mjg3NzAsInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.J_GMLaY-3inKKSHzgF2kEusXsS6pmxhsuJ5WfO_2iW8",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3435/pedidos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3435",
-							"path": [
-								"pedidos"
-							],
-							"query": [
-								{
-									"key": "email",
-									"value": "franco.zapata@gmail.com",
-									"disabled": true
-								},
-								{
-									"key": "producto",
-									"value": "Egg And Bacon",
-									"disabled": true
-								},
-								{
-									"key": "estado",
-									"value": "pendiente",
-									"disabled": true
-								},
-								{
-									"key": "fecha_desde",
-									"value": "2025-05-01",
-									"disabled": true
-								},
-								{
-									"key": "fecha_hasta",
-									"value": "2026-05-15",
-									"disabled": true
-								},
-								{
-									"key": "sortby_pedido_fecha",
-									"value": "desc",
-									"disabled": true
-								},
-								{
-									"key": "page",
-									"value": "1",
-									"disabled": true
-								},
-								{
-									"key": "per_page",
-									"value": "5",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Pedidos",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyNTE3MCwianRpIjoiZjI4NWE5YWUtNTBkZC00NmY0LTg3NmItMTdhMjY5OWJkYTNlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg1MjUxNzAsImNzcmYiOiI0ZGRkMzY2My1hYTEwLTRkNGYtYWNkYy1jOWZlNDdmZjEyY2YiLCJleHAiOjE3NDg1Mjg3NzAsInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.J_GMLaY-3inKKSHzgF2kEusXsS6pmxhsuJ5WfO_2iW8",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n        \"fk_id_usuario\": 1,\n        \"total\": 1500\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/pedidos",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"pedidos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Pedido",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyMTUzNiwianRpIjoiM2JlMWZlNmItNjM0ZC00MGI1LWJjMmMtZGFiN2Y1MjE2NjgxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg1MjE1MzYsImNzcmYiOiJiZmZjZWQyYS04Y2E2LTRkZTMtYjg0OC04NDg2Y2MxZTYwYzEiLCJleHAiOjE3NDg1MjUxMzYsInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.ur5Hu63LZG3rtxarySx1X9XEoYLHgcx2J_77rHqJ88o",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/pedido/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"pedido",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Pedido",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/pedido/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"pedido",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Pedido",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n        \"fk_id_usuario\": 2,\n        \"producto\": \"Hamburguesa, pancho\",\n        \"total\": 200,\n        \"estado\": \"cancelado\"\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/pedido/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"pedido",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Pedidos_Productos",
-			"item": [
-				{
-					"name": "Pedidos_Productos",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:3435/pedidos_productos",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"pedidos_productos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Pedidos_Productos",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n        \"cantidad\": 10,\n        \"fk_id_pedido\": 1,\n        \"fk_id_producto\": 2\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/pedidos_productos",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"pedidos_productos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Pedido_Producto",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/pedido_producto/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"pedido_producto",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Pedido_Producto",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/pedido_producto/3",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"pedido_producto",
-								"3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Pedido_Producto",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n        \"cantidad\": 25,\n        \"fk_id_pedido\": 1,\n        \"fk_id_producto\": 1\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/pedido_producto/2",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"pedido_producto",
-								"2"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Notificaciones",
-			"item": [
-				{
-					"name": "Notificaciones",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyNzA2NiwianRpIjoiZDg3ZThlZTMtNDljZi00MGFkLWJiYWQtNDg4ZTA4NjRjNjFiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg1MjcwNjYsImNzcmYiOiIwNGVmNzJjNy1lOTg3LTQ0YzItOWYyNC1lM2UyZTlmY2E0MWMiLCJleHAiOjE3NDg1MzA2NjYsInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.B2nUEwO4LUuErurFzcJlqf-bpM9Xn5xipsOEjhjma3k",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"id_emisor\": 1 , \"id_receptor\": 3 , \"mensaje\": \"Tiene un descuento!\"}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3435/notificaciones",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3435",
-							"path": [
-								"notificaciones"
-							],
-							"query": [
-								{
-									"key": "leida",
-									"value": "true",
-									"disabled": true
-								},
-								{
-									"key": "fecha_inicio",
-									"value": "2025-05-01",
-									"disabled": true
-								},
-								{
-									"key": "fecha_fin",
-									"value": "2026-05-10",
-									"disabled": true
-								},
-								{
-									"key": "page",
-									"value": "1",
-									"disabled": true
-								},
-								{
-									"key": "per_page",
-									"value": "5",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Notificaciones",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyNTkxOCwianRpIjoiNjI1ZDdkNzgtMmQ5Zi00NzY5LTg0YjEtNThkZTMyMDNlNDk1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg1MjU5MTgsImNzcmYiOiIyZjc1ODI3OC1mYjFkLTQwY2EtOGJiMi1iMzM5NjcyZDNlM2EiLCJleHAiOjE3NDg1Mjk1MTgsInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.U84sl1fhPDl0-0QN3_5sFVf5x0r-pjB_xghLFt7DyoI",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"fk_id_usuario\" : 2,\n    \"mensaje\" : \"huuulaaa franco\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/notificaciones",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"notificaciones"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Notificacion",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyNjAyMCwianRpIjoiMGQxMjg3NDAtZjRhNC00NTNkLTkyNDktOTIyNmVjZjhiM2U1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjMiLCJuYmYiOjE3NDg1MjYwMjAsImNzcmYiOiI5MDY4ODUzNi1kOWM3LTQ2YTMtOTY4OC03NjA3ZDhiODQ0MDUiLCJleHAiOjE3NDg1Mjk2MjAsInJvbCI6ImNsaWVudGUiLCJpZCI6MywiZW1haWwiOiJzcnF1aXJvZ2FAZ21haWwuY29tIn0.rkIGowFTDq2bdCJGr16Pa-u7kBmIWn-UlUdPHeCxDfw",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:3435/notificacion/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"notificacion",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Notificacion",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:3435/notificacion/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"notificacion",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Notificacion",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"mensaje\": \"hola\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/notificacion/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"notificacion",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Valoraciones",
-			"item": [
-				{
-					"name": "Valoraciones",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3435/valoraciones?page=1&per_page=5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3435",
-							"path": [
-								"valoraciones"
-							],
-							"query": [
-								{
-									"key": "email",
-									"value": "sr@gmail.com",
-									"disabled": true
-								},
-								{
-									"key": "producto",
-									"value": "Egg And Bacon",
-									"disabled": true
-								},
-								{
-									"key": "estrellas",
-									"value": "5",
-									"disabled": true
-								},
-								{
-									"key": "sortby_usuario_email",
-									"value": "desc",
-									"disabled": true
-								},
-								{
-									"key": "page",
-									"value": "1"
-								},
-								{
-									"key": "per_page",
-									"value": "5"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Valoraciones",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyNzg0NCwianRpIjoiODViMGFkODgtZmU2NC00YzA2LWJhOGEtOTJlM2M2NDM5ZWE4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjMiLCJuYmYiOjE3NDg1Mjc4NDQsImNzcmYiOiIyMDY2MzY0Ny1mNzkzLTRlOTktYmU3Yy0zNTExM2FjMjQ5NDYiLCJleHAiOjE3NDg1MzE0NDQsInJvbCI6ImNsaWVudGUiLCJpZCI6MywiZW1haWwiOiJzcnF1aXJvZ2FAZ21haWwuY29tIn0.ohY12zUAN6VRJhKW8rRzNAfRQ_G74lmqbYXKicDOhPs",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"id_usuario\": 3 , \"id_producto\": 3 , \"estrellas\": 5 , \"comentario\" : \"LO MEJOR QUE ME PASO!\" }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/valoraciones",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"valoraciones"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Valoracion",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:3435/valoracion/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"valoracion",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Valoracion",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"comentario\": \"Mansa top burga!\",\n    \"estrellas\": 5\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/valoracion/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"valoracion",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Valoracion",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyODIzNiwianRpIjoiYzUxMjZjODctYTBkNC00ZmZmLWE4NmItMmFjNWRiMjAxZWQ0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg1MjgyMzYsImNzcmYiOiIxOWVjMjg3NC1hMzkxLTQ4NzYtYWU3MS1hYmNmNjc0MzQ0NDUiLCJleHAiOjE3NDg1MzE4MzYsInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.bqT7C5Xw7BWNkomRloPwrxyvRW7yOVC7hM3Z285Oddg",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3435/valoracion/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3435",
-							"path": [
-								"valoracion",
-								"1"
-							],
-							"query": [
-								{
-									"key": "email",
-									"value": "sr@gmail.com",
-									"disabled": true
-								},
-								{
-									"key": "producto",
-									"value": "Egg And Bacon",
-									"disabled": true
-								},
-								{
-									"key": "estrellas",
-									"value": "5",
-									"disabled": true
-								},
-								{
-									"key": "sortby_usuario_email",
-									"value": "desc",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Auth",
-			"item": [
-				{
-					"name": "Login",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\":\"franco@gmail.com\" , \"contrasena\":\"1234\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/auth/login",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"auth",
-								"login"
-							],
-							"query": [
-								{
-									"key": "email",
-									"value": "franco.zapata2@gmail.com",
-									"disabled": true
-								},
-								{
-									"key": "contrasena",
-									"value": "1234",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Logout",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0NzgzNjg5MCwianRpIjoiMmVjZjExMjMtY2YzYi00NGI2LTlhMjktOTg5ZmUyZDQzYWQ2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDc4MzY4OTAsImNzcmYiOiJiNzViMmJmMS01ZWMwLTQzYTctYWJjYS0xNmFkYjk1NWZmYzMiLCJleHAiOjE3NDc4NDA0OTAsInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.9XePgm6EF3-HU-NH_i70UuXlyBjj9-6sqEqmUhPEcag",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/auth/logout",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"auth",
-								"logout"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Register",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n        \"apellido\": \"Zapata\",\n        \"contrasena\": \"1234\",\n        \"dni\": 123456789,\n        \"email\": \"franco.zapata2@gmail.com\",\n        \"nombre\": \"Franco\",\n        \"telefono\": \"261785478\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3435/auth/register",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3435",
-							"path": [
-								"auth",
-								"register"
-							],
-							"query": [
-								{
-									"key": "email",
-									"value": "franco.zapata@gmail.com",
-									"disabled": true
-								},
-								{
-									"key": "contrasena",
-									"value": "1234",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	]
+  "info": {
+    "name": "grupo_d",
+    "description": "",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/auth/login",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "franco.zapata2@gmail.com"
+                },
+                {
+                  "key": "contrasena",
+                  "value": "1234"
+                }
+              ],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\":\"franco@gmail.com\" , \"contrasena\":\"1234\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0NzgzNjg5MCwianRpIjoiMmVjZjExMjMtY2YzYi00NGI2LTlhMjktOTg5ZmUyZDQzYWQ2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDc4MzY4OTAsImNzcmYiOiJiNzViMmJmMS01ZWMwLTQzYTctYWJjYS0xNmFkYjk1NWZmYzMiLCJleHAiOjE3NDc4NDA0OTAsInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.9XePgm6EF3-HU-NH_i70UuXlyBjj9-6sqEqmUhPEcag",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/auth/logout",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Register",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/auth/register",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "franco.zapata@gmail.com"
+                },
+                {
+                  "key": "contrasena",
+                  "value": "1234"
+                }
+              ],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n        \"apellido\": \"Zapata\",\n        \"contrasena\": \"1234\",\n        \"dni\": 123456789,\n        \"email\": \"franco.zapata2@gmail.com\",\n        \"nombre\": \"Franco\",\n        \"telefono\": \"261785478\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notificaciones",
+      "item": [
+        {
+          "name": "Notificacion",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyNjAyMCwianRpIjoiMGQxMjg3NDAtZjRhNC00NTNkLTkyNDktOTIyNmVjZjhiM2U1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjMiLCJuYmYiOjE3NDg1MjYwMjAsImNzcmYiOiI5MDY4ODUzNi1kOWM3LTQ2YTMtOTY4OC03NjA3ZDhiODQ0MDUiLCJleHAiOjE3NDg1Mjk2MjAsInJvbCI6ImNsaWVudGUiLCJpZCI6MywiZW1haWwiOiJzcnF1aXJvZ2FAZ21haWwuY29tIn0.rkIGowFTDq2bdCJGr16Pa-u7kBmIWn-UlUdPHeCxDfw",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/notificacion/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "notificacion",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Notificacion_1",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/notificacion/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "notificacion",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Notificacion_2",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/notificacion/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "notificacion",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"mensaje\": \"hola\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Notificaciones",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyNzA2NiwianRpIjoiZDg3ZThlZTMtNDljZi00MGFkLWJiYWQtNDg4ZTA4NjRjNjFiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg1MjcwNjYsImNzcmYiOiIwNGVmNzJjNy1lOTg3LTQ0YzItOWYyNC1lM2UyZTlmY2E0MWMiLCJleHAiOjE3NDg1MzA2NjYsInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.B2nUEwO4LUuErurFzcJlqf-bpM9Xn5xipsOEjhjma3k",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3435/notificaciones",
+              "protocol": "http",
+              "host": [
+                "localhost:3435"
+              ],
+              "path": [
+                "notificaciones"
+              ],
+              "query": [
+                {
+                  "key": "leida",
+                  "value": "true"
+                },
+                {
+                  "key": "fecha_inicio",
+                  "value": "2025-05-01"
+                },
+                {
+                  "key": "fecha_fin",
+                  "value": "2026-05-10"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "5"
+                }
+              ],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"id_emisor\": 1 , \"id_receptor\": 3 , \"mensaje\": \"Tiene un descuento!\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Notificaciones_1",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyNTkxOCwianRpIjoiNjI1ZDdkNzgtMmQ5Zi00NzY5LTg0YjEtNThkZTMyMDNlNDk1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg1MjU5MTgsImNzcmYiOiIyZjc1ODI3OC1mYjFkLTQwY2EtOGJiMi1iMzM5NjcyZDNlM2EiLCJleHAiOjE3NDg1Mjk1MTgsInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.U84sl1fhPDl0-0QN3_5sFVf5x0r-pjB_xghLFt7DyoI",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/notificaciones",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "notificaciones"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"fk_id_usuario\" : 2,\n    \"mensaje\" : \"huuulaaa franco\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pedido",
+      "item": [
+        {
+          "name": "Pedido",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyMTUzNiwianRpIjoiM2JlMWZlNmItNjM0ZC00MGI1LWJjMmMtZGFiN2Y1MjE2NjgxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg1MjE1MzYsImNzcmYiOiJiZmZjZWQyYS04Y2E2LTRkZTMtYjg0OC04NDg2Y2MxZTYwYzEiLCJleHAiOjE3NDg1MjUxMzYsInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.ur5Hu63LZG3rtxarySx1X9XEoYLHgcx2J_77rHqJ88o",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/pedido/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "pedido",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Pedido_1",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/pedido/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "pedido",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Pedido_2",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/pedido/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "pedido",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n        \"fk_id_usuario\": 2,\n        \"producto\": \"Hamburguesa, pancho\",\n        \"total\": 200,\n        \"estado\": \"cancelado\"\n    }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Pedidos",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyNTE3MCwianRpIjoiZjI4NWE5YWUtNTBkZC00NmY0LTg3NmItMTdhMjY5OWJkYTNlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg1MjUxNzAsImNzcmYiOiI0ZGRkMzY2My1hYTEwLTRkNGYtYWNkYy1jOWZlNDdmZjEyY2YiLCJleHAiOjE3NDg1Mjg3NzAsInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.J_GMLaY-3inKKSHzgF2kEusXsS6pmxhsuJ5WfO_2iW8",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3435/pedidos",
+              "protocol": "http",
+              "host": [
+                "localhost:3435"
+              ],
+              "path": [
+                "pedidos"
+              ],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "franco.zapata@gmail.com"
+                },
+                {
+                  "key": "producto",
+                  "value": "Egg And Bacon"
+                },
+                {
+                  "key": "estado",
+                  "value": "pendiente"
+                },
+                {
+                  "key": "fecha_desde",
+                  "value": "2025-05-01"
+                },
+                {
+                  "key": "fecha_hasta",
+                  "value": "2026-05-15"
+                },
+                {
+                  "key": "sortby_pedido_fecha",
+                  "value": "desc"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "5"
+                }
+              ],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Pedidos_1",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyNTE3MCwianRpIjoiZjI4NWE5YWUtNTBkZC00NmY0LTg3NmItMTdhMjY5OWJkYTNlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg1MjUxNzAsImNzcmYiOiI0ZGRkMzY2My1hYTEwLTRkNGYtYWNkYy1jOWZlNDdmZjEyY2YiLCJleHAiOjE3NDg1Mjg3NzAsInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.J_GMLaY-3inKKSHzgF2kEusXsS6pmxhsuJ5WfO_2iW8",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/pedidos",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "pedidos"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n        \"fk_id_usuario\": 1,\n        \"total\": 1500\n    }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pedidos_Productos",
+      "item": [
+        {
+          "name": "Pedido_Producto",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/pedido_producto/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "pedido_producto",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Pedido_Producto_1",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/pedido_producto/3",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "pedido_producto",
+                "3"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Pedido_Producto_2",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/pedido_producto/2",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "pedido_producto",
+                "2"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n        \"cantidad\": 25,\n        \"fk_id_pedido\": 1,\n        \"fk_id_producto\": 1\n    }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Pedidos_Productos",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/pedidos_productos",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "pedidos_productos"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Pedidos_Productos_1",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/pedidos_productos",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "pedidos_productos"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n        \"cantidad\": 10,\n        \"fk_id_pedido\": 1,\n        \"fk_id_producto\": 2\n    }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Producto",
+      "item": [
+        {
+          "name": "Producto",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyMzQyOSwianRpIjoiM2IwMTY1NzctZmI3My00NWE3LWIzODItMmUzYzAxYWE4NjIzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjMiLCJuYmYiOjE3NDg1MjM0MjksImNzcmYiOiIxYzY1NDg5ZS0xYzU3LTQ5ZmQtOGQ3MC1iMTU2YmFjZmJjMmEiLCJleHAiOjE3NDg1MjcwMjksInJvbCI6ImNsaWVudGUiLCJpZCI6MywiZW1haWwiOiJzcnF1aXJvZ2FAZ21haWwuY29tIn0.XcwHr2LCyWDAJ6C_cJEPT0cq_IzSGF3Xip4ePjV7RmU",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/producto/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "producto",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Producto_1",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0NzgzNzA0MywianRpIjoiYjFhOGQxMTQtMDYxYi00ZjYwLWI4NTAtNmNkMTY5YjQxOWEzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDc4MzcwNDMsImNzcmYiOiIxYTg0NjUyNS0wZDUwLTRkZjMtOTc2YS1iMWMyNjlhNjExOTQiLCJleHAiOjE3NDc4NDA2NDMsInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.NrBz-k3REJ8jMElw1cMCVZZUkzoQExdU0vaYJhuLL0o",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/producto/3",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "producto",
+                "3"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Producto_2",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyNDAwOSwianRpIjoiYjVkMzM2YWItYjE0ZS00OGIzLTg2ZGQtMjgzNDM3ZDMyYTFhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg1MjQwMDksImNzcmYiOiI5ZGFlOGNjNi0zYzZiLTQ0ZDktOWQyYy1mNmY1OGZhNjMzZDciLCJleHAiOjE3NDg1Mjc2MDksInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.RdTz6PYeE5118K7mgNYO8TIbLjwmTKlHie0XkxVnfHk",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/producto/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "producto",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{   \"id\": 1,\n    \"visible\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Productos",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyNDQ3MywianRpIjoiZjExZDhiM2YtN2M1NS00NjVkLTk4NGUtZGZiZjEyNDYwZTUwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg1MjQ0NzMsImNzcmYiOiIwODEzZTQ1Mi1kOGNhLTRkYzItOTMyNC1kYmIzZmE4YWUyMWUiLCJleHAiOjE3NDg1MjgwNzMsInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.8_cE1XpKcTJd6_8VWbGMUtimdJhU47Ecuu9V31aeN78",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3435/productos",
+              "protocol": "http",
+              "host": [
+                "localhost:3435"
+              ],
+              "path": [
+                "productos"
+              ],
+              "query": [
+                {
+                  "key": "nombre",
+                  "value": "Egg And Bacon"
+                },
+                {
+                  "key": "precio_min",
+                  "value": "15"
+                },
+                {
+                  "key": "precio_max",
+                  "value": "35"
+                },
+                {
+                  "key": "sortby_precio",
+                  "value": "desc"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "5"
+                }
+              ],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Productos_1",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0NzgzNjkzNSwianRpIjoiMDcxNTBhNjMtOWZmOC00OTZiLTgzOGEtZDU3NGU3YTdhYWI3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjMiLCJuYmYiOjE3NDc4MzY5MzUsImNzcmYiOiIyMDdlN2NjOC1iZjUyLTQ4ZTctYjk1YS03YzcxYmQ4ZWI1ZGIiLCJleHAiOjE3NDc4NDA1MzUsInJvbCI6ImNsaWVudGUiLCJpZCI6MywiZW1haWwiOiJzcnF1aXJvZ2FAZ21haWwuY29tIn0.voM5_SgnQuSoGP2pwChUCbq1Vwz4GQBhoAk2w_wQlCQ",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/productos",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "productos"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nombre\": \"Egg And Bacon 5\" ,\n\"stock\" : 15 ,\n\"precio\" : 32 }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Valoraciones",
+      "item": [
+        {
+          "name": "Valoracion",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/valoracion/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "valoracion",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Valoracion_1",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/valoracion/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "valoracion",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"comentario\": \"Mansa top burga!\",\n    \"estrellas\": 5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Valoracion_2",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyODIzNiwianRpIjoiYzUxMjZjODctYTBkNC00ZmZmLWE4NmItMmFjNWRiMjAxZWQ0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg1MjgyMzYsImNzcmYiOiIxOWVjMjg3NC1hMzkxLTQ4NzYtYWU3MS1hYmNmNjc0MzQ0NDUiLCJleHAiOjE3NDg1MzE4MzYsInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.bqT7C5Xw7BWNkomRloPwrxyvRW7yOVC7hM3Z285Oddg",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3435/valoracion/1",
+              "protocol": "http",
+              "host": [
+                "localhost:3435"
+              ],
+              "path": [
+                "valoracion",
+                "1"
+              ],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "sr@gmail.com"
+                },
+                {
+                  "key": "producto",
+                  "value": "Egg And Bacon"
+                },
+                {
+                  "key": "estrellas",
+                  "value": "5"
+                },
+                {
+                  "key": "sortby_usuario_email",
+                  "value": "desc"
+                }
+              ],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Valoraciones",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3435/valoraciones?page=1&per_page=5",
+              "protocol": "http",
+              "host": [
+                "localhost:3435"
+              ],
+              "path": [
+                "valoraciones"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "5"
+                },
+                {
+                  "key": "email",
+                  "value": "sr@gmail.com"
+                },
+                {
+                  "key": "producto",
+                  "value": "Egg And Bacon"
+                },
+                {
+                  "key": "estrellas",
+                  "value": "5"
+                },
+                {
+                  "key": "sortby_usuario_email",
+                  "value": "desc"
+                }
+              ],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Valoraciones_1",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyNzg0NCwianRpIjoiODViMGFkODgtZmU2NC00YzA2LWJhOGEtOTJlM2M2NDM5ZWE4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjMiLCJuYmYiOjE3NDg1Mjc4NDQsImNzcmYiOiIyMDY2MzY0Ny1mNzkzLTRlOTktYmU3Yy0zNTExM2FjMjQ5NDYiLCJleHAiOjE3NDg1MzE0NDQsInJvbCI6ImNsaWVudGUiLCJpZCI6MywiZW1haWwiOiJzcnF1aXJvZ2FAZ21haWwuY29tIn0.ohY12zUAN6VRJhKW8rRzNAfRQ_G74lmqbYXKicDOhPs",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/valoraciones",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "valoraciones"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"id_usuario\": 3 , \"id_producto\": 3 , \"estrellas\": 5 , \"comentario\" : \"LO MEJOR QUE ME PASO!\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Usuario",
+      "item": [
+        {
+          "name": "Usuario",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0NzMyMDA5NywianRpIjoiNjg5M2Q0NWItOGE0MS00MGEyLWEzOTktMzQwYzQwZDA0MjkzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNzQ3MzIwMDk3LCJjc3JmIjoiNDZiMTIxOTUtMGIxOC00NzA2LWI3NTMtYTJhYTFkOGQ3YTM2Iiwicm9sIjoidXN1YXJpbyIsImlkIjozLCJlbWFpbCI6ImZyYW5jby56YXBhdGEyQGdtYWlsLmNvbSJ9.dUuV3xeiJY6KTtl-I2TSBgFwNg8fjaB0BToBZnVao5M",
+                "disabled": true,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODUyMTkyNywianRpIjoiYzg2NDMzNTgtZGNiMS00Mzg0LWJmNmItNmQ4YWU5MTZmOTMyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg1MjE5MjcsImNzcmYiOiI1ZTM1MDc2NC0wMTZjLTQzYmQtODU2Zi0wMDU3NTdiM2UzMmMiLCJleHAiOjE3NDg1MjU1MjcsInJvbCI6ImFkbWluIiwiaWQiOjEsImVtYWlsIjoiZnJhbmNvLnphcGF0YUBnbWFpbC5jb20ifQ.bjbzG0akXGSdikHLLbAjv36cr2Nqb1fmbsuJ7oREo3Y",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/usuario/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "usuario",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Usuario_1",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0NzgzNTU4MSwianRpIjoiYTNmZjM4OTMtYzk4Yi00NDA5LWIzOGMtYzAyYzg3OTgxNDhhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDc4MzU1ODEsImNzcmYiOiIwZWQ2NGZiMS01ODQ3LTRmNjgtYjA3Mi0wNDM0MjU4ZWVjZDMiLCJyb2wiOiJhZG1pbiIsImlkIjoxLCJlbWFpbCI6ImZyYW5jby56YXBhdGFAZ21haWwuY29tIn0.4h3BhG6iLjkRynXZ90GcKiaduGsskqwOZ_SZudDeAVQ",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/usuario/2",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "usuario",
+                "2"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Usuario_2",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/usuario/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "usuario",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"rol\": \"admin\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Usuarios",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3435/usuarios",
+              "protocol": "http",
+              "host": [
+                "localhost:3435"
+              ],
+              "path": [
+                "usuarios"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Usuarios_1",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://127.0.0.1:3435/usuarios",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1:3435"
+              ],
+              "path": [
+                "usuarios"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n        \"apellido\": \"Quiroga\",\n        \"contrasena\": \"1234\",\n        \"dni\": 12345678,\n        \"email\": \"srquiroga@gmail.com\",\n        \"nombre\": \"Sr\",\n        \"telefono\": \"261785478\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Promociones",
+      "item": [
+        {
+          "name": "Promociones a",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MjQzNDE2MywianRpIjoiNWVmOGMyMGQtYmMwYy00MmQxLWFjNzUtMDYyMTdjMTljOWQ4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NjI0MzQxNjMsImNzcmYiOiI4NDczZDMzZC0xMzE2LTRlNzAtOTM0YS0yNGNlY2M0NjQ3ZTciLCJyb2wiOiJhZG1pbiIsImlkIjoyLCJlbWFpbCI6InNycXVpcm9nYUBnbWFpbC5jb20ifQ.D9s6u67XNNoQtDjJgiZMvVRuNYt1lJgy1zQFPu-Zgzk",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3435/promociones",
+              "protocol": "http",
+              "host": [
+                "localhost:3435"
+              ],
+              "path": [
+                "promociones"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"descripcion\": \"Otra promo.\",\n  \"fecha_fin\": \"25-12-2025\",\n  \"nombre\": \"Promo sin Hora\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Promociones",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MjQzNDE2MywianRpIjoiNWVmOGMyMGQtYmMwYy00MmQxLWFjNzUtMDYyMTdjMTljOWQ4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NjI0MzQxNjMsImNzcmYiOiI4NDczZDMzZC0xMzE2LTRlNzAtOTM0YS0yNGNlY2M0NjQ3ZTciLCJyb2wiOiJhZG1pbiIsImlkIjoyLCJlbWFpbCI6InNycXVpcm9nYUBnbWFpbC5jb20ifQ.D9s6u67XNNoQtDjJgiZMvVRuNYt1lJgy1zQFPu-Zgzk",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3435/promociones?page=1&per_page=10",
+              "protocol": "http",
+              "host": [
+                "localhost:3435"
+              ],
+              "path": [
+                "promociones"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "10"
+                }
+              ],
+              "variable": []
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": []
 }

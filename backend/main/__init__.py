@@ -1,7 +1,8 @@
 from flask import Flask
 from dotenv import load_dotenv
 from flask_restful import Api
-import os 
+import os
+from flask_cors import CORS
 
 #importar sqlalchemy
 from flask_sqlalchemy import SQLAlchemy
@@ -31,6 +32,8 @@ def create_app():
 
     # Cargar variables de entorno
     load_dotenv()
+    
+    CORS(app)   # Permite CORS para todos los origenes y rutas
 
     if not os.path.exists(os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME')):
         os.mknod(os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME'))
@@ -50,14 +53,20 @@ def create_app():
     api.add_resource(resources.ProductosResource, "/productos")
     api.add_resource(resources.ProductoResource, "/producto/<int:id>")
 
-    api.add_resource(resources.Pedidos_ProductosResource, "/pedidos_productos")
-    api.add_resource(resources.Pedido_ProductoResource, "/pedido_producto/<int:id>")
+    api.add_resource(resources.Pedidos_ProductosResource, "/pedidos-productos")
+    api.add_resource(resources.Pedido_ProductoResource, "/pedido-producto/<int:id>")
 
     api.add_resource(resources.UsuariosResource, "/usuarios")
     api.add_resource(resources.UsuarioResource, "/usuario/<int:id>")
 
     api.add_resource(resources.ValoracionesResource, "/valoraciones")
     api.add_resource(resources.ValoracionResource, "/valoracion/<int:id>")
+
+    api.add_resource(resources.CategoriasResource, "/categorias")
+    api.add_resource(resources.CategoriaResource, "/categoria/<int:id>")
+
+    api.add_resource(resources.PromocionesResource, "/promociones/")
+    api.add_resource(resources.PromocionResource, "/promocion/<int:id>")
     
     
  #Cargar la aplicacion en la API de Flask Restful

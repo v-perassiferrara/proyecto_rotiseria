@@ -1,0 +1,15 @@
+<!-- title bar  -->
+<app-titlebar [title]="'Información del Pedido'" />
+
+<div style="padding: 10px; margin: 10px;">
+    <div style="height: 30px;" class=" m-1 d-inline-flex">
+        <app-back-button></app-back-button>
+    </div>
+
+    <div class="col-12 p-1 d-inline-flex">
+        <h2 class="text-primary text-black fw-bold" href="#">Pedido</h2>
+    </div>
+
+    <!-- Formulario de datos del pedido-->
+    <app-abm-pedido [pedido]="pedido"></app-abm-pedido>
+</div>

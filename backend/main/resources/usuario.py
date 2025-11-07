@@ -4,6 +4,7 @@ from .. import db
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 from main.auth.decorators import role_required
 from main.models import Usuario_db
+from main.mail.functions import sendMail
 
 class Usuarios(Resource):
 
@@ -35,8 +36,8 @@ class Usuarios(Resource):
             usuarios = usuarios.filter(Usuario_db.email.ilike(f"%{request.args.get('email')}%"))
 
         # # Filtrar por rol
-        # if request.args.get('rol'):
-        #     usuarios = usuarios.filter(Usuario_db.rol == request.args.get('rol'))
+        if request.args.get('rol'):
+            usuarios = usuarios.filter(Usuario_db.rol == request.args.get('rol'))
 
         # Filtrar por estado
         if request.args.get('estado'):
@@ -50,6 +51,12 @@ class Usuarios(Resource):
         if request.args.get('sortby_email'):
             usuarios = usuarios.order_by(Usuario_db.email.desc() if request.args.get('sortby_email') == 'desc' else Usuario_db.email.asc())
  
+        # Cantidad de usuarios por rol
+        if request.args.get('count'):
+            count_by_rol = db.session.query(Usuario_db.rol, db.func.count(Usuario_db.id))
+            count_by_rol = count_by_rol.group_by(Usuario_db.rol).all()
+            count_by_rol = dict(count_by_rol)
+            return jsonify(count_by_rol)
 
         #Obtener valor paginado
         usuarios = usuarios.paginate(page=page, per_page=per_page, error_out=False)
@@ -105,9 +112,13 @@ class Usuario(Resource):
     def put(self, id):
 
         usuario = db.session.query(Usuario_db).get_or_404(id)
+        original_estado = usuario.estado # Guardar el estado original
         data = request.get_json().items()
         for key, value in data:
             setattr(usuario, key, value)
         db.session.add(usuario)
         db.session.commit()
+        # Si el estado ha cambiado, enviar un correo electrónico
+        if original_estado != usuario.estado:
+            sendMail([usuario.email],"Cambio en el estado de tu cuenta",'account_status_change',usuario = usuario)
         return usuario.to_json(), 201

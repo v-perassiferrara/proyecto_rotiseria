@@ -1,0 +1,87 @@
+<!-- nav bar de arriba  -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <img src="/assets/logo.png" alt="logo" width="80rem" height="auto">
+        <div class="position-relative d-inline-block">
+            <!-- Icono -->
+            <a href="#" routerLink="/notificaciones"><i class="fa-regular fa-bell fa-2x"></i></a>
+        </div>
+
+    </div>
+</nav>
+
+<!-- Buscador -->
+<div class="p-3">
+    <div class="input-group" (click)="goToProductosAndFocusSearch()">
+        <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search"></i></span>
+        <input type="text" class="form-control border-start-0" placeholder="Buscar" readonly>
+    </div>
+</div>
+
+<!-- Carrusel de comidas -->
+<div class=" width-100 p-3">
+    <div class="row d-flex text-start justify-content-between p-2">
+        <div class="col-8">
+            <h1 class="text-primary text-black fw-bold fs-5" href="#">¡Clásicos de la casa!</h1>
+            <p class="text-secondary fs-6" href="#">Disfruta de nuestros clásicos</p>
+        </div>
+        <div class="col-4 py-2 p-0">
+            <button type="button" class="btn"><a href="#" routerLink="/productos">Ver <i
+                        class="fa-solid fa-arrow-right"></i></a></button>
+        </div>
+    </div>
+
+    <!-- Contenedor scrolleable -->
+    <div class="d-flex justify-content-start overflow-auto pb-3" style="gap: 1rem;">
+        @for (producto of top3; track producto.id) {
+        <div class="card" style="min-width: 16rem; cursor: pointer;" [routerLink]="['/detalle-producto', producto.id]">
+            <img [src]="producto.imagenUrl" class="card-img-top" alt="producot.nombre">
+            <div class="card-body text-center pb-0">
+                <h6 class="card-title">{{producto.nombre}}</h6>
+                <p class="fw-bold text-success">${{ producto.precio}}</p>
+            </div>
+        </div>
+        } @empty {
+        <p class="text-center">No hay productos disponibles.</p>
+        }
+    </div>
+</div>
+
+<!-- FALTA FOR  -->
+
+<!-- Categorías de comidas -->
+<div class="width-100 px-3" style="margin-bottom: 80px;">
+    <div class="row d-flex align-items-center"> <!-- le agregamos margen arriba -->
+        <h1 class="text-primary text-black fw-bold w-100">Categorías </h1>
+        <div class="card-group">
+
+            <!-- Productos -->
+            <div class="container my-3">
+                <div class="row g-3">
+                    @for (categoria of categorias; track categoria.id) {
+                    @if (categoria.visible){
+                    <div class="card mb-3 p-2">
+                        <div class="d-flex align-items-center">
+                            <img [src]="categoria.imagenUrl" class="rounded me-3" alt="Pizza"
+                                style="width: 80px; height: 80px; object-fit: cover;">
+                            <div class="flex-grow-1">
+                                <h5 class="mb-1">{{categoria.nombre}}</h5>
+                            </div>
+                            <a [routerLink]="['/productos']" [queryParams]="{ categoria: categoria.id }"
+                                class="btn btn-success">Ver</a>
+                        </div>
+                    </div>
+                    }
+                    } @empty {
+                    <p class="text-center">No hay productos disponibles.</p>
+                    }
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<!-- nav bar en el Footer -->
+<app-navbar></app-navbar>

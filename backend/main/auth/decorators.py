@@ -44,3 +44,24 @@ def add_claims_to_access_token(usuario_id): # Ahora recibe el ID como string
         'email': usuario.email
     }
     return claims
+
+#Decorador para restringir el acceso a usuarios por estado
+def activity_required(fn):
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        #Verificar que el JWT es correcto
+        verify_jwt_in_request()
+        #Obtener claims de adentro del JWT
+        claims = get_jwt()
+        #Obtener el id del usuario del token
+        usuario_id = claims['id']
+        #Consultar la base de datos para obtener el usuario completo
+        usuario = db.session.query(Usuario_db).get(usuario_id)
+        #Verificar que el estado del usuario sea 'activo'
+        if usuario and usuario.estado == 'activo':
+            #Ejecutar función si el usuario está activo
+            return fn(*args, **kwargs)
+        else:
+            #Devolver error si el usuario no está activo
+            return 'El usuario no se encuentra activo para realizar esta acción', 403
+    return wrapper

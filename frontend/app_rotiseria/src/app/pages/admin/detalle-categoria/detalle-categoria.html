@@ -1,0 +1,14 @@
+<app-titlebar [title]="'Modificar Categoría'" />
+
+<div style="padding: 10px; margin: 10px;">
+    <div style="height: 30px;" class=" m-1 d-inline-flex">
+        <app-back-button></app-back-button>
+    </div>
+
+    <div class="col-12 p-1 d-inline-flex">
+        <h2 class="text-primary text-black fw-bold" href="#">Datos de la Categoría</h2>
+    </div>
+
+    <!-- Formulario de datos de la categoría-->
+    <app-abm-categoria [categoria]="categoria"></app-abm-categoria>
+</div>

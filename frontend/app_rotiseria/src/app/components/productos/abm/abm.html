@@ -1,0 +1,55 @@
+<form [formGroup]="productoForm">
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-12">
+            <label class="form-label">Nombre</label>
+            <div class="input-group">
+                <input type="text" class="form-control" formControlName="nombre">
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-12">
+            <label class="form-label">Precio</label>
+            <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" formControlName="precio" min="0" step="1">
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-12">
+            <label class="form-label">Categoría</label>
+            <div class="input-group">
+                <select class="form-select" formControlName="fk_id_categoria">
+                    <option *ngFor="let categoria of categorias" [value]="categoria.id">
+                        {{categoria.nombre}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-12">
+            <label class="form-label">URL de Imagen</label>
+            <div class="input-group">
+                <input type="text" class="form-control" formControlName="imagenUrl">
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-12">
+            <label class="form-label">Disponible</label>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" formControlName="visible">
+                <label class="form-check-label">Mostrar en la carta</label>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="title-bar col-12 d-flex justify-content-center">
+    <a (click)="guardarCambios()" class="col-10 btn btn-success mt-2 w-70">Guardar</a>
+</div>

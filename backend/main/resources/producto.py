@@ -12,18 +12,40 @@ class Productos(Resource):
 # GET: obtener una lista de productos Rol: USER/ADMIN/EMPLEADO
     @jwt_required(optional=True)
     def get(self):
+
         #Página inicial por defecto
         page = 1
         #Cantidad de elementos por página por defecto
         per_page = 10
         
         productos = db.session.query(Producto_db)
-        
-        if request.args.get('page'):
-            page = int(request.args.get('page'))
-        if request.args.get('per_page'):
-            per_page = int(request.args.get('per_page'))
-            
+
+        # Bandera para saber si se usó el filtro top3
+        is_top3 = False
+
+        # Objeto de consulta final que se paginará
+        query_to_paginate = productos
+
+        # --- FILTRO PARA OBTENER LOS PRIMEROS 3 PRODUCTOS RECIENTES ---
+        if request.args.get('top3', type=str) and request.args.get('top3', type=str).lower() == 'true':
+
+            query_to_paginate = query_to_paginate.filter(Producto_db.visible == True)
+            query_to_paginate = query_to_paginate.order_by(Producto_db.id.desc())
+            query_to_paginate = query_to_paginate.limit(3)
+
+            per_page = 3
+            page = 1
+            is_top3 = True
+        # -------------------------------------------------------------------------
+
+        # --- MANEJO DE PAGINACIÓN ESTÁNDAR ---
+        if not is_top3:
+            if request.args.get('page'):
+                page = int(request.args.get('page'))
+            if request.args.get('per_page'):
+                per_page = int(request.args.get('per_page'))
+
+
         # ---FILTROS PARA PRODUCTOS---
 
         # Filtrar por nombre (búsqueda parcial)
@@ -38,6 +60,10 @@ class Productos(Resource):
         if request.args.get('precio_max'):
             productos = productos.filter(Producto_db.precio <= float(request.args.get('precio_max')))
 
+        # Filtrar por id de categoria
+        if request.args.get('categoria'):
+            productos = productos.filter(Producto_db.fk_id_categoria == int(request.args.get('categoria')))
+
         # Ordenar por nombre
         if request.args.get('sortby_nombre'):
             productos = productos.order_by(Producto_db.nombre.desc() if request.args.get('sortby_nombre') == 'desc' else Producto_db.nombre.asc())
@@ -46,28 +72,19 @@ class Productos(Resource):
         if request.args.get('sortby_precio'):
             productos = productos.order_by(Producto_db.precio.desc() if request.args.get('sortby_precio') == 'desc' else Producto_db.precio.asc())
 
-                
+
         #Obtener valor paginado
         productos = productos.paginate(page=page, per_page=per_page, error_out=False)
 
         
-        claims = get_jwt()
         
-        if claims.get("rol") in ["admin", "empleado"]:
-            return jsonify({
-        'productos': [producto.to_json_complete() for producto in productos],
+        return jsonify({
+        'productos': [producto.to_json_complete() for producto in productos.items],
                 'total': productos.total,
                 'pages': productos.pages,
                 'page': page
             })
 
-        else:
-            return jsonify({
-        'productos': [producto.to_json() for producto in productos],
-                'total': productos.total,
-                'pages': productos.pages,
-                'page': page
-            })
 
     
 
@@ -85,15 +102,11 @@ class Productos(Resource):
 
 class Producto(Resource):
 
-# GET: Obtener un producto. Rol: ADMIN  
+# GET: Obtener un producto. Rol: ADMIN/CLIENTE/EMPLEADO  
     @jwt_required(optional=False)
     def get(self, id):
-        claims = get_jwt()
         producto = db.session.query(Producto_db).get_or_404(id)     
-        if claims.get("rol") == "admin":
-            return jsonify(producto.to_json_complete())
-        else:
-            return jsonify(producto.to_json())
+        return jsonify(producto.to_json_complete())
 
 
 # DELETE: Eliminar un producto (ocultar/descontinuar). Rol: ADMIN

@@ -1,0 +1,30 @@
+<form [formGroup]="promocionForm">
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-12">
+            <label class="form-label">Titulo</label>
+            <div class="input-group">
+                <input type="text" class="form-control" formControlName="nombre">
+            </div>
+        </div>
+    </div>
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-12">
+            <label class="form-label">Descripcion</label>
+            <div class="input-group">
+                <input expandable type="text" class="form-control" placeholder="Desde UM Gang queriamos..." formControlName="descripcion">
+            </div>
+        </div>
+    </div>
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-12">
+            <label class="form-label">Válido Hasta</label>
+            <div class="input-group">
+                <input type="date" class="form-control" formControlName="fecha_fin">
+            </div>
+        </div>
+    </div>
+
+</form>
+<div class="title-bar col-12 d-flex justify-content-center">
+    <a (click)="guardarCambios()" class="col-10 btn btn-success mt-2 w-70">Guardar</a>
+</div>

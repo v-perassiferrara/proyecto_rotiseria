@@ -1,0 +1,32 @@
+ <!-- Header -->
+<app-titlebar [title]="'Usuarios'" [admin]="true" />
+
+<!-- pestañas pequeñas -->
+<div class="container mt-3">
+    <ul class="nav nav-pills justify-content-start gap-2">
+        <li class="nav-item">
+            <button class="btn btn-sm"
+                [ngClass]="{'btn-success': selectedTab === 'empleados', 'btn-outline-secondary': selectedTab !== 'empleados'}"
+                (click)="selectedTab = 'empleados'">
+                Empleados
+            </button>
+        </li>
+        <li class="nav-item">
+            <button class="btn btn-sm"
+                [ngClass]="{'btn-success': selectedTab === 'clientes', 'btn-outline-secondary': selectedTab !== 'clientes'}"
+                (click)="selectedTab = 'clientes'">
+                Clientes
+            </button>
+        </li>
+    </ul>
+</div>
+
+<div class="container-fluid justify-content-center">
+    @if (selectedTab === 'empleados') {
+    <!-- Tabla Empleados -->
+    <app-ver-user [rol]="'Empleado'"></app-ver-user>
+    } @else {
+    <!-- Tabla Clientes -->
+    <app-ver-user [rol]="'Cliente'"></app-ver-user>
+    }
+</div>

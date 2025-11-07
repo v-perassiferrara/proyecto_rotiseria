@@ -1,0 +1,64 @@
+<app-titlebar [title]="'Detalles del producto'" />
+
+<app-back-button></app-back-button>
+
+@if(producto){
+<div class="container w-100 bg-white p-3" style="border-radius: 12px;">
+    <h1 class="fw-bold">{{producto.nombre}}</h1>
+    <img [src]="producto.imagenUrl" class="card-img-top" [alt]="producto.nombre" style="border-radius: 12px;">
+    <p class="fw-bold fs-2 text-success mt-2">${{ producto.precio }}</p>
+    <p>{{ producto.descripcion }}</p>
+    @if(producto.visible){
+    <button class="btn btn-success w-100" (click)="agregarAlCarrito()">Agregar al carrito</button>
+    } @else {
+    <button class="btn btn-alert w-100" disabled>Actualmente No Disponible</button>
+    }
+</div>
+}
+
+<div class="container w-100 bg-white p-3 g-3 mt-3" style="border-radius: 12px;">
+
+    <h1 class="fw-bold">Valoraciones</h1>
+
+    @for (valoracion of valoraciones; track valoracion.id) {
+
+    <div class="card mb-3 p-2">
+
+        <div class="d-flex align-items-center border-2">
+
+            <!-- Imagen -->
+            <img src="/assets/user.png" class="rounded me-3" alt="Usuario"
+                style="width: 80px; height: 80px; object-fit: cover;">
+
+            <!-- Texto -->
+            <div class="flex-grow-1">
+
+                <div class="d-flex flex-row">
+                    <div class="col">
+                        <h5 class="mb-1">{{valoracion.nombre}}</h5>
+                    </div>
+
+                    <div class="col">
+                        @for (estrella of getStarArray(valoracion.estrellas) ; track $index) {
+                        @if (estrella === 1){
+                        <span>★</span>
+                        }@else {
+                        <span>☆</span>
+                        }
+                        }
+                    </div>
+
+                </div>
+                <p style="font-size: 14px;">{{valoracion.comentario}}</p>
+            </div>
+        </div>
+
+    </div>
+
+    } @empty {
+    <!-- No hay valoraciones -->
+    <p class="text-center">No hay valoraciones.</p>
+    }
+</div>
+
+<app-navbar></app-navbar>

@@ -1,0 +1,67 @@
+<app-titlebar [title]="'Carrito'" />
+
+<div>
+    <div class="col-12 d-inline-flex p-3 pt-4 pb-0">
+        <h1 class="text-primary text-black fw-bold">Mi Carrito</h1>
+    </div>
+</div>
+
+<!-- CARRITO -->
+
+<div class="container-fluid bg-white min-vh-100 mt-3 pt-3" style="border-radius:  30px 30px 0px 0px;">
+
+    <div class="container p-3">
+
+        <div class="row px-3">
+
+            <div class="col-4 p-0 text-start">
+                <h1 class="text-primary text-black fw-bold" href="#">Total</h1>
+            </div>
+
+            <div class="col-4 offset-4 p-0 text-end">
+                <h1 class="text-primary text-success fw-bold" href="#">${{calcularTotal()}}</h1>
+            </div>
+
+        </div>
+        <!-- Contenido del carrito -->
+        <div class="card-cont">
+
+             @for (producto of carritoList; track producto.id ) {
+                <!-- primer producto -->
+                <div class="card mb-3 p-2">
+                
+                    <div class="d-flex align-items-center">
+                    
+                        <!-- Imagen -->
+                        <img [src]="producto.imagenUrl" class="rounded me-3" alt="{{producto.nombre}}" style="width: 80px; height: 80px; object-fit: cover;">
+                    
+                        <!-- Texto -->
+                        <div class="flex-grow-1">
+                            <h5 class="mb-1"><span class="text-secondary">{{producto.cantidad}}x</span> {{producto.nombre}}</h5>
+                            <p class="card-text"><small class="text-body-secondary"><i class="bi bi-clock-fill"></i>${{producto.precio}}</small></p>
+                        </div>
+                    
+                        <!-- Botones menos y más -->
+                        <div class="botones-container d-flex">
+                            <a (click)="decrementarCantidad(producto)" class="btn btn-danger d-flex justify-content-center align-items-center me-2">
+                                <i class="fa-solid" [class.fa-minus]="producto.cantidad > 1" [class.fa-trash]="producto.cantidad === 1"></i>
+                            </a>
+                            <a (click)="incrementarCantidad(producto)" class="btn btn-success d-flex justify-content-center align-items-center"><i class="fa-solid fa-plus"></i></a>
+                        </div>
+                    
+                    </div>
+                
+                </div>
+             }
+
+            <div class="title-bar col-12 d-flex justify-content-center">
+                <a (click)="confirmarPedido()" [class.disabled]="carritoVacio()" [attr.aria-disabled]="carritoVacio()" class="col-10 btn btn-success mt-2 w-70">Confirmar</a>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- nav bar en el Footer -->
+<app-navbar></app-navbar>

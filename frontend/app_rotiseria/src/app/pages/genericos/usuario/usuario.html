@@ -1,0 +1,33 @@
+@if (authService.getRole() != 'cliente') {
+    <app-titlebar [title]="'Perfil Admin'" [admin]="true" />  
+} @else {
+    <app-titlebar [title]="'Perfil'"/> 
+}
+
+<div class="justify-content-center align-items-center d-flex" style="min-height: 80vh;">
+    <div class="container-fluid d-flex flex-column justify-content-center align-self-center" style="min-height: 30vh;">
+
+        <div class="card p-3" routerLink="/datos-personales">
+            <div class="d-flex align-items-center">
+                <i class="fa-regular fa-circle-user fa-2x me-3"></i>
+                <div class="flex-grow-1">
+                    <h5 class="mb-1">Datos Personales</h5>
+                    <h6 class="mb-1 text-secondary">{{ authService.getEmail() }}</h6>
+                    <h6 class="mb-1 text-secondary">Rol: {{ authService.getRole()?.toUpperCase() }}</h6>
+                </div>
+                <i class="fa fa-arrow-right"></i>
+            </div>
+        </div>
+
+
+        <div class="mt-5 text-center">
+            <a (click)="irLogout()" class="btn btn-danger w-75">Cerrar Sesión</a>
+        </div>
+        
+    </div>
+</div>
+
+
+@if(authService.getRole() == 'cliente'){
+    <app-navbar></app-navbar>
+}

@@ -25,9 +25,6 @@ def login():
     ## Devuelvo error si el usuario esta bloqueado
     if usuario.estado == 'bloqueado':
         return 'Usuario Bloqueado ', 401
-    ## Devuelvo error si el usuario esta pendiente de aprobación
-    elif usuario.estado == 'pendiente':
-        return 'Usuario Pendiente de Aprobación', 401
     
     ## Devuelvo error si no existe el usuario o si la contraseña no coincide
     if (usuario is None) or not usuario.validate_pass(request.get_json().get("contrasena")):
@@ -65,7 +62,18 @@ def register():
         except Exception as error:
             db.session.rollback()
             return str(error), 409
-        return usuario.to_json() , 201
+        
+        #Genera un nuevo token, pasando el objeto usuario como identidad
+        access_token = create_access_token(identity=str(usuario.id))
+
+        #Devolver valores y token
+        data = {
+            'id': usuario.id,
+            'email': usuario.email,
+            'access_token': access_token
+        }
+
+        return data, 200   
 
 #Método de logout
 @auth.route('/logout', methods=['POST'])

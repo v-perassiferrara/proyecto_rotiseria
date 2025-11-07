@@ -40,7 +40,8 @@ class Pedidos(db.Model):
                 'id': item.producto.id,
                 'nombre': item.producto.nombre,
                 'precio': item.producto.precio,
-                'cantidad': item.cantidad
+                'cantidad': item.cantidad,
+                'imagenUrl': item.producto.imagenUrl
             })
             
         pedido_json = {

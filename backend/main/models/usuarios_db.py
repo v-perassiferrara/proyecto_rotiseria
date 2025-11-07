@@ -65,6 +65,7 @@ class Usuarios(db.Model):
             'nombre': self.nombre,
             'apellido': self.apellido,
             'email': self.email,
+            'contrasena': self.contrasena,
             'telefono': self.telefono,
             'estado': self.estado,
             'rol' : self.rol,

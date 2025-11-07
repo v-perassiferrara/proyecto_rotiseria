@@ -1,0 +1,102 @@
+ <!-- Header -->
+<app-titlebar [title]="'Pedidos'" [admin]="true" />
+
+<main class="container py-3">
+
+    <!-- Stats -->
+    <div class="row g-2 mb-3">
+        <div class="col-6 col-sm-4 col-lg-2" (click)="filtrarPorEstado('pendiente')">
+            <div class="stat">
+                <div class="num text-secondary">{{ pendiente }}</div>
+                <small class="text-secondary">Pendientes</small>
+            </div>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-2" (click)="filtrarPorEstado('preparacion')">
+            <div class="stat">
+                <div class="num text-warning">{{ preparacion }}</div>   
+                <small class="text-warning-emphasis">En Preparación</small>
+            </div>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-2" (click)="filtrarPorEstado('listo')">
+            <div class="stat">
+                <div class="num text-success">{{ listo }}</div>
+                <small class="text-success-emphasis">Listos</small>
+            </div>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-2" (click)="filtrarPorEstado('entregado')">
+            <div class="stat">
+                <div class="num text-primary">{{ entregado }}</div>
+                <small class="text-primary">Entregados</small>
+            </div>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-2" (click)="filtrarPorEstado('cancelado')">
+            <div class="stat">
+                <div class="num text-danger">{{ cancelado }}</div>
+                <small class="text-danger-emphasis">Cancelados</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Título sección -->
+    <div class="d-flex justify-content-between align-items-center">
+        <h6 class="fw-bold mt-2 mb-2">Pedidos</h6>
+        <button class="btn btn-outline-dark btn-sm" (click)="mostrarTodos()">Mostrar Todos</button>
+    </div>
+
+    <!-- Buscador -->   
+    <div class="p-1 mb-2">
+            <div class="input-group">
+                <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search"></i></span>
+                <input #searchInput (input)="buscarPedido()" [(ngModel)]="numeroPedido"  type="number" class="form-control border-start-0" placeholder="Buscar por numero" >
+            </div>
+    </div>
+
+    <!-- Tabla de pedidos -->
+    <div class="table-responsive rounded-3 bg-white border">
+        <table class="table align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col" class="w-50">Pedido</th>
+                    <th scope="col" class="w-25">Estado</th>
+                    <th scope="col" class="text-end w-25">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (pedido of pedidosFiltered; track $index) {
+                <tr>
+                    <td>#{{pedido.id}}</td>
+                    <td>
+                        @switch (pedido.estado) {
+                        @case ('pendiente') {
+                        <span class="badge bg-secondary-subtle text-secondary-emphasis rounded-pill px-3">Pendiente</span>
+                        }
+                        @case ('listo') {
+                        <span class="badge bg-success-subtle text-success-emphasis rounded-pill px-3">Listo</span>
+                        }
+                        @case ('cancelado') {
+                        <span class="badge bg-danger-subtle text-danger-emphasis rounded-pill px-3">Cancelado</span>
+                        }
+                        @case ('preparacion') {
+                        <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill px-3">En Preparación</span>
+                        }
+                        @case ('entregado') {
+                        <span class="badge bg-primary text-body-primary rounded-pill px-3">Entregado</span>
+                        }
+                        @default {
+                        <span class="badge bg-white text-warning-emphasis px-3">Error</span>
+                        }
+                        }
+                    </td>
+
+                    <td class="text-end">
+                        <button class="btn btn-outline-secondary btn-sm" (click)="editarPedido(pedido)">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                    </td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</main>

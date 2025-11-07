@@ -15,6 +15,7 @@ class Valoraciones(db.Model):
         return {
             'id': self.id,
             'id_usuario': self.id_usuario,
+            'nombre' : self.usuario.nombre,
             'id_producto': self.id_producto,
             'estrellas': self.estrellas,
             'comentario': self.comentario

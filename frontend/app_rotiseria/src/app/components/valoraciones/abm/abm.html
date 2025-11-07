@@ -1,0 +1,32 @@
+<div class="modal-backdrop" (click)="closeModal.emit()"></div>
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Valorar: {{ producto.nombre }}</h5>
+      <button type="button" class="btn-close" (click)="closeModal.emit()"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="valoracionForm" (ngSubmit)="submitForm()">
+        <div class="mb-3">
+          <label class="form-label">Tu puntuación</label>
+          <div class="star-rating">
+            <span *ngFor="let i of [1, 2, 3, 4, 5]" 
+                  class="star" 
+                  [class.selected]="i <= estrellasSeleccionadas" 
+                  (click)="seleccionarEstrellas(i)">
+              &#9733;
+            </span>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="comentario" class="form-label">Comentario (opcional)</label>
+          <textarea class="form-control" id="comentario" formControlName="comentario" rows="3"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal.emit()">Cancelar</button>
+          <button type="submit" class="btn btn-success">Enviar valoración</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

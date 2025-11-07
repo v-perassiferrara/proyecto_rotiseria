@@ -1,0 +1,30 @@
+<app-titlebar [title]="'Historial de pedidos'" />
+
+<div style="padding-bottom: 55px;"> 
+    <div class="col-12 p-0 d-inline-flex p-3">
+        <h1 class="text-primary text-black fw-bold" href="#">Pedidos Anteriores</h1>
+    </div>
+
+    <div class="card-cont container-fluid pb-3">
+
+        @for (pedido of arrayPedidos; track $index) {
+            <div class="card mb-3 p-2">
+                <div class="d-flex align-items-center">
+                    <!-- Texto -->
+                    <div class="flex-grow-1">
+                        <h5 class="mb-1">Pedido #{{pedido.id}}</h5>
+                        <p class="card-text"><small class="text-body-secondary text-capitalize">{{pedido.estado}}</small></p>
+                        <p class="card-text"><small class="text-body-secondary"><i class="fa-solid fa-clock"></i> {{pedido.fecha}}</small></p>
+                    </div>
+
+                    <!-- Botón -->
+                    <a [routerLink]="['/detalle-pedido', pedido.id]" class="btn btn-success">Ver</a>
+                </div>
+            </div>
+        }
+        
+    </div>
+
+</div>
+
+<app-navbar></app-navbar>

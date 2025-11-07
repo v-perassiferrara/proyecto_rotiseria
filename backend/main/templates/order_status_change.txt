@@ -1,0 +1,8 @@
+Hola {{ usuario.nombre }},
+
+El estado de tu pedido #{{ pedido.id }} en la Rotisería UM GANG ha cambiado a: {{ pedido.estado }}.
+
+Si tienes alguna pregunta, no dudes en contactarnos.
+
+Saludos,
+El equipo de la Rotisería UM GANG

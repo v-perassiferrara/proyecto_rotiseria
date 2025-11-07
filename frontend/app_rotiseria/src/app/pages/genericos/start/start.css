@@ -1,0 +1,35 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+}
+
+.start-background {
+    background-color: rgb(27, 138, 13);
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    margin: 0; /* Remove any default margin */
+    padding: 0; /* Remove any default padding */
+}
+
+.logo-white{
+    max-width: 360px;    
+    width: clamp(160px, 35%, 360px);
+    height: auto;      
+    display: block;
+}
+
+.fade-out {
+    opacity: 0;
+}
+
+/* Media query for desktop dimensions */
+@media (min-width: 768px) { /* Adjust breakpoint as needed for 'desktop' */
+    .start-background {
+        width: 100vw; /* Ensure full width on desktop */
+        height: 100vh; /* Ensure full height on desktop */
+    }
+}

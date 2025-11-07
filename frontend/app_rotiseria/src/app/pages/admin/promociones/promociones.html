@@ -1,0 +1,38 @@
+<!-- Header -->
+<app-titlebar [title]="'Promociones'" [admin]="true" />
+<main class="container py-3">
+
+    <!-- Agregar promociones -->
+    <div class="width-100 d-flex justify-content-end my-2 align-items-end">
+        <button type="button" class="btn btn-success w-25" (click)="crearPromocion()">
+            <i class="fa-solid fa-add"></i>
+        </button>
+    </div>
+
+    <!-- Tabla de promociones -->
+    <div class="table-responsive rounded-3 bg-white border">
+        <table class="table align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col" class="w-60">Título</th>
+                    <th scope="col" class="w-20">Válida Hasta</th>
+                    <th scope="col" class="text-end w-20"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (promocion of arrayPromociones; track promocion.id) {
+                <tr>
+                    <td class="abreviado">{{promocion.nombre}}</td>
+                    <td>
+                        <span class="badge text-dark">{{ promocion.fecha_fin }}</span>
+                    </td>
+                    <td class="text-end">
+                        <button class="btn btn-outline-danger btn-sm" (click)="eliminarPromocion(promocion)"><i
+                                    class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</main>
