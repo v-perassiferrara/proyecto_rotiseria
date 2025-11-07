@@ -20,12 +20,12 @@
 
   <style>
 @media (min-width: 1000px) {
-  body {
+  body:not(.start-page-active):not(.admin-home-active) {
     max-width: 900px;
     margin: 0 auto;
   }
   
-  footer.fixed-bottom {
+  body:not(.start-page-active):not(.admin-home-active) footer.fixed-bottom {
     left: 50%;
     transform: translateX(-50%);
     max-width: 900px;

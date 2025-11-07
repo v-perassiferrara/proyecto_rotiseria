@@ -1,6 +1,5 @@
-.logo-white{
-    max-width: 360px;    
-    width: clamp(160px, 35%, 360px);
-    height: auto;      
-    display: block;
+.admin-home-background {
+    background-color: rgb(27, 138, 13);
+    min-height: 100vh;
+    width: 100vw;
 }
