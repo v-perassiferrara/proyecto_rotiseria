@@ -4,13 +4,15 @@ import { Titlebar } from '../../../components/titlebar/titlebar';
 import { BackButton } from '../../../components/back-button/back-button';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PedidosService } from '../../../services/pedidos';
+import { ValoracionAbm } from '../../../components/valoraciones/abm/abm';
 
 @Component({
   selector: 'app-detalle-pedido',
   imports: [
       Navbar,
       Titlebar,
-      BackButton
+      BackButton,
+      ValoracionAbm
   ],
   templateUrl: './detalle-pedido.html',
   styleUrl: './detalle-pedido.css'
@@ -18,24 +20,22 @@ import { PedidosService } from '../../../services/pedidos';
 export class DetallePedido implements OnInit {
 
   pedido: any = null;
+  isValoracionModalVisible = false;
+  productoSeleccionado: any = null;
   
   router = inject(Router);
   activatedRoute = inject(ActivatedRoute);
   pedidosService = inject(PedidosService);
 
-  // cancelarPedido(){
-  //   this.pedidosService.cancelarPedido(this.pedido.id).subscribe({
-  //     next: (pedido: PedidoResponse) => {
-  //       this.pedido = pedido;
-  //       console.log('Pedido cancelado con éxito');
-  //       // Recarga la página para actualizar el estado del pedido
-  //       this.router.navigateByUrl('/pedidos');
-  //     },
-  //     error: (err: any) => {
-  //       console.error('Error al cancelar el pedido:', err);
-  //     }
-  //   });
-  // }
+  abrirModalValoracion(producto: any) {
+    this.productoSeleccionado = producto;
+    this.isValoracionModalVisible = true;
+  }
+
+  cerrarModalValoracion() {
+    this.isValoracionModalVisible = false;
+    this.productoSeleccionado = null;
+  }
 
   cancelarPedido(){
     this.pedidosService.cancelarPedido(this.pedido.id).subscribe({
@@ -56,7 +56,7 @@ export class DetallePedido implements OnInit {
       const pedidoId = params['id'];
       if (pedidoId) {
         this.pedidosService.getPedidoCompleto(pedidoId).subscribe({
-          next: (pedido: PedidoResponse) => {
+          next: (pedido: any) => {
             this.pedido = pedido;
 
           },

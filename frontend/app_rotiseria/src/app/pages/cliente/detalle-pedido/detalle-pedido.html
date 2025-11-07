@@ -61,7 +61,7 @@
                     @if(pedido?.estado === 'entregado') {
                     <!-- Botón valorar -->
                     <div class="botones-container d-flex">
-                        <a href="#" class="btn btn-success d-flex justify-content-center align-items-center">Valorar</a>
+                        <button (click)="abrirModalValoracion(producto)" class="btn btn-success d-flex justify-content-center align-items-center">Valorar</button>
                     </div>
                     }
                 </div>
@@ -80,6 +80,14 @@
 
     </div>
 </div>
+
+<!-- Modal de Valoración -->
+@if (isValoracionModalVisible) {
+  <app-valoracion-abm 
+    [producto]="productoSeleccionado" 
+    (closeModal)="cerrarModalValoracion()">
+  </app-valoracion-abm>
+}
 
 <!-- nav bar -->
 <app-navbar></app-navbar>

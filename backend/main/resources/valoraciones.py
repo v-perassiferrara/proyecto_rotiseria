@@ -6,12 +6,11 @@ from main.auth.decorators import role_required
 from main.models import Valoracion_db
 from main.models import Producto_db
 from main.models import Usuario_db
+from main.models import Pedido_db
+from main.models import Pedidos_Productos_db
 
 class Valoraciones(Resource):
-    @jwt_required(optional=True)
-    def get(self):
-        valoraciones = db.session.query(Valoracion_db).all()
-        return jsonify([v.to_json() for v in valoraciones])
+
 
     # GET: obtener una lista de valoraciones
     def get(self):
@@ -77,12 +76,38 @@ class Valoraciones(Resource):
                 })
 
     @jwt_required(optional=False)
-    @role_required(roles = ["cliente"])
+    @role_required(roles=["cliente"])
     def post(self):
+        id_usuario = get_jwt_identity()
         data = request.get_json()
+        id_producto = data.get('id_producto')
+
+        if not id_producto:
+            return {"message": "El ID del producto es obligatorio."}, 400
+
+        # 1. Verificar que el usuario no haya valorado ya este producto
+        valoracion_existente = db.session.query(Valoracion_db).filter_by(id_usuario=id_usuario, id_producto=id_producto).first()
+        if valoracion_existente:
+            return {"message": "Ya has valorado este producto."}, 400
+
+        # 2. Verificar que el usuario haya comprado el producto en un pedido entregado
+        pedido_entregado = db.session.query(Pedido_db) \
+            .join(Pedidos_Productos_db, Pedido_db.id == Pedidos_Productos_db.fk_id_pedido) \
+            .filter(Pedido_db.fk_id_usuario == id_usuario) \
+            .filter(Pedidos_Productos_db.fk_id_producto == id_producto) \
+            .filter(Pedido_db.estado == 'entregado') \
+            .first()
+
+        if not pedido_entregado:
+            return {"message": "Solo puedes valorar productos que hayas recibido en un pedido entregado."}, 403
+
+        # Si todas las comprobaciones pasan, crear la valoración
         nueva_valoracion = Valoracion_db.from_json(data)
+        nueva_valoracion.id_usuario = id_usuario  # Asegurar que el ID del usuario es el del token
+        
         db.session.add(nueva_valoracion)
         db.session.commit()
+        
         return nueva_valoracion.to_json(), 201
 
 class Valoracion(Resource):

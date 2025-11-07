@@ -22,6 +22,15 @@ export class ValoracionesService {
 
     return this.http.get(`${this.url}/valoraciones?producto=${productoId}`, { headers });
   }
+
+  crearValoracion(valoracionData: any): Observable<any> {
+    const token = localStorage.getItem('token') || '';
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post(`${this.url}/valoraciones`, valoracionData, { headers });
+  }
   
 }
-

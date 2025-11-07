@@ -1,0 +1,46 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1050;
+}
+
+.modal-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1055;
+  width: 90%;
+  max-width: 500px;
+  background-color: #ffffff; /* Fondo blanco */
+  padding: 20px; /* Pequeño padding */
+  border-radius: 8px; /* Bordes redondeados */
+
+.star-rating {
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.star {
+  color: #d3d3d3; /* Color de estrella vacía */
+  transition: color 0.2s;
+}
+
+.star.selected,
+.star:hover,
+.star:hover ~ .star {
+  color: #ffc107; /* Color de estrella llena o al pasar el mouse */
+}
+
+/* Para que al quitar el mouse, las no seleccionadas vuelvan a su color */
+.star-rating:hover .star:not(.selected) {
+    color: #d3d3d3;
+}
+
+.star-rating:hover .star:hover {
+    color: #ffc107;
+}
