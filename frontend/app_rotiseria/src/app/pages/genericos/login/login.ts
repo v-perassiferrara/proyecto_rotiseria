@@ -51,7 +51,6 @@ export class Login {
   }
 
   submit(){
-    console.log("Valores form: ", this.loginForm.value);
     if(this.loginForm.valid){
       this.irLogin();
     } else {

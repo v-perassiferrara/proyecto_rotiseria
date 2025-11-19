@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class NotificacionesService {
   
   private http = inject(HttpClient);
 
-  url = 'http://localhost:3435';
+  url = environment.apiUrl;
   getNotificaciones(page: number = 1, perPage: number = 10): Observable<any> {
     const token = localStorage.getItem('token') || '';
     let headers = new HttpHeaders({

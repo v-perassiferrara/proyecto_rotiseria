@@ -25,7 +25,6 @@ export class UsuariosService {
     params.rol = rol;
   }
 
-  console.log("Params: ", params);
 
   return this.http.get(this.url + "/usuarios", { headers, params });
   }

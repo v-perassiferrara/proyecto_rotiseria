@@ -43,6 +43,8 @@ class Usuarios(Resource):
         if request.args.get('estado'):
             usuarios = usuarios.filter(Usuario_db.estado == request.args.get('estado'))
 
+
+
         # Ordenar por nombre
         if request.args.get('sortby_nombre'):
             usuarios = usuarios.order_by(Usuario_db.nombre.desc() if request.args.get('sortby_nombre') == 'desc' else Usuario_db.nombre.asc())
@@ -50,6 +52,8 @@ class Usuarios(Resource):
         # Ordenar por email
         if request.args.get('sortby_email'):
             usuarios = usuarios.order_by(Usuario_db.email.desc() if request.args.get('sortby_email') == 'desc' else Usuario_db.email.asc())
+
+
  
         # Cantidad de usuarios por rol
         if request.args.get('count'):
@@ -57,6 +61,8 @@ class Usuarios(Resource):
             count_by_rol = count_by_rol.group_by(Usuario_db.rol).all()
             count_by_rol = dict(count_by_rol)
             return jsonify(count_by_rol)
+
+
 
         #Obtener valor paginado
         usuarios = usuarios.paginate(page=page, per_page=per_page, error_out=False)
@@ -107,7 +113,7 @@ class Usuario(Resource):
             'usuario': usuario.to_json()
         }, 200  # con 204 flask no devuelve el mensaje
 
-# PUT: Editar un usuario. Rol: ADMIN, USUA
+# PUT: Editar un usuario. Rol: ADMIN
     @jwt_required(optional=True)
     def put(self, id):
 

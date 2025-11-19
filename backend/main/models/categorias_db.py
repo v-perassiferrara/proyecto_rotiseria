@@ -2,12 +2,19 @@ from .. import db
 
 class Categorias(db.Model):
     __tablename__ = 'categorias'
+    
     id = db.Column(db.Integer, primary_key=True)
+    
     nombre = db.Column(db.String(50), nullable=False)
     imagenUrl = db.Column(db.String(512), nullable=False)
     visible = db.Column(db.Boolean, nullable=False, default=True)
 
+
+
+    # Relación uno a muchos con la tabla productos (productos de una categoria)
     productos = db.relationship('Productos', back_populates='categoria', cascade='all, delete-orphan')
+
+
 
     def to_json(self):
         categoria_json = {

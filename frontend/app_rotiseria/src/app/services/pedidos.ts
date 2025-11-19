@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ export class PedidosService {
 
   private http = inject(HttpClient);
 
-  url = 'http://localhost:3435';
+  url = environment.apiUrl;
+  
   getPedidos(page: number = 1, perPage: number = 10): Observable<any> {
     const token = localStorage.getItem('token') || '';
     let headers = new HttpHeaders({

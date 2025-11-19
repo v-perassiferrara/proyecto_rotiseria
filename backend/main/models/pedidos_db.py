@@ -3,20 +3,25 @@ from datetime import datetime
 
 class Pedidos(db.Model): 
     __tablename__ = 'pedidos'
+    
     id = db.Column(db.Integer, primary_key=True)
-    fk_id_usuario = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False) # Relacion con usuarios
+    
     total = db.Column(db.Float, nullable=False)
     estado = db.Column(db.String(50), nullable=False, default='pendiente')
     fecha = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
 
-    # Relación con intermedia pedidos_productos (muchos pedidos con muchos productos)
+    # Clave foránea a la tabla usuarios
+    fk_id_usuario = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
+
+
+    # Relación con tabla usuarios (pedidos >─ usuario)
+    usuarios = db.relationship('Usuarios', back_populates='pedidos', uselist=False, single_parent=True)
+
+    # Relacion uno a muchos con pedidos_productos (intermedia para pedidos >─< productos)
     pedidos_productos = db.relationship('Pedidos_Productos', back_populates='pedido', cascade='all, delete-orphan')
 
 
-
-    #Conexion con tabla usuarios (1 usuario a muchos pedidos)
-    usuarios = db.relationship('Usuarios', back_populates='pedidos', uselist=False, single_parent=True)
 
 
 

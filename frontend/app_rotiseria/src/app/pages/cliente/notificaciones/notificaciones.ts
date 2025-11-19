@@ -25,6 +25,7 @@ export class Notificaciones implements OnInit{
   arrayNotificaciones?: any[] = [];
   notificacionesService = inject(NotificacionesService);
 
+  // Solo puede ser 'promociones' o 'notificaciones'
   selectedTab: 'promociones' | 'notificaciones' = 'notificaciones';
 
 

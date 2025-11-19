@@ -2,14 +2,23 @@ from .. import db
 
 class Valoraciones(db.Model):
     __tablename__ = 'valoraciones'
+    
     id = db.Column(db.Integer, primary_key=True)
+    
+    # Claves foráneas
     id_usuario = db.Column(db.Integer, db.ForeignKey('usuarios.id'))
     id_producto = db.Column(db.Integer, db.ForeignKey('productos.id'))
+    
+    # Atributos extra
     estrellas = db.Column(db.Integer, nullable=False)
     comentario = db.Column(db.String(500))
 
+    
+    # Relaciones 1:n con los extremos del n:n (planteado mediante esta tabla intermedia)    
     usuario = db.relationship('Usuarios', back_populates='valoraciones')
     producto = db.relationship('Productos', back_populates='valoraciones')
+
+
 
     def to_json(self):
         return {

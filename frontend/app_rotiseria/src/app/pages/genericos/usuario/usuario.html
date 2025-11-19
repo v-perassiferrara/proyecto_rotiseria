@@ -13,7 +13,7 @@
                 <div class="flex-grow-1">
                     <h5 class="mb-1">Datos Personales</h5>
                     <h6 class="mb-1 text-secondary">{{ authService.getEmail() }}</h6>
-                    <h6 class="mb-1 text-secondary">Rol: {{ authService.getRole()?.toUpperCase() }}</h6>
+                    <h6 class="mb-1 text-secondary text-capitalize">Rol: {{ authService.getRole() }}</h6>
                 </div>
                 <i class="fa fa-arrow-right"></i>
             </div>

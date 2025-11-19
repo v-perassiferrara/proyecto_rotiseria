@@ -11,8 +11,9 @@ from main.mail.functions import sendMail
 
 
 class Pedidos(Resource):
+    
     # GET: obtener una lista de Pedidos
-    @jwt_required(optional=True)
+    @jwt_required(optional=False)
     def get(self):
         page = 1  # Página inicial por defecto
         per_page = 10  # Cantidad de elementos por página por defecto
@@ -107,6 +108,8 @@ class Pedidos(Resource):
             }
         )
 
+
+
     # POST: Crear un pedido
     @jwt_required(optional=False)
     @activity_required
@@ -121,16 +124,20 @@ class Pedidos(Resource):
         return pedido.to_json(), 201
 
 
+
 class Pedido(Resource):
-    # GET: Obtener un pedido. Rol: USER/ADMIN/EMPLEADO
-    @jwt_required(optional=True)
+    
+    # GET: Obtener un pedido. Rol: ADMIN/EMPLEADO/CLIENTE
+    @jwt_required(optional=False)
     def get(self, id):
         pedido = db.session.query(Pedido_db).get_or_404(id)
         return jsonify(pedido.to_json_completo())
 
+
+
     # DELETE: Eliminar un pedido. Rol: ADMIN/EMPLEADO
     # Ver permisos por rol. Ej: Cliente debe poder borrar solo sus pedidos. Admin borrar cualquiera. Usar JWT Payload para verificar el rol
-    @jwt_required(optional=True)
+    @jwt_required(optional=False)
     @role_required(roles=["admin", "empleado"])
     @activity_required
     def delete(self, id):
@@ -140,13 +147,15 @@ class Pedido(Resource):
         db.session.commit()
         usuario = db.session.query(Usuario_db).get(pedido.fk_id_usuario)
         if usuario:
-            sendMail([usuario.email],f"Tu pedido ha sido cancelado",'order_status_change', pedido = pedido, usuario = usuario)
+            sendMail([usuario.email],"Tu pedido ha sido cancelado",'order_status_change', pedido = pedido, usuario = usuario)
         return {
             "message": "Pedido cancelado con éxito",
             "pedido": pedido.to_json(),
         }, 200  # con 204 flask no devuelve el mensaje
 
-    # PUT: Editar un pedido. Rol: ADMIN
+
+
+    # PUT: Editar un pedido. Rol: ADMIN/EMPLEADO
     @jwt_required(optional=True)
     @role_required(roles=["admin", "empleado"])
     @activity_required

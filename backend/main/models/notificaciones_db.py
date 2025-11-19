@@ -4,11 +4,16 @@ from datetime import datetime
 
 class Notificaciones(db.Model):
     __tablename__ = "notificaciones"
+    
     id = db.Column(db.Integer, primary_key=True)
+    
+    # Clave foránea a la tabla usuarios
     fk_id_usuario = db.Column(db.Integer, db.ForeignKey("usuarios.id"), nullable=False)
+    
     mensaje = db.Column(db.String(500), nullable=False)
     leida = db.Column(db.Boolean, default=False)
     fecha = db.Column(db.DateTime, nullable=False, default=datetime.now)
+
 
     # Relacion uno a muchos con la tabla usuarios
     usuarios = db.relationship(

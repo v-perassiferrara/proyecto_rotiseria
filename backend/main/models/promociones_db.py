@@ -3,12 +3,16 @@ from .. import db
 
 class Promociones(db.Model):
     __tablename__ = 'promociones'
+    
     id = db.Column(db.Integer, primary_key=True)
+    
     nombre = db.Column(db.String(50), nullable=False)
     fecha_inicio = db.Column(db.DateTime, nullable=False, default=datetime.now)
     fecha_fin = db.Column(db.DateTime, nullable=False)
     descripcion = db.Column(db.String(500), nullable=False)
     imagenUrl = db.Column(db.String(512), nullable=True)
+
+
 
     def to_json(self):
         return {

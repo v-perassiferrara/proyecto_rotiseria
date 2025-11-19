@@ -10,12 +10,11 @@
         <div class="mb-3">
           <label class="form-label">Tu puntuación</label>
           <div class="star-rating">
-            <span *ngFor="let i of [1, 2, 3, 4, 5]" 
-                  class="star" 
-                  [class.selected]="i <= estrellasSeleccionadas" 
-                  (click)="seleccionarEstrellas(i)">
+            @for (i of estrellas; track i) {
+            <span class="star" [class.selected]="i <= estrellasSeleccionadas" (click)="seleccionarEstrellas(i)">
               &#9733;
             </span>
+            }
           </div>
         </div>
         <div class="mb-3">
