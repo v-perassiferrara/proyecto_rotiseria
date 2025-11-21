@@ -2,7 +2,7 @@ from .. import jwt, db
 from flask import jsonify
 from flask_jwt_extended import verify_jwt_in_request, get_jwt
 from functools import wraps
-from main.models import Usuario_db # Importa el modelo Usuario_db
+from main.models import Usuario_db
 
 
 

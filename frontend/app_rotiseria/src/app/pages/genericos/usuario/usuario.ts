@@ -19,6 +19,7 @@ export class Usuario {
 
   authService = inject(Auth);
   router = inject(Router);
+  rol = this.authService.getRole();
 
 
   irLogout(){

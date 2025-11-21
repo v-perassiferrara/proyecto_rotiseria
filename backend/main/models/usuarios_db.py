@@ -24,7 +24,7 @@ class Usuarios(db.Model):
 
 
     # Relacion con pedidos (usuario ─< pedidos)
-    pedidos = db.relationship("Pedidos", back_populates="usuarios", cascade="all, delete-orphan")
+    pedidos = db.relationship("Pedidos", back_populates="usuario", cascade="all, delete-orphan")
 
     # Relacion uno a muchos con valoraciones (intermedia para usuarios >─< productos)
     valoraciones = db.relationship("Valoraciones", back_populates="usuario", cascade="all, delete-orphan")
