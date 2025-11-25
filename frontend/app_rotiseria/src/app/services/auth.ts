@@ -24,7 +24,6 @@ export class Auth {
    * Realiza el registro
    */
   register(dataRegister: RegisterRequest): Observable<any> {
-    console.log("Datos para registrar: ", dataRegister);
     return this.http.post(this.url + "/auth/register", dataRegister)
   }
 

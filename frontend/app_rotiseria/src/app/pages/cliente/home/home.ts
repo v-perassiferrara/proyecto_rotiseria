@@ -14,7 +14,7 @@ import { CategoriasService } from '../../../services/categorias';
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
-export class Home {
+export class Home implements OnInit {
 
   productos: any[] = [];
   categorias: any[] = [];
@@ -29,7 +29,6 @@ export class Home {
 
 
 
-  // Usar OnInit es esencial cuando se implementa ngOnInit
   ngOnInit(): void {
 
     // Le decimos a Angular que esperamos la estructura ProductosResponse

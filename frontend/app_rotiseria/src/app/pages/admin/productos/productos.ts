@@ -17,7 +17,7 @@ import { NgClass } from '@angular/common';
   templateUrl: './productos.html',
   styleUrl: './productos.css'
 })
-export class Productos implements OnInit{
+export class Productos implements OnInit {
 
   productos: any[] = [];
   productosFiltered: any[] = [];
@@ -36,7 +36,7 @@ export class Productos implements OnInit{
 
   productosService = inject(ProductosService)
   categoriasService = inject(CategoriasService)
-  
+
 
   ngOnInit(): void {
     this.loadProductos();
@@ -87,40 +87,78 @@ export class Productos implements OnInit{
   }
 
   // Para búsqueda de productos
-nombreProducto!: string;
+  nombreProducto!: string;
 
-buscarProducto() {
-  if (!this.nombreProducto) {
-    this.productosFiltered = [...this.productos];
-    return;
+  buscarProducto() {
+    if (!this.nombreProducto) {
+      this.productosFiltered = [...this.productos];
+      return;
+    }
+    let nombreLower = this.nombreProducto.toLowerCase();
+    this.productosFiltered = this.productos.filter((p: any) =>
+      p.nombre?.toLowerCase().includes(nombreLower)
+    );
   }
-  let nombreLower = this.nombreProducto.toLowerCase();
-  this.productosFiltered = this.productos.filter((p: any) =>
-    p.nombre?.toLowerCase().includes(nombreLower)
-  );
-}
 
-// Para búsqueda de categorias
-nombreCategoria!: string;
-buscarCategoria() {
-  if (!this.nombreCategoria) {
-    this.categoriasFiltered = [...this.categorias];
-    return;
+  // Para búsqueda de categorias
+  nombreCategoria!: string;
+  buscarCategoria() {
+    if (!this.nombreCategoria) {
+      this.categoriasFiltered = [...this.categorias];
+      return;
+    }
+    let nombreLower = this.nombreCategoria.toLowerCase();
+    this.categoriasFiltered = this.categorias.filter((c: any) =>
+      c.nombre?.toLowerCase().includes(nombreLower)
+    );
   }
-  let nombreLower = this.nombreCategoria.toLowerCase();
-  this.categoriasFiltered = this.categorias.filter((c: any) =>
-    c.nombre?.toLowerCase().includes(nombreLower)
-  );
-}
 
-  editarProducto(producto:any){
+  crearProducto() {
+    console.log("Creando producto: ");
+    this.router.navigateByUrl(`/admin/producto/`);
+  }
+
+  editarProducto(producto: any) {
     console.log("Editando producto: ", producto);
     this.router.navigateByUrl(`/admin/producto/${producto.id}`);
   }
 
-  editarCategoria(categoria:any){
+  crearCategoria() {
+    console.log("Creando categoria: ");
+    this.router.navigateByUrl(`/admin/categoria/`);
+  }
+
+  editarCategoria(categoria: any) {
     console.log("Editando categoria: ", categoria);
     this.router.navigateByUrl(`/admin/categoria/${categoria.id}`);
   }
 
+  eliminarProducto(producto: any) {
+    console.log("Eliminando producto: ", producto);
+    this.productosService.deleteProducto(producto.id).subscribe({
+      next: (response) => {
+        console.log('Producto eliminado:', response);
+        alert('Producto eliminado exitosamente');
+        this.router.navigateByUrl("/admin/productos")
+      },
+      error: (error) => {
+        console.error('Error deleting producto:', error);
+        alert('Error al eliminar producto');
+      }
+    });
+  }
+  eliminarCategoria(categoria: any) {
+    console.log("Eliminando producto: ", categoria);
+    this.categoriasService.deleteCategoria(categoria.id).subscribe({
+      next: (response) => {
+        console.log('Categoría eliminada', response);
+        alert('Categoria (y sus productos) eliminada exitosamente');
+        this.router.navigateByUrl("/admin/productos")
+      },
+      error: (error) => {
+        console.error('Error deleting categoria:', error);
+        alert('Error al eliminar categoria');
+      }
+    });
+  }
 }

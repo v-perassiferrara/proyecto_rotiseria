@@ -7,24 +7,24 @@
   <app-back-button></app-back-button>
 
   <!-- pestañas pequeñas -->
-<div class="containter mt-3 mb-3">
+  <div class="containter mt-3 mb-3">
     <ul class="nav nav-pills justify-content-start gap-2">
-        <li class="nav-item">
-            <button class="btn btn-sm"
-                [ngClass]="{'btn-success': selectedTab === 'notificaciones', 'btn-outline-secondary': selectedTab !== 'notificaciones'}"
-                (click)="selectedTab = 'notificaciones'">
-                Notificaciones
-            </button>
-        </li>
-        <li class="nav-item">
-            <button class="btn btn-sm"
-                [ngClass]="{'btn-success': selectedTab === 'promociones', 'btn-outline-secondary': selectedTab !== 'promociones'}"
-                (click)="selectedTab = 'promociones'">
-                Promociones
-            </button>
-        </li>
+      <li class="nav-item">
+        <button class="btn btn-sm"
+          [ngClass]="{'btn-success': selectedTab === 'notificaciones', 'btn-outline-secondary': selectedTab !== 'notificaciones'}"
+          (click)="selectedTab = 'notificaciones'">
+          Notificaciones
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-sm"
+          [ngClass]="{'btn-success': selectedTab === 'promociones', 'btn-outline-secondary': selectedTab !== 'promociones'}"
+          (click)="selectedTab = 'promociones'">
+          Promociones
+        </button>
+      </li>
     </ul>
-</div>
+  </div>
 
   <!-- Título -->
   <h1 class="fw-bold text-black mb-4">Últimas {{ selectedTab }}</h1>
@@ -42,18 +42,18 @@
 
       <div class="flex-grow-1">
         <h6 class="mb-1 fw-bold">{{promocion.nombre}}</h6>
-          <p class="mb-">{{promocion.descripcion}}</p>
-          <small class="text-body-secondary"><i class="fa-solid fa-clock"></i>{{promocion.fecha_fin}}</small>
+        <p class="mb-">{{promocion.descripcion}}</p>
+        <small class="text-body-secondary"><i class="fa-solid fa-clock"></i>{{promocion.fecha_fin}}</small>
       </div>
 
     </div>
 
   </div>
-}}
-@else{
+  }}
+  @else{
 
   @for (notificacion of arrayNotificaciones; track notificacion.id) {
-    <div class="card mb-3 p-2">
+  <div class="card mb-3 p-2">
 
     <div class="d-flex align-items-center">
 
@@ -63,8 +63,7 @@
       </div>
 
       <div class="flex-grow-1">
-        <h6 class="mb-1">Pedido #{{notificacion.id}} </h6>
-        <p>{{notificacion.mensaje}}</p>
+        <h6 class="mb-1">{{notificacion.mensaje}} </h6>
         <small class="text-body-secondary"><i class="fa-solid fa-clock"></i>{{notificacion.fecha}}</small>
       </div>
 
@@ -72,7 +71,7 @@
   </div>
   }
 
-}
+  }
 
 </div>
 

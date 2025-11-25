@@ -33,7 +33,20 @@ export class AbmCategoria implements OnChanges{
 
 
   guardarCambios() {
-    if (this.categoriaForm.valid) {
+    if ((this.categoria.id == null || this.categoria.id == '') && this.categoriaForm.valid) {
+
+      this.categoriaSvc.postCategorias(this.categoriaForm.value).subscribe({
+        next: (response) => {
+          console.log('Categoria creada:', response);
+          alert('Categoria creada exitosamente');
+          this.router.navigateByUrl("/admin/productos")
+        },
+        error: (error) => {
+          console.error('Error creating categoria:', error);
+          alert('Error al crear categoria');
+        }
+      });
+    } else if (this.categoria.id != null && this.categoria.id != '' && this.categoriaForm.valid) {
       const categoria_nueva = this.categoriaForm.value;
       if (this.categoria.visible === false) {
         this.productoSvc.putProductosVisibilityByCategoria(this.categoria.id, false).subscribe({
@@ -61,3 +74,4 @@ export class AbmCategoria implements OnChanges{
     }
   }
 }
+

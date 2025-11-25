@@ -21,8 +21,11 @@ export class DetalleCategoria {
 
   ngOnInit() {
     const id = this.route.snapshot.params['id'] || '';
-    this.categoriasSvc.getCategoria(id).subscribe((categoria) => {
-      this.categoria = categoria;
-    });
+    if (id) {
+      this.categoriasSvc.getCategoria(id).subscribe((categoria) => {
+        this.categoria = categoria;
+      });
+    }
+    this.categoria = { id: '', nombre: '', imagenUrl: '' };
   }
 }

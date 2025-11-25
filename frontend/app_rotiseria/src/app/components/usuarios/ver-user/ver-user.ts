@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit} from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { UsuariosService } from '../../../services/usuarios';
@@ -18,15 +18,15 @@ export class VerUser implements OnInit {
 
   arrayUsuarios: any[] = [];
   arrayFiltered: any[] = [];
-  
+
   router = inject(Router)
   usuarioSvc = inject(UsuariosService)
 
-  
-  ngOnInit(){
+
+  ngOnInit() {
 
     this.usuarioSvc.getUsuarios(this.rol().toLowerCase()).subscribe({
-      next: (res:any) => {
+      next: (res: any) => {
         this.arrayUsuarios = res.usuarios;
 
         this.arrayUsuarios = this.arrayUsuarios.sort()
@@ -39,23 +39,37 @@ export class VerUser implements OnInit {
     })
   }
 
-  editarUsuario(usuario:any){
+  editarUsuario(usuario: any) {
     this.router.navigateByUrl(`/admin/usuario/${usuario.id}`);
   }
 
-  buscar(){
+  buscar() {
     if (!this.nombre) {
       this.arrayFiltered = [...this.arrayUsuarios];
       return;
     }
     let nombreLower = this.nombre.toLowerCase();
-    this.arrayFiltered = this.arrayUsuarios.filter((u: any) => 
-      u.nombre?.toLowerCase().includes(nombreLower) || 
+    this.arrayFiltered = this.arrayUsuarios.filter((u: any) =>
+      u.nombre?.toLowerCase().includes(nombreLower) ||
       u.apellido?.toLowerCase().includes(nombreLower)
     );
   }
 
   get cantidadUsuarios(): number {
     return this.arrayUsuarios.length;
+  }
+
+  bloquearUsuario(usuario: any): void {
+    this.usuarioSvc.bloquearUsuario(usuario.id).subscribe({
+      next: (response) => {
+        console.log('Usuario bloqueado:', response);
+        alert('Usuario bloqueado exitosamente');
+        this.router.navigateByUrl("/admin/usuarios")
+      },
+      error: (error) => {
+        console.error('Error bloqueando usuario:', error);
+        alert('Error al bloquear usuario');
+      }
+    });
   }
 }

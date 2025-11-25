@@ -19,6 +19,7 @@
   background-color: #ffffff; /* Fondo blanco */
   padding: 20px; /* Pequeño padding */
   border-radius: 8px; /* Bordes redondeados */
+}
 
 .star-rating {
   font-size: 2.5rem;

@@ -109,13 +109,12 @@ class Producto(Resource):
         return jsonify(producto.to_json_complete())
 
 
-# DELETE: Eliminar un producto (ocultar/descontinuar). Rol: ADMIN
+# DELETE: Eliminar un producto. Rol: ADMIN
     @jwt_required(optional=False)
     @role_required(roles = ["admin"]) 
-    def delete(self, id):
+    def delete(self, id):   
         producto = db.session.query(Producto_db).get_or_404(id)
-        setattr(producto, 'visible', False) 
-        db.session.add(producto)
+        db.session.delete(producto)
         db.session.commit()
         return {
             'message': 'Producto bloqueado con éxito',

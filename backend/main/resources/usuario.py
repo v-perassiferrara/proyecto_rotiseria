@@ -43,6 +43,8 @@ class Usuarios(Resource):
         if request.args.get('estado'):
             usuarios = usuarios.filter(Usuario_db.estado == request.args.get('estado'))
 
+
+
         # Ordenar por nombre
         if request.args.get('sortby_nombre'):
             usuarios = usuarios.order_by(Usuario_db.nombre.desc() if request.args.get('sortby_nombre') == 'desc' else Usuario_db.nombre.asc())
@@ -50,6 +52,8 @@ class Usuarios(Resource):
         # Ordenar por email
         if request.args.get('sortby_email'):
             usuarios = usuarios.order_by(Usuario_db.email.desc() if request.args.get('sortby_email') == 'desc' else Usuario_db.email.asc())
+
+
  
         # Cantidad de usuarios por rol
         if request.args.get('count'):
@@ -57,6 +61,8 @@ class Usuarios(Resource):
             count_by_rol = count_by_rol.group_by(Usuario_db.rol).all()
             count_by_rol = dict(count_by_rol)
             return jsonify(count_by_rol)
+
+
 
         #Obtener valor paginado
         usuarios = usuarios.paginate(page=page, per_page=per_page, error_out=False)
@@ -69,7 +75,8 @@ class Usuarios(Resource):
             
 
 
-# POST: Crear un usuario. Rol: USUARIO/ADMIN/ENCARGADO
+# POST: Crear un usuario. Rol: CLIENTE/ADMIN/EMPLEADO
+    @jwt_required()
     def post(self):
         usuario = Usuario_db.from_json(request.get_json())
         db.session.add(usuario)
@@ -81,8 +88,8 @@ class Usuarios(Resource):
 
 class Usuario(Resource):
 
-# GET: Obtener un usuario. Rol: USUARIO/ADMIN/EMPLEADO
-    @jwt_required(optional=True)
+# GET: Obtener un usuario. Rol: CLIENTE/ADMIN/EMPLEADO
+    @jwt_required()
     def get(self, id):        
         usuario = db.session.query(Usuario_db).get_or_404(id) 
         current_identity = int(get_jwt_identity())
@@ -94,7 +101,7 @@ class Usuario(Resource):
 
 # DELETE: Eliminar un usuario (cambiar de estado o suspender). Rol: ADMIN/EMPLEADO
 
-    @jwt_required(optional=True)
+    @jwt_required()
     @role_required(roles = ["admin","empleado"]) 
     def delete(self, id):
 
@@ -107,8 +114,8 @@ class Usuario(Resource):
             'usuario': usuario.to_json()
         }, 200  # con 204 flask no devuelve el mensaje
 
-# PUT: Editar un usuario. Rol: ADMIN, USUA
-    @jwt_required(optional=True)
+# PUT: Editar un usuario. Rol: ADMIN
+    @jwt_required()
     def put(self, id):
 
         usuario = db.session.query(Usuario_db).get_or_404(id)

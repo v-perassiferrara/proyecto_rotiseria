@@ -69,7 +69,6 @@ export class VerProducto implements OnInit {
 
     request.subscribe({
       next: (data: any) => {
-        console.log('Respuesta del backend:', data);
         const newProductos = data.productos || [];
         this.arrayProductos = [...this.arrayProductos, ...newProductos];
         this.arrayFiltered = [...this.arrayProductos];

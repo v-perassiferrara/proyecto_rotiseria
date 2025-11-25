@@ -76,7 +76,16 @@ export class ProductosService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.post(`${this.url}/promociones`, producto, { headers });
+    return this.http.post(`${this.url}/productos`, producto, { headers });
+  }
+
+  deleteProducto(id: number): Observable<any> {
+    const token = localStorage.getItem('token') || '';
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.delete(`${this.url}/producto/${id}`, { headers });
   }
 
 }

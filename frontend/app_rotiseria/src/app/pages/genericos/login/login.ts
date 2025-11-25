@@ -35,7 +35,7 @@ export class Login {
       next: (res: LoginResponse) => {
         alert("Login exitoso")
         localStorage.setItem("token", res.access_token);
-        if(this.authService.getRole() == 'admin'){
+        if(this.authService.getRole() != 'cliente'){
           this.router.navigate(['/admin/home']);
         } 
         else {
@@ -51,12 +51,10 @@ export class Login {
   }
 
   submit(){
-    console.log("Valores form: ", this.loginForm.value);
     if(this.loginForm.valid){
       this.irLogin();
     } else {
       alert("Formulario inválido")
     }
   }
-
 }

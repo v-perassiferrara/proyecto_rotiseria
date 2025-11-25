@@ -20,6 +20,8 @@ export class ValoracionAbm {
   valoracionesService = inject(ValoracionesService);
   fb = inject(FormBuilder);
 
+  estrellas = [1, 2, 3, 4, 5];
+
   estrellasSeleccionadas = 0;
 
   constructor() {

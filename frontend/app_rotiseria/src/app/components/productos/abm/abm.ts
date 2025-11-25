@@ -41,7 +41,7 @@ export class AbmProducto implements OnChanges{
     this.productoForm = this.formBuilder.group({
       nombre: [this.producto?.nombre || '', Validators.required],
       precio: [this.producto?.precio || 0, [Validators.required, Validators.min(0)]],
-      fk_id_categoria: [this.producto?.categoria || '', Validators.required],
+      fk_id_categoria: [this.producto?.categoria || 0, Validators.required],
       imagenUrl: [this.producto?.imagenUrl || ''],
       visible: [this.producto?.visible ?? true]
     });
@@ -49,7 +49,21 @@ export class AbmProducto implements OnChanges{
 
 
   guardarCambios() {
-    if (this.productoForm.valid) {
+    if ((this.producto.id == null || this.producto.id == '') && this.productoForm.valid) {
+      
+
+      this.productoSvc.postProductos(this.productoForm.value).subscribe({
+        next: (response) => {
+          console.log('Producto creado:', response);
+          alert('Producto creado exitosamente');
+          this.router.navigateByUrl("/admin/productos")
+        },
+        error: (error) => {
+          console.error('Error creating producto:', error);
+          alert('Error al crear producto');
+        }
+      });
+    } else if (this.producto.id != null && this.producto.id != '' && this.productoForm.valid) {
       const producto_nuevo = this.productoForm.value;
       this.productoSvc.putProducto(this.producto.id, producto_nuevo).subscribe({
         next: (response) => {
