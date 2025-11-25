@@ -75,7 +75,8 @@ class Usuarios(Resource):
             
 
 
-# POST: Crear un usuario. Rol: USUARIO/ADMIN/ENCARGADO
+# POST: Crear un usuario. Rol: CLIENTE/ADMIN/EMPLEADO
+    @jwt_required()
     def post(self):
         usuario = Usuario_db.from_json(request.get_json())
         db.session.add(usuario)
@@ -87,8 +88,8 @@ class Usuarios(Resource):
 
 class Usuario(Resource):
 
-# GET: Obtener un usuario. Rol: USUARIO/ADMIN/EMPLEADO
-    @jwt_required(optional=True)
+# GET: Obtener un usuario. Rol: CLIENTE/ADMIN/EMPLEADO
+    @jwt_required()
     def get(self, id):        
         usuario = db.session.query(Usuario_db).get_or_404(id) 
         current_identity = int(get_jwt_identity())
@@ -100,7 +101,7 @@ class Usuario(Resource):
 
 # DELETE: Eliminar un usuario (cambiar de estado o suspender). Rol: ADMIN/EMPLEADO
 
-    @jwt_required(optional=True)
+    @jwt_required()
     @role_required(roles = ["admin","empleado"]) 
     def delete(self, id):
 
@@ -114,7 +115,7 @@ class Usuario(Resource):
         }, 200  # con 204 flask no devuelve el mensaje
 
 # PUT: Editar un usuario. Rol: ADMIN
-    @jwt_required(optional=True)
+    @jwt_required()
     def put(self, id):
 
         usuario = db.session.query(Usuario_db).get_or_404(id)

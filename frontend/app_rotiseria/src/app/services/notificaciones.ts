@@ -28,7 +28,7 @@ export class NotificacionesService {
     });
     const notificacion = {
       fk_id_usuario: idUsuario,
-      mensaje: `El estado de su pedido con ID ${idPedido} ha sido actualizado a '${estado}'.`
+      mensaje: `Pedido #${idPedido}: ${estado.charAt(0).toUpperCase() + estado.slice(1)}`,
     };
 
     return this.http.post(`${this.url}/notificaciones`, notificacion, { headers });

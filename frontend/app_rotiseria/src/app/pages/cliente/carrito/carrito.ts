@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './carrito.css'
 })
 
- export class Carrito implements OnInit{
+ export class Carrito {
 
   carrito: any = localStorage.getItem('carrito');
   carritoList?: any = JSON.parse(this.carrito);
@@ -61,8 +61,6 @@ import { CommonModule } from '@angular/common';
     localStorage.setItem('carrito', JSON.stringify(this.carritoList));
   }
 
-  //     localStorage.setItem('carrito', JSON.stringify(this.carritoList.map(p => p.id)));
-
 
   confirmarPedido() {
     if (!this.carritoList || this.carritoList.length === 0) {
@@ -87,10 +85,6 @@ import { CommonModule } from '@angular/common';
 
   carritoVacio(): boolean {
     return !this.carritoList || this.carritoList.length === 0;
-  }
-
-  ngOnInit(): void {
-
   }
 }  
 

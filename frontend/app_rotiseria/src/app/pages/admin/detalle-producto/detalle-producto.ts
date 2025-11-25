@@ -21,8 +21,12 @@ export class DetalleProducto {
 
   ngOnInit() {
     const id = this.route.snapshot.params['id'] || '';
-    this.productosSvc.getProducto(id).subscribe((producto) => {
-      this.producto = producto;
-    });
+    if (id) {
+      this.productosSvc.getProducto(id).subscribe((producto) => {
+        this.producto = producto;
+      });
+    }
+    this.producto = { id: '', nombre: '', descripcion: '', precio: 0, categoria: '', imagen: ''};
   }
+
 }

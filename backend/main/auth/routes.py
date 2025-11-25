@@ -5,7 +5,7 @@ from flask_jwt_extended import jwt_required, create_access_token, get_jwt
 from main.mail.functions import sendMail
 
 
-#Blueprint para acceder a los métodos de autenticación
+# Blueprint para acceder a los métodos de autenticación
 auth = Blueprint('auth', __name__, url_prefix='/auth')
 
 # Lista negra de JWT (para tokens revocados)
@@ -14,19 +14,15 @@ auth = Blueprint('auth', __name__, url_prefix='/auth')
 BLOCKLIST = set()
 
 
-#Método de logueo
+# Método de logueo
 @auth.route('/login', methods=['POST'])
 def login():
     
-    #Busca al usuario en la db por email
+    # Busca al usuario en la db por email
     usuario = db.session.query(Usuario_db).filter(Usuario_db.email == request.get_json().get("email")).first()
-    
-    # Devuelve error si el usuario esta bloqueado
-    if usuario.estado == 'bloqueado':
-        return 'Usuario Bloqueado ', 401
-    
-    # Devuelve error si no existe el usuario o si la contraseña no coincide
-    if (usuario is None) or not usuario.validate_pass(request.get_json().get("contrasena")):
+
+    # Devuelve error si el usuario no existe, si esta bloqueado, o si la contraseña no coincide
+    if (usuario is None) or (usuario.estado == 'bloqueado') or (not usuario.validate_pass(request.get_json().get("contrasena"))):
         return 'Usuario o contraseña invalida', 401 
     
     # Genera un nuevo token, pasando el objeto usuario como identidad
@@ -41,14 +37,14 @@ def login():
 
     return data, 200
 
-#Método de registro
+# Método de registro
 @auth.route('/register', methods=['POST'])
 def register():
     
-    #Obtener usuario
+    # Obtener usuario
     usuario = Usuario_db.from_json(request.get_json())
     
-    #Verificar si el mail ya existe en la db, scalar() para saber la cantidad de ese email
+    # Verificar si el mail ya existe en la db, scalar() para saber la cantidad de ese email
     exists = db.session.query(Usuario_db).filter(Usuario_db.email == usuario.email).scalar() is not None
     
     if exists:
@@ -79,7 +75,7 @@ def register():
 
         return data, 200   
 
-#Método de logout
+# Método de logout
 @auth.route('/logout', methods=['POST'])
 @jwt_required()
 def logout():

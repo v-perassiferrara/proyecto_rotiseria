@@ -67,6 +67,8 @@ class Usuarios(db.Model):
         }
         return usuario_json
 
+
+
     # Datos completos con pedidos, notificaciones y valoraciones
     def to_json_complete(self):
         pedidos = [pedido.to_json() for pedido in self.pedidos]

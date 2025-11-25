@@ -63,17 +63,19 @@ class Categoria(Resource):
         return jsonify(categoria.to_json_complete())
 
 
-# DELETE: Eliminar una categoria (ocultar/descontinuar). Rol: ADMIN
+# DELETE: Eliminar una categoria (eliminar toda la categoria con sus productos). Rol: ADMIN
     @jwt_required(optional=False)
     @role_required(roles = ["admin"]) 
     def delete(self, id):
         categoria = db.session.query(Categoria_db).get_or_404(id)
-        setattr(categoria, 'visible', False)
+
+
+        """ setattr(categoria, 'visible', False)
 
         for producto in categoria.productos:
-            setattr(producto, 'visible', False)
+            setattr(producto, 'visible', False) """
 
-        db.session.add(categoria)
+        db.session.delete(categoria)
         db.session.commit()
         return {
             'message': 'Categoria borrada con éxito',

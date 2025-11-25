@@ -67,4 +67,12 @@ export class UsuariosService {
   }
 
 
+  bloquearUsuario(id: string): Observable<any> {
+    const token = localStorage.getItem('token') || '';
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.delete(`${this.url}/usuario/${id}`, { headers });
+  }
 }

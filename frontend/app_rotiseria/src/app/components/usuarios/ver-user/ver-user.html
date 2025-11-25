@@ -26,7 +26,7 @@
                     <td class="abreviado"> {{usuario.nombre + ' ' + usuario.apellido}}</td>
                     <td>{{usuario.estado}}</td>
                     <td class="text-end">
-                        <a class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-ban"></i></a>
+                        <a class="btn btn-outline-danger btn-sm" (click)="bloquearUsuario(usuario)"><i class="fa-solid fa-ban"></i></a>
                         <a class="btn btn-outline-secondary btn-sm" (click)="editarUsuario(usuario)"><i class="fa-solid fa-pen"></i></a>
                     </td>
                 </tr>

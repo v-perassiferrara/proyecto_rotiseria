@@ -24,8 +24,8 @@
             <div class="input-group">
                 <select class="form-select" formControlName="fk_id_categoria">
                     @for (categoria of categorias; track categoria.id) {
-                    <option [value]="categoria.id">
-                        {{categoria.nombre}}
+                    <option [ngValue]="categoria.id">
+                        {{categoria.nombre}} 
                     </option>
                     }
                 </select>

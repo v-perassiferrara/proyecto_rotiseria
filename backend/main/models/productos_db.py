@@ -53,11 +53,13 @@ class Productos(db.Model):
         nombre = producto_json.get('nombre')
         precio = producto_json.get('precio')
         categoria = producto_json.get('fk_id_categoria')
+        imagenUrl =  producto_json.get('imagenUrl')
         visible = producto_json.get('visible')
         return Productos(
             id=id,
             nombre=nombre,
-            categoria=categoria,
+            fk_id_categoria=categoria,
             precio=precio,
+            imagenUrl = imagenUrl,
             visible=visible
         )
